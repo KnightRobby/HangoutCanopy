@@ -45,163 +45,97 @@
 	HangoutManager.prototype.detection = function()
 	{
 		this.ajax.get('https://plus.google.com/', (function(Request){
+			setTimeout(this.detection.bind(this), this.detectionTimeout);
+
 			/*
-				* parse main page for hangouts
+				* Assure Google Responded
+			*/
+			if(Request.status != 200)
+			{
+				return;
+			}
+			
+			/*
+				* Parse the hangouts
 			*/
 			var hangouts = this.parser.parseHangouts(Request.responseText);
 
+
 			/*
-				* loop hangouts
+				* Validate we have hangouts
+			*/
+			if(hangouts.length == 0)
+			{
+				return;
+			}
+
+			/*
+				* Loop Each Hangout
 			*/
 			for(var i = 0; i < hangouts.length; i++)
 			{
-				var hangout = hangouts[i];
-
-				if(hangout.type == 'open')
-				{
-					hangout.internal = true;
-					if(this.hangoutExists(hangout))
-					{
-						/*
-							* Check for changes
-						*/
-						if(this.hangoutHasChanged(hangout) === false)
-						{
-							continue;
-						}
-					}
-					/*
-						* Let server know about the hangout
-					*/
-					if(hangout.public == true)
-					{
-						window.getController().sendHangout(hangout);
-					}
-
-					this.setHangout(hangout);
-				}
-
-				if(hangout.type == 'closed')
-				{
-					window.getController().sendHangoutClosed(hangout);
-					this.removeHangout({id: hangout.id});
-					return;
-				}
+				this.addinternalHangout(hangouts[i]);
 			}
-
-			/*
-				* Restart the detection
-			*/
-			setTimeout(this.detection.bind(this), this.detectionTimeout);
 		}).bind(this));
 	}
 
-	HangoutManager.prototype.removeHangout = function(hangout)
+	HangoutManager.prototype.removeExternalHangout = function(id)
 	{
-		for(var i = 0; i < this.hangouts.length; i++)
-		{
-			if(this.hangouts[i].id == hangout.id)
-			{
-				this.hangouts.splice(i,1);
-				return;
-			}
-		}
 	}
 
-	HangoutManager.prototype.setHangout = function(hangout)
+	HangoutManager.prototype.addExternalHangout = function(hangout)
 	{
-		hangout.internal = true;
-		hangout.last_checked = new Date().getTime() / 1000;
-		for(var i = 0; i < this.hangouts.length; i++)
-		{
-			if(this.hangouts[i].id == hangout.id)
-			{
-				this.hangouts[i] = hangout;
-				return;
-			}
-		}
-
-		this.hangouts.push(hangout);
+		hangout.last_checked = this.getTimestamp();
 	}
 
-	HangoutManager.prototype.setExternalHangout = function(hangout)
+	HangoutManager.prototype.removeInternalHangout = function(id)
 	{
-		hangout.internal = false;
-		for(var i = 0; i < this.hangouts.length; i++)
-		{
-			if(this.hangouts[i].id == hangout.id)
-			{
-				hangout.internal = this.hangouts[i].internal ? false : true;
-				this.hangouts[i] = hangout;
-				return;
-			}
-		}
-
-		this.hangouts.push(hangout);
 	}
 
-	HangoutManager.prototype.hangoutHasChanged = function(newHangout)
+	HangoutManager.prototype.addinternalHangout = function(hangout)
 	{
-		var oldHangout = this.hangouts[newHangout.id];
-
-		if(oldHangout.clients.length != newHangout.clients.length)
-		{
-			return true;
-		}
+		/*
+			* Update / Add last checked timestamp
+		*/
+		hangout.lastChecked = this.getTimestamp();
 
 		/*
-			* Map users to validate a change
+			* Check to see if the hangout already exists
 		*/
-		return false;
+		if(this.hangoutExists(hangout.id))
+		{
+			if(this.hangoutHasChange(hangout))
+			{
+				/*
+					* Emit to the server
+				*/
+			}
+		}else
+		{
+			/*
+				* emit it to the server
+			*/
+		}
 	}
 
 	HangoutManager.prototype.hangoutExists = function(id)
 	{
-		for(var i = 0; i < this.hangouts.length; i++)
-		{
-			if(this.hangouts[i].id == id)
-			{
-				return true;
-			}
-		}
-		return false;
+		var exists = false;
+
+		this.hangouts.forEach(function(value, index){
+			if(value.id == id){exists = true;}
+		},this);
+
+		return exists;
 	}
 
-	HangoutManager.prototype.getOldestHangout = function()
+	HangoutManager.prototype.hangoutHasChange = function(hangout)
 	{
-		var oldest = false;
-		for (var key in this.hangouts)
-		{
-			if(!this.hangouts.hasOwnProperty(key))
-			{
-				continue;
-			}
+		
+	}
 
-			if(!this.hangouts[key].internal)
-			{
-				continue;
-			}
-
-			/*
-				* Check to see if we have set the oldest variable already
-			*/
-			if(!oldest)
-			{
-				oldest = key;
-				continue;
-			}
-
-			var _oldest = this.hangouts[oldest].last_checked;
-			var _current = this.hangouts[key].last_checked;
-
-			/*
-				* Compare the current with the odlest one
-			*/
-			if(_current < _oldest)
-			{
-				oldest = key;
-			}
-		}
-		return oldest;
+	HangoutManager.prototype.getTimestamp = function()
+	{
+		return new Date().getTime();
 	}
 })()

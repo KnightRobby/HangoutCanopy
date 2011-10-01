@@ -89,7 +89,7 @@
 	BackgroundController.prototype.onHangoutLive = function(hangout)
 	{
 		this.logger.notice('Got Hangout from Server: ' + hangout.id);
-		this.manager.setExternalHangout(hangout);
+		this.manager.addExternalHangout(hangout);
 	}
 
 	/*
@@ -98,6 +98,6 @@
 	BackgroundController.prototype.onHangoutClosed = function(id)
 	{
 		this.logger.notice('Got Hangout closed from Server: ' + id);
-		this.manager.removeHangout({id: id});
+		this.manager.removeExternalHangout(hangout);
 	}
 })()
