@@ -1,0 +1,18 @@
+
+<html>
+	<head>
+		<script type="text/javascript" src="http://server1.hangoutcanopy.com:2000/socket.io/socket.io.js"></script>
+		<script type="text/javascript" src="/javascripts/storage.js"></script>
+		<script type="text/javascript" src="/javascripts/logger.js"></script>
+		<script type="text/javascript" src="/javascripts/ajax.js"></script>
+		<script type="text/javascript" src="/javascripts/hangoutmanager.js"></script>
+		<script type="text/javascript" src="/javascripts/hangoutparser.js"></script>
+		<script type="text/javascript" src="/javascripts/connection.js"></script>
+		<script type="text/javascript" src="/javascripts/controllers/background.js"></script>
+		<script type="text/javascript">
+			var __Debug = true;
+			var __BG = new BackgroundController();
+			window.getController = function(){return __BG;}
+		</script>
+	</head>
+</html>

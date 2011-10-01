@@ -1,0 +1,26 @@
+{
+	"name"		: "Project Canopy (BETA)",
+	"version"	: "2.0.0",
+	"description"	: "Find and Share hangouts in real time",
+	"icons"	: {
+		"16" : "images/icons/logo_16.png",
+		"32" : "images/icons/logo_32.png",
+		"48" : "images/icons/logo_48.png"
+	},
+	"default_locale"	: "en",
+	"browser_action": {
+		"default_icon"	: "images/icons/logo_32.png",
+		"default_title"	: "Find and Share hangouts in real time",
+		"default_popup"	: "html/popup.html"
+	},
+	"background_page"	: "html/background.html",
+	"content_scripts"	: [
+	],
+	"homepage_url"		: "http://hangoutcanopy.com/?r=ext",
+	"update_url"		: "http://hangoutcanopy.com/extensions/updates/canopy.xml",
+	"minimum_chrome_version": "12",
+	"permissions"		: [
+		"https://plus.google.com/*",
+		"notifications"
+	]
+}
