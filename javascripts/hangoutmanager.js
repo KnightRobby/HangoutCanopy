@@ -9,6 +9,7 @@
 		this.ajax	= new window.Ajax();
 		this.parser	= new window.HangoutParser();
 		this.storage	= new window.Storage();
+		this.logger	= new window.Logger();
 
 		/*
 			* Storage Containers
@@ -20,16 +21,21 @@
 		*/
 		this.detectionTimeout	= this.storage.get('detection_timeout', 10000);
 		this.monitorTimeout	= this.storage.get('monitor_timeout', 10000);
+	}
 
+	HangoutManager.prototype.start = function()
+	{
 		/*
 			* Start the detection process
 		*/
 		this.detection();
+		this.logger.notice("Hangout Detection Started");
 
 		/*
 			* Start the monitoring process
 		*/
 		this.monitor();
+		this.logger.notice("Hangout Monitoring Started");
 	}
 
 	/*
@@ -37,6 +43,41 @@
 	*/
 	HangoutManager.prototype.monitor = function()
 	{
+		var hangout = this.getOldestHangout();
+
+		if(hangout != false)
+		{
+			this.ajax.get(hangout.post_url, (function(Request){
+				/*
+					* Check for 200 OK
+				*/
+				if(Request.status != 200)
+				{
+					return;
+				}
+
+				/*
+					* Parse the hangout
+				*/
+				var newHangout = this.parser.parseSingleHangout(Request.responseText);
+
+				if(!newHangout)
+				{
+					return;
+				}
+
+				switch(newHangout.type)
+				{
+					case 'open':
+						this.addInternalHangout(newHangout);
+					break;
+					case 'closed':
+						this.removeInternalHangout(newHangout);
+					break;
+				}
+			}).bind(this));
+		}
+		setTimeout(this.monitor.bind(this), this.detectionTimeout);
 	}
 
 	/*
@@ -60,7 +101,6 @@
 			*/
 			var hangouts = this.parser.parseHangouts(Request.responseText);
 
-
 			/*
 				* Validate we have hangouts
 			*/
@@ -74,30 +114,63 @@
 			*/
 			for(var i = 0; i < hangouts.length; i++)
 			{
-				this.addinternalHangout(hangouts[i]);
+				switch(hangouts[i].type)
+				{
+					case 'open':
+						this.addInternalHangout(hangouts[i]);
+					break;
+					case 'closed':
+						this.removeInternalHangout(hangouts[i]);
+					break;
+				}
 			}
 		}).bind(this));
 	}
 
 	HangoutManager.prototype.removeExternalHangout = function(id)
 	{
+		this.hangouts.forEach(function(value, index, context){
+			if(value.id == id)
+			{
+				this.hangouts.splice(index, 1);
+			}
+		}, this);
 	}
 
 	HangoutManager.prototype.addExternalHangout = function(hangout)
 	{
 		hangout.last_checked = this.getTimestamp();
+		hangout.internal = false;
+		var _index = false;
+
+		this.hangouts.forEach(function(value, index, context){
+			if(value.id == hangout.id)
+			{
+				hangout.internal = this.hangouts[index].internal == true ? true : false;
+				this.hangouts.splice(index, 1);
+			}
+		},this);
+
+		this.hangouts.push(hangout);
 	}
 
-	HangoutManager.prototype.removeInternalHangout = function(id)
+	HangoutManager.prototype.removeInternalHangout = function(hangout)
 	{
+		this.hangouts.forEach(function(value, index){
+			if(value.id == hangout.id){
+				this.hangouts.splice(index, 1);
+				getController().sendHangoutClosed(hangout);
+			}
+		},this);
 	}
 
-	HangoutManager.prototype.addinternalHangout = function(hangout)
+	HangoutManager.prototype.addInternalHangout = function(hangout)
 	{
 		/*
 			* Update / Add last checked timestamp
 		*/
-		hangout.lastChecked = this.getTimestamp();
+		hangout.lastChecked	= this.getTimestamp();
+		hangout.internal	= true;
 
 		/*
 			* Check to see if the hangout already exists
@@ -109,12 +182,37 @@
 				/*
 					* Emit to the server
 				*/
+				if(hangout.public == true)
+				{
+					getController().sendHangout(hangout);
+				}
 			}
 		}else
 		{
 			/*
-				* emit it to the server
+				* Emit it to the server
 			*/
+			if(hangout.public == true)
+			{
+				getController().sendHangout(hangout);
+			}
+		}
+
+		/*
+			* update the internal stack
+		*/
+		var updated = false;
+		this.hangouts.forEach(function(value, index, context){
+			if(value.id == hangout.id)
+			{
+				this.hangouts[index] = hangout;
+				updated = true;
+			}
+		},this);
+
+		if(!updated)
+		{
+			this.hangouts.push(hangout);
 		}
 	}
 
@@ -131,7 +229,65 @@
 
 	HangoutManager.prototype.hangoutHasChange = function(hangout)
 	{
-		
+		var oldHangout;
+
+		this.hangouts.forEach(function(value, index){
+			if(value.id == hangout.id){oldHangout = value;}
+		},this);
+
+		if(!oldHangout)
+		{
+			return true;
+		}
+
+		if(oldHangout.clients.length != hangout.clients.length)
+		{
+			return true;
+		}
+
+		/*
+			* validate clients themselfs
+		*/
+		var ids = {};    
+		for(var i = 0; i < oldHangout.clients.length; i++)
+		{
+			ids[oldHangout.clients[i].id] = true;
+		}
+
+		for(var i = 0; i < hangout.clients.length; i++)
+		{
+			var bid = hangout.clients[i].id;
+
+			if(!(bid in ids))
+			{
+		    		return true;
+			}
+		}
+
+		return false;
+	}
+
+	HangoutManager.prototype.getOldestHangout = function()
+	{
+		var oldest = false;
+
+		this.hangouts.forEach(function(value, index, context){
+			if(value.internal == true)
+			{
+				if(oldest == false)
+				{
+					oldest = value;
+					return;
+				}
+
+				if(oldest.lastChecked > value.lastChecked)
+				{
+					oldest = value;
+				}
+			}
+		},this);
+
+		return oldest;
 	}
 
 	HangoutManager.prototype.getTimestamp = function()
