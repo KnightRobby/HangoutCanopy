@@ -15,6 +15,16 @@
 	},
 	"background_page"	: "html/background.html",
 	"content_scripts"	: [
+		{
+			"matches": [
+				"https://plus.google.com/*/posts",
+				"https://plus.google.com/*/about",
+				"https://plus.google.com/*/photos",
+				"https://plus.google.com/*/videos",
+				"https://plus.google.com/*/plusones"
+			],
+			"js": ["/javascripts/injections/watch.js"]
+		}
 	],
 	"homepage_url"		: "http://hangoutcanopy.com/?r=ext",
 	"update_url"		: "http://hangoutcanopy.com/extensions/updates/canopy.xml",

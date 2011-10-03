@@ -32,6 +32,13 @@
 		this.connection.bindEventListener('reconnect_failed'	, this.onSocketReconnectFailed.bind(this));
 		this.connection.bindEventListener('hangout_live'	, this.onHangoutLive.bind(this));
 		this.connection.bindEventListener('hangout_closed'	, this.onHangoutClosed.bind(this));
+		this.connection.bindEventListener('settings'		, this.onSettings.bind(this));
+	}
+
+	BackgroundController.prototype.onSettings = function(settings)
+	{
+		this.logger.notice('Got settings from server');
+		this.manager.start();
 	}
 
 	/*
@@ -90,7 +97,7 @@
 	BackgroundController.prototype.onHangoutLive = function(hangout)
 	{
 		this.logger.notice('Got Hangout from Server: ' + hangout.id);
-		this.manager.setExternalHangout(hangout);
+		this.manager.addExternalHangout(hangout);
 	}
 
 	/*
@@ -99,6 +106,6 @@
 	BackgroundController.prototype.onHangoutClosed = function(id)
 	{
 		this.logger.notice('Got Hangout closed from Server: ' + id);
-		this.manager.removeHangout({id: id});
+		this.manager.removeExternalHangout(id);
 	}
 })()
