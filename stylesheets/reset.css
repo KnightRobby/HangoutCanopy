@@ -52,20 +52,3 @@ table {
 	
 
 
-
-.container {
-width:518px;
-background:#171717;
-height:577px;
-
--webkit-border-radius: 10px;
--moz-border-radius: 10px;
-border-radius: 10px;	
-	
-}
-
-aside{
-width:127px;
-float:left;	
-	
-}
