@@ -2,7 +2,7 @@
 	/*
 		* Hangout Canopy V2
 		* http://hangoutcanopy.com
-		*  Developers :
+		*  Developers : Robert Pit
 	*/
 
 	BackgroundController = window.BackgroundController = function()
