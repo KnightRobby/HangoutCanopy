@@ -3,9 +3,17 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" media="screen" />
 		<link rel="stylesheet" type="text/css" href="/stylesheets/popup.css" media="screen" />
+		<script type="text/javascript" src="/javascripts/libraries/jquery.js"></script>
+		<script type="text/javascript" src="/javascripts/libraries/jquery.tmpl.js"></script>
+		<script type="text/javascript" src="/javascripts/templates.js"></script>
+		<script type="text/javascript" src="/javascripts/controllers/popup.js"></script>
+		<script type="text/javascript">
+			window.__PC = new window.PopupController();
+			$(document).ready(window.__PC.init.bind(window.__PC));
+		</script>
 	</head>
 	<body>
-		<div class="container" >
+		<div class="container">
 			<aside>
 				<ul>
 					<li class="selected" ><a href="#">Stream</a></li>
@@ -19,12 +27,7 @@
 					<img src="/images/ads.png" alt=""/>
 				</div>
 			</aside>
-			<section>
-	    			<article>
-				    	<div class="top_nav">
-				        	<span>Public</span>
-				        </div>
-				</article>
+			<section id="hangouts">
 			</section>
 		</div>
 	</body>

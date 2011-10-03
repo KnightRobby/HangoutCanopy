@@ -35,6 +35,11 @@
 		this.connection.bindEventListener('settings'		, this.onSettings.bind(this));
 	}
 
+	BackgroundController.prototype.getHangoutManager = function()
+	{
+		return this.manager;
+	}
+
 	BackgroundController.prototype.onSettings = function(settings)
 	{
 		this.logger.notice('Got settings from server');

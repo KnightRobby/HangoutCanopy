@@ -23,6 +23,11 @@
 		this.monitorTimeout	= this.storage.get('monitor_timeout', 10000);
 	}
 
+	HangoutManager.prototype.getHangouts = function()
+	{
+		return this.hangouts;
+	}
+
 	HangoutManager.prototype.start = function()
 	{
 		/*
