@@ -60,7 +60,7 @@ aside #menu li
 	padding:10px;
 	border-bottom:1px;
 	 -webkit-border-image:url('/images/border_bottom_menu.png') 100 100 100 100 repeat;
-	padding-left:50px;
+	padding-left:20px;
 }
 
 aside #menu li.selected
@@ -78,37 +78,50 @@ aside #menu li a
 {
 	color:#867f7f;
 	font-weight:bold;
+	
+	
 }
 
-aside #menu li#stream 
-{
-        background:url('/images/icons/contact.png');
+aside #menu li span
+{	
+	vertical-align:middle;
+	display:inline-block;
+	width:24px;
+	height:24px;
+	background:url('/images/icons/icons.png');
+	margin-right:10px;
 	background-repeat:no-repeat;
-	background-position:10px center ;
 }
-aside #menu li#monitor
+aside #menu li.selected span ,aside #menu li:hover span
 {
-        background:url('/images/icons/contact.png');
-	background-repeat:no-repeat;
-	background-position:10px center ;
+	background-position-y:0px !important;
 }
-aside #menu li#bugs 
+aside #menu li:hover a
 {
-        background:url('/images/icons/contact.png');
-	background-repeat:no-repeat;
-	background-position:10px center ;
+	color:#fff;
 }
-aside #menu li#team
+aside #menu li#stream span
 {
-        background:url('/images/icons/contact.png');
-	background-repeat:no-repeat;
-	background-position:10px center ;
+      	background-position:-0px -24px;
+	
 }
-aside #menu li#news
+
+aside #menu li#monitor span
 {
-        background:url('/images/icons/contact.png');
-	background-repeat:no-repeat;
-	background-position:10px center ;
+        background-position:-24px -24px;
+}
+
+aside #menu li#bugs span
+{
+        background-position:-48px -24px;
+}
+aside #menu li#team span
+{
+        background-position:-72px -24px;
+}
+aside #menu li#news span
+{
+        background-position:-96px -24px;
 }
 
 /*
@@ -194,3 +207,150 @@ section article.hangout .arrow{
 	background:url('/images/arrow.png');
 	z-index:99;
 }
+
+
+#tab_bugs h2
+{
+	padding-left: 20px;
+	padding-top: 20px;
+	color: #4AB1D3;
+	font-weight:bold;
+	font-size:26px;
+}
+
+#tab_bugs #contact
+{
+	padding-left: 20px;
+	padding-top: 20px;
+}
+
+#tab_bugs #contact p
+{
+	padding-bottom:10px;
+}
+
+
+form#contact input[type="text"], input[type="url"], 
+input[type="email"], input[type="tel"], textarea {
+	margin: 3px 0 0 0;
+	padding: 6px; 
+	width: 260px; 
+	font-family: arial, sans-serif; 
+	font-size: 12px; 
+	border: 1px solid #ccc;
+    background: -webkit-gradient(linear, left top, left 15, from(#FFFFFF), color-stop(4%, #f4f4f4), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #FFFFFF, #f4f4f4 1px, #FFFFFF 15px);
+}
+
+form#contact textarea {
+	width: 275px; 
+	height: 150px;
+}
+
+form#contact label {
+	display: block;
+	font-size: 13px;
+	color: #666;
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+form#contact label.error { 
+	width: 270px;
+	margin: 3px 0 0 0;
+	display: block;
+	color: #cf0101;                              
+	font-size: 11px; 
+	text-align: right;
+}
+
+form#contact .placeholder {
+	color: #aaa;
+}
+
+form#contact .button {
+	display: inline-block;
+	margin: 15px 0 0 90px;
+	padding: 5px 15px 5px 15px;
+	background-color: #ff9e00;
+	border: none;
+	color: #fff;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+}
+
+form#contact .button:hover {
+	background-color: #fc8500;
+	cursor: pointer;
+}
+
+form#contact .button:active {
+	margin-top: 16px;
+	background-color: #f08004;
+	cursor: pointer;
+}
+
+/*
+    * Team Members
+*/
+
+h1, h2, h3, h4, h5, h6 {
+color: #4AB1D3;
+}
+
+#tab_team h2
+{
+	padding-left: 20px;
+	padding-top: 20px;
+	color: #4AB1D3;
+	font-weight:bold;
+	font-size:26px;
+}
+
+
+.team-member
+{
+    padding:3px;
+}
+
+.team-member > .team-member-image
+{
+    float:left;
+}
+
+.team-member > .team-member-image img
+{
+    width:100px;
+    height:100px;
+}
+
+.team-member > .team-member-info
+{
+    margin-left: 120px;
+}
+.team-member > .team-member-info h3, #special-thanks h3
+{
+    font-size: 16px;
+}
+
+.team-member > .team-member-info a, #special-thanks a
+{
+    text-decoration: none;
+}
+
+.team-member > .team-member-info p.links
+{
+    padding-top:3px;
+}
+
+.team-member > .team-member-info p.links a
+{
+    color: #4AB1D3;
+}
+
+#special-thanks p
+{
+}
+
+

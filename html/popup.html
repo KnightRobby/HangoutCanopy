@@ -18,11 +18,11 @@
 				<div class="logo">
 				</div>
 				<ul id="menu">
-					<li id="stream"><a href="#">Stream</a></li>
-					<li id="monitor"><a href="#">Monitor</a></li>
-					<li id="bugs"><a href="#">Bugs</a></li>
-					<li id="team"><a href="#">Team</a></li>
-					<li id="news"><a href="#">News</a></li>
+					<li class="selected" id="stream"><span></span><a href="#">Stream</a></li>
+					<li id="monitor"><span></span><a href="#">Monitor</a></li>
+					<li id="bugs"><span></span><a href="#">Bugs</a></li>
+					<li id="team"><span></span><a href="#">Team</a></li>
+					<li id="news"><span></span><a href="#">News</a></li>
 				</ul>
 			</aside>
 			<section class="tab_area" id="tab_stream">
@@ -32,10 +32,94 @@
 				Monitor
 			</section>
 			<section class="tab_area" id="tab_bugs">
-				Bugs
+				<h2>Submit a Bug/Feedback</h2>
+				<form id="contact" method="post" action="">
+					<p><label for="name">Name</label></p>
+					<p><input type="text" name="name" placeholder="Full Name" title="Enter your name" class="required"></p>
+					<p><label for="email">E-mail</label></p>
+					<p><input type="email" name="email" placeholder="yourname@domain.com" title="Enter your e-mail address" class="required email"></p>
+				        <p><label for="url">Google Plus Profile Url</label></p>
+					<p><input type="url" name="url" placeholder="http://"></p>
+					<p><label for="message">Bugs/Feedbacks</label></p>
+					<p><textarea name="message"></textarea></p>
+					<p><input type="submit" name="submit" id="submit" value="Send Message" /></p>
+				</form>
 			</section>
 			<section class="tab_area" id="tab_team">
-				Team
+				<h2>The Team</h2>
+				<div class="team-member">
+					<div class="team-member-image">
+						<a href="https://plus.google.com/110106586947414476573/" title="Google+ Profile">
+							<img src="https://lh5.googleusercontent.com/-KUmMRGsvGOE/AAAAAAAAAAI/AAAAAAAAAfw/q85dF3kNJPA/photo.jpg?sz=100">
+						</a>
+					</div>
+					<div class="team-member-info">
+						<a href="https://plus.google.com/110106586947414476573/" title="Google+ Profile">
+							<h3>Robert Pitt</h3>
+						</a>
+						<p>Robert Pitt is the developer and visionary behind the extension. He wrote most of the code single-handedly, and also worked on the server back-end. Robert also helped with the design and user-friendliness of the end product.</p>
+						<p class="links">
+							<a href="https://plus.google.com/110106586947414476573/" title="Google+ Profile">Google Profile</a>
+							<span>&nbsp;&nbsp;</span>
+							<a href="http://adminspot.net" title="Adminspot (Webmaster Forum)">Adminspot (Webmaster Forum)</a>
+						</p>
+					</div>
+				</div>
+				<div class="team-member">
+					<div class="team-member-image">
+						<a href="https://plus.google.com/110106586947414476573/" title="Google+ Profile">
+							<img src="https://lh5.googleusercontent.com/-LipdKUR3SWE/AAAAAAAAAAI/AAAAAAAAAYU/WY3zs85GvhA/photo.jpg?sz=100">
+						</a>
+					</div>
+					<div class="team-member-info">
+						<a href="https://plus.google.com/105574566053602019710/" title="Google+ Profile">
+							<h3>Brian Aldridge</h3>
+						</a>
+						<p>Brian Aldridge is responsible for server maintenance and monitoring of traffic. He also contributes great ideas for upcoming features and UI improvements.</p>
+						<p class="links">
+							<a href="https://plus.google.com/105574566053602019710/" title="Google+ Profile">Google Profile</a>
+							<span>&nbsp; &nbsp;</span>
+							<a href="http://adminspot.net" title="Adminspot (Webmaster Forum)">Adminspot (Webmaster Forum)</a>
+						</p>
+					</div>
+				</div>
+				<div class="team-member">
+					<div class="team-member-image">
+						<a href="https://plus.google.com/110106586947414476573/" title="Google+ Profile">
+							<img src="https://lh5.googleusercontent.com/-KUmMRGsvGOE/AAAAAAAAAAI/AAAAAAAAAfw/q85dF3kNJPA/photo.jpg?sz=100">
+						</a>
+					</div>
+					<div class="team-member-info">
+						<a href="https://plus.google.com/110106586947414476573/" title="Google+ Profile">
+							<h3>Robert Pitt</h3>
+						</a>
+						<p>Robert Pitt is the developer and visionary behind the extension. He wrote most of the code single-handedly, and also worked on the server back-end. Robert also helped with the design and user-friendliness of the end product.</p>
+						<p class="links">
+							<a href="https://plus.google.com/110106586947414476573/" title="Google+ Profile">Google Profile</a>
+							<span>&nbsp;&nbsp;</span>
+							<a href="http://adminspot.net" title="Adminspot (Webmaster Forum)">Adminspot (Webmaster Forum)</a>
+						</p>
+					</div>
+				</div>
+				<div class="team-member">
+					<div class="team-member-image">
+						<a href="https://plus.google.com/110106586947414476573/" title="Google+ Profile">
+							<img src="https://lh5.googleusercontent.com/-KUmMRGsvGOE/AAAAAAAAAAI/AAAAAAAAAfw/q85dF3kNJPA/photo.jpg?sz=100">
+						</a>
+					</div>
+					<div class="team-member-info">
+						<a href="https://plus.google.com/110106586947414476573/" title="Google+ Profile">
+							<h3>Robert Pitt</h3>
+						</a>
+						<p>Robert Pitt is the developer and visionary behind the extension. He wrote most of the code single-handedly, and also worked on the server back-end. Robert also helped with the design and user-friendliness of the end product.</p>
+						<p class="links">
+							<a href="https://plus.google.com/110106586947414476573/" title="Google+ Profile">Google Profile</a>
+							<span>&nbsp;&nbsp;</span>
+							<a href="http://adminspot.net" title="Adminspot (Webmaster Forum)">Adminspot (Webmaster Forum)</a>
+						</p>
+					</div>
+				</div>
+
 			</section>
 			<section class="tab_area" id="tab_news">
 				News
