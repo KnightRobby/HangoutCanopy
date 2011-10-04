@@ -354,3 +354,18 @@ color: #4AB1D3;
 }
 
 
+
+/*  single_hangouts */
+
+#single_hangouts
+{ 
+	position:absolute;
+	left:620px;
+	width: 520px;
+	height:580px;
+	background:#fafafa;
+	-webkit-box-shadow: -2px 0 15px 1px rgba(0,0,0,0.65);
+	z-index: 99;
+}
+
+

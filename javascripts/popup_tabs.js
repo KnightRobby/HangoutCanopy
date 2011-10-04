@@ -15,4 +15,12 @@ $(document).ready(function(){
 		var content_show = $(this).parent().attr("id");
 		$('#tab_' + content_show).slideDown();
 	});
+	// When Arrow link is clicked
+	$(".arrow").live('click',function(){
+		$('#single_hangouts').animate({
+  			left: '-=400',
+ 		 }, 2000, function() {
+   		 // Animation complete.
+  		});
+	});
 });
