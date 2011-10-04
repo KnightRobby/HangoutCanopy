@@ -10,6 +10,7 @@ body{
 	font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
 	width:600px;
 	height:580px;
+	overflow-y:hidden;
 }
 
 a,a:visited,a:active{
@@ -361,11 +362,44 @@ color: #4AB1D3;
 { 
 	position:absolute;
 	left:620px;
-	width: 520px;
+	width: 380px;
 	height:580px;
 	background:#fafafa;
 	-webkit-box-shadow: -2px 0 15px 1px rgba(0,0,0,0.65);
 	z-index: 99;
+	top:0;
+}
+
+.single_preview
+{
+	background: white;
+	height: 150px;
+	border:1px solid #ccc;
+	width: 380px;
+	background:#fafafa;
+	-webkit-box-shadow: 0px 0 15px 1px rgba(0,0,0,0.65);
+}
+
+
+.button {
+	background-color: #4D90FE;
+	background-image: -webkit-linear-gradient(top,#4d90fe,#4787ed);
+	border-radius: 2px;
+	cursor: default;
+	font-size: 11px;
+	font-weight: bold;
+	text-align: center;
+	margin-right: 16px;
+	height: 27px;
+	line-height: 27px;
+	min-width: 54px;
+	outline: 0;
+	padding: 0 8px;
+	display: inline-block;
+	color: white;
+	margin-top: 20px;
+	text-decoration: none;
+	margin-left: 120px;
 }
 
 
