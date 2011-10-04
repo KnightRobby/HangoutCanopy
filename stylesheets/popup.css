@@ -18,6 +18,11 @@ a,a:visited,a:active{
 	color:#999;
 }
 
+strong
+{
+	font-weight: bold;
+}
+
 .clear{clear:both;}
 /*
 	* Rounded Edges for Images
@@ -107,9 +112,14 @@ aside #menu li#stream span
 	
 }
 
-aside #menu li#monitor span
+aside #menu li#watching span
 {
-        background-position:-24px -24px;
+	background-position:-120px -24px;
+}
+
+aside #menu li#statistics span
+{
+	background-position:-24px -24px;
 }
 
 aside #menu li#bugs span
@@ -374,7 +384,6 @@ color: #4AB1D3;
 {
 	background: white;
 	height: 150px;
-	border:1px solid #ccc;
 	width: 380px;
 	background:#fafafa;
 	-webkit-box-shadow: 0px 0 15px 1px rgba(0,0,0,0.65);

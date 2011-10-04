@@ -27,9 +27,6 @@ templates.hangouts.row = '<article id="${htmlid}" class="hangout" data-public="{
 			* Client Images
 		*/
 		templates.hangouts.row += '<div class="clients">';
-
-			templates.hangouts.row +='<p>is hanging out with</p>';
-
 			/*
 				* Text Logic
 			*/
@@ -61,5 +58,5 @@ templates.hangouts.row += '</article>';
 	* Single Hangout Preview
 */
 templates.hangouts.single = '<div class="single_preview">';
-	templates.hangouts.single +='<a href="#" class="button">Join This Hangout</a>';
+	templates.hangouts.single +='<a href="#" class="close">Close</a><a href="#" class="button">Join This Hangout</a>';
 templates.hangouts.single += '</div>';
