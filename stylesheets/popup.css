@@ -21,7 +21,7 @@ a,a:visited,a:active{
 /*
 	* Rounded Edges for Images
 */
-.rounded_image > img
+.rounded_image a > img
 {
 	-webkit-border-radius: 5px;
 }
@@ -60,6 +60,7 @@ aside #menu li
 	padding:10px;
 	border-bottom:1px;
 	 -webkit-border-image:url('/images/border_bottom_menu.png') 100 100 100 100 repeat;
+	padding-left:50px;
 }
 
 aside #menu li.selected
@@ -77,6 +78,37 @@ aside #menu li a
 {
 	color:#867f7f;
 	font-weight:bold;
+}
+
+aside #menu li#stream 
+{
+        background:url('/images/icons/contact.png');
+	background-repeat:no-repeat;
+	background-position:10px center ;
+}
+aside #menu li#monitor
+{
+        background:url('/images/icons/contact.png');
+	background-repeat:no-repeat;
+	background-position:10px center ;
+}
+aside #menu li#bugs 
+{
+        background:url('/images/icons/contact.png');
+	background-repeat:no-repeat;
+	background-position:10px center ;
+}
+aside #menu li#team
+{
+        background:url('/images/icons/contact.png');
+	background-repeat:no-repeat;
+	background-position:10px center ;
+}
+aside #menu li#news
+{
+        background:url('/images/icons/contact.png');
+	background-repeat:no-repeat;
+	background-position:10px center ;
 }
 
 /*
@@ -101,17 +133,19 @@ section article.hangout{
 	min-height:70px;
 	width:420px;
 	float:left;
+	position:relative;
 }
 
 section article.hangout .info
 {
 	font-size:11px;
 	margin-top:12px;
-	float:right;
+	
 }
 
 section article.hangout .info .top_nav{
-	float:right;
+	right:5px;
+	position:absolute;
 	margin-right:8px;
 }
 
@@ -130,4 +164,19 @@ section article.hangout .main_image
 	float: left;
 	margin-left:10px;
 	margin-top:10px;
+}
+
+section article.hangout .clients{
+	float:left;
+	padding-left:10px;
+}
+section article.hangout .clients p{
+	float:left;
+	
+}
+
+section article.hangout .clients img{ 
+	margin-top:2px;
+	margin-right:5px;
+	-webkit-border-radius: 5px
 }
