@@ -55,3 +55,9 @@ templates.hangouts.row = '<article id="${htmlid}" class="hangout" data-public="{
 	
 	templates.hangouts.row += '</div>';
 templates.hangouts.row += '</article>';
+
+
+/*
+	* Single Hangout Preview
+*/
+templates.hangouts.single = '';

@@ -232,6 +232,17 @@
 		return exists;
 	}
 
+	HangoutManager.prototype.getHangout = function(id)
+	{
+		var hangout = null;
+
+		this.hangouts.forEach(function(value, index){
+			if(value.id == id){hangout = value;}
+		},this);
+
+		return hangout;
+	}
+
 	HangoutManager.prototype.hangoutHasChange = function(hangout)
 	{
 		var oldHangout;

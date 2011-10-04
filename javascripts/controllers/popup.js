@@ -22,11 +22,14 @@
 				url : $(this).attr('href')
 			});
 		});
+
+		$('#hangouts .arrow').live('click', this.displayHangout.bind(this));
 	}
 
 	PopupController.prototype.compileTemplates = function()
 	{
-		$.template("hangouts.row", templates.hangouts.row);
+		$.template("hangouts.row", 	templates.hangouts.row);
+		$.template("hangouts.single",	templates.hangouts.single);
 	}
 
 	PopupController.prototype.initializeHangouts = function()
@@ -61,6 +64,11 @@
 			var html = $.tmpl("hangouts.row", hangouts[i]);
 
 			/*
+				* Set the hangout ID to the meta data
+			*/
+			html.data('hangout_id', hangouts[i].id);
+
+			/*
 				* if it exists, Replace it
 			*/
 			if(exists)
@@ -70,6 +78,38 @@
 			}
 
 			hangoutDOM.prepend(html).slideDown();
+
+			/*
+				* Cleanup, Stops the data added being referenced
+			*/
+			delete hangouts[i].htmlid;
 		}
+	}
+
+	PopupController.prototype.displayHangout = function(evt)
+	{
+		$('#single_hangout').remove();
+		var hangoutID = $(evt.srcElement).closest('.hangout').data('hangout_id');
+
+		/*
+			* Get hangout from the manager
+		*/
+		if(!this.background.manager.hangoutExists(hangoutID))
+		{
+			return false;
+		}
+
+
+		var hangout = this.background.manager.getHangout(hangoutID);
+
+		/*
+			* Generate HTML From template
+		*/
+		var html = $.tmpl("hangouts.single", hangout);
+
+		/*
+			* Create the DIV
+		*/
+		$('<div />').attr('id','single_hangout').html(html).appendTo('body').animate({left: '-=400'},1000,function(){});
 	}
 })();
