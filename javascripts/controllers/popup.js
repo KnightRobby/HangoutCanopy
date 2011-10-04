@@ -12,6 +12,16 @@
 	PopupController.prototype.init = function()
 	{
 		this.initializeHangouts();
+		this.initializeClickMonitoring();
+	}
+
+	PopupController.prototype.initializeClickMonitoring = function()
+	{
+		$("a[href^='http://'],a[href^='https://']").live('click', function(){
+			chrome.tabs.create({
+				url : $(this).attr('href')
+			});
+		});
 	}
 
 	PopupController.prototype.compileTemplates = function()
