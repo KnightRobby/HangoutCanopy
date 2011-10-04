@@ -42,6 +42,16 @@
 		this.socket = this.io.connect(this.protocol + '://' + this.domain + ':' + this.port, this.options);
 	}
 
+	Connection.prototype.isConnected = function()
+	{
+		return this.socket.socket.connected;
+	}
+
+	Connection.prototype.isReconnecting = function()
+	{
+		return this.socket.socket.reconnecting;
+	}
+
 	Connection.prototype.bindEventListener = function(namespace, callback)
 	{
 		this.socket.on(namespace, callback);

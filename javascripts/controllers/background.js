@@ -13,6 +13,15 @@
 		this.manager	= new window.HangoutManager();
 
 		/*
+			* Color ENUM
+		*/
+		this.colorEnum = {
+			GREEN 	: [89, 185, 11, 255],
+			RED	: [187, 10, 10, 255],
+			ORANGE	: [242, 171, 35, 255]
+		}
+
+		/*
 			* Get settings from storage
 		*/
 		this.notifications = this.storage.get('notifications', false);
@@ -33,6 +42,38 @@
 		this.connection.bindEventListener('hangout_live'	, this.onHangoutLive.bind(this));
 		this.connection.bindEventListener('hangout_closed'	, this.onHangoutClosed.bind(this));
 		this.connection.bindEventListener('settings'		, this.onSettings.bind(this));
+
+		/*
+			* Set loop for the badge
+		*/
+		this.displayBadge();
+	}
+
+	BackgroundController.prototype.displayBadge = function()
+	{
+		setTimeout(this.displayBadge.bind(this), 500);
+
+		if(this.connection.isConnected())
+		{
+			chrome.browserAction.setBadgeText({text : this.manager.hangouts.length.toString()});
+			chrome.browserAction.setBadgeBackgroundColor({color: this.colorEnum.GREEN});
+			chrome.browserAction.setTitle({title: 'Your currently connected to Hangout Canopy'});
+			return;
+		}else
+		{
+			if(this.connection.isReconnecting())
+			{
+				chrome.browserAction.setBadgeText({text : 'R'});
+				chrome.browserAction.setBadgeBackgroundColor({color: this.colorEnum.ORANGE});
+				chrome.browserAction.setTitle({title: 'Were currently trying to reconnect to Hangout Canopy'});
+				return;
+			}
+
+			chrome.browserAction.setBadgeText({text : 'D'});
+			chrome.browserAction.setBadgeBackgroundColor({color: this.colorEnum.RED});
+			chrome.browserAction.setTitle({title: 'Your Currenty disconnected from Hangout Canopy'});
+			return;
+		}
 	}
 
 	BackgroundController.prototype.getHangoutManager = function()
@@ -78,6 +119,7 @@
 	BackgroundController.prototype.onSocketDisconnect = function()
 	{
 		this.logger.notice('Disconnected from Server');
+		chrome.browserAction.setBadgeText({text : 'D'})
 	}
 
 	/*

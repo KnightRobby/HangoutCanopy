@@ -18,5 +18,6 @@ templates.hangouts.row = '<article id="${htmlid}" class="hangout" data-public="{
 		templates.hangouts.row += '<img width="48" height="48" src="${clients[0].photo}?sz=48" />';
 	templates.hangouts.row += '</div>';
 	templates.hangouts.row += '<div class="info">';
+		templates.hangouts.row += '<p>Some text here that will be in each row</p>';
 	templates.hangouts.row += '</div>';
 templates.hangouts.row += '</article>';
