@@ -4,6 +4,7 @@
 		<link rel="stylesheet" type="text/css" href="/stylesheets/popup.css" media="screen" />
 		<script type="text/javascript" src="/javascripts/libraries/jquery.js"></script>
 		<script type="text/javascript" src="/javascripts/libraries/jquery.tmpl.js"></script>
+		<script type="text/javascript" src="/javascripts/popup_tabs.js"></script>
 		<script type="text/javascript" src="/javascripts/templates.js"></script>
 		<script type="text/javascript" src="/javascripts/controllers/popup.js"></script>
 		<script type="text/javascript">
@@ -17,15 +18,27 @@
 				<div class="logo">
 				</div>
 				<ul id="menu">
-					<li id="stream" class="selected"><a href="#">Stream</a></li>
+					<li id="stream"><a href="#">Stream</a></li>
 					<li id="monitor"><a href="#">Monitor</a></li>
 					<li id="bugs"><a href="#">Bugs</a></li>
 					<li id="team"><a href="#">Team</a></li>
 					<li id="news"><a href="#">News</a></li>
 				</ul>
 			</aside>
-			<section>
+			<section class="tab_area" id="tab_stream">
 				<div id="hangouts" class="scrollable"></div>
+			</section>
+			<section class="tab_area" id="tab_monitor">
+				Monitor
+			</section>
+			<section class="tab_area" id="tab_bugs">
+				Bugs
+			</section>
+			<section class="tab_area" id="tab_team">
+				Team
+			</section>
+			<section class="tab_area" id="tab_news">
+				News
 			</section>
 		</div>
 	</body>
