@@ -27,7 +27,7 @@ templates.hangouts.row = '<article id="${htmlid}" class="hangout" data-public="{
 			* Client Images
 		*/
 		templates.hangouts.row += '<div class="clients">';
-			templates.hangouts.row +='<p>Fuck You Robert</p>';
+			templates.hangouts.row +='<p>is hanging out with</p>';
 			templates.hangouts.row +='<br class="clear" />';
 		
 			templates.hangouts.row += '{{each(i,v) clients}}';
@@ -38,7 +38,7 @@ templates.hangouts.row = '<article id="${htmlid}" class="hangout" data-public="{
 
 		templates.hangouts.row += '</div>';
 		templates.hangouts.row += '<div class="top_nav">';
-				templates.hangouts.row += '<span class="public"><a href="${post_url}">{{if public}}Puplic{{else}}Limited{{/if}}</a></span>';
+				templates.hangouts.row += '<span class="public"><a href="${post_url}">{{if public}}Public{{else}}Limited{{/if}}</a></span>';
 		templates.hangouts.row += '</div>';
 	
 	templates.hangouts.row += '</div>';
