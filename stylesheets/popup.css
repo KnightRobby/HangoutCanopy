@@ -1,16 +1,23 @@
 /*
+	* Import Global Styles
+*/
+@import url('reset.css');
+
+/*
 	* Global Styles
 */
 body{
 	font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
-	width:550px;
+	width:600px;
 	height:580px;
 }
 
-a{
+a,a:visited,a:active{
 	text-decoration:none;
+	color:#999;
 }
 
+.clear{clear:both;}
 /*
 	* Rounded Edges for Images
 */
@@ -27,32 +34,47 @@ a{
 	overflow:hidden;
 	width:inherit;
 	height:inherit;
-	background:#171717;
 }
 
 /*
 	* Sidebar
 */
-aside{
-	width:127px;
-	float:left;	
-	
+aside
+{
+	background: url('/images/sidebar_bg.png');
+	repeat:both;
+	width: 180px;
+	height:inherit;
+	float:left;
 }
 
 /*
 	* Sidebar Menu
 */
-aside ul{
-	padding-left:10px;
+
+aside #menu
+{
 }
-aside ul li{
-	padding-top:10px;
-	padding-bottom:10px;
+aside #menu li
+{
+	padding:10px;
+	border-bottom:1px;
+	 -webkit-border-image:url('/images/border_bottom_menu.png') 100 100 100 100 repeat;
 }
-aside ul li.selected a{
-	color:#fff;
+
+aside #menu li.selected
+{
+	background-color:#2A2A2A;
 }
-aside ul li a{
+
+aside #menu li.selected a
+{
+	color: white !important;
+	text-shadow: 2px 2px 2px #000;
+}
+
+aside #menu li a
+{
 	color:#867f7f;
 	font-weight:bold;
 }
@@ -60,33 +82,35 @@ aside ul li a{
 /*
 	* Right Side Content
 */
-section{
+section
+{
 	float:right;
-	width:400px;
+	width: 420px;
 	height:inherit;
 	background:#fafafa;
 	overflow-x:hidden;
 	overflow-y: auto;
+	-webkit-box-shadow: -2px 0 15px 1px rgba(0,0,0,0.65);
 }
 
 /*
 	* Hangouts
 */
 section article.hangout{
-	background:url(/images/list.png);
-	min-height:69px;
-	width:391px;
+	background:url(/images/list.png) repeat-x;
+	min-height:70px;
+	width:420px;
 	float:left;
-	padding-right:10px;
 }
 
-
-section article.hangout:hover
+section article.hangout .info
 {
-	
+	font-size:11px;
+	margin-top:12px;
+	float:right;
 }
 
-section article.hangout .top_nav{
+section article.hangout .info .top_nav{
 	float:right;
 	margin-right:8px;
 }
@@ -96,17 +120,14 @@ section article.hangout .top_nav span{
 	font-size:11.5px;
 }
 
+section article.hangout .top_nav span.public
+{
+	font-weight:bold;
+}
+
 section article.hangout .main_image
 {
 	float: left;
 	margin-left:10px;
 	margin-top:10px;
-}
-
-section article.hangout .info
-{
-	color:#999;
-	font-size:11.5px;
-	margin-top: 16px;
-	margin-left: 70px;
 }
