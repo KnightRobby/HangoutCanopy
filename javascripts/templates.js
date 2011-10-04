@@ -27,7 +27,14 @@ templates.hangouts.row = '<article id="${htmlid}" class="hangout" data-public="{
 			* Client Images
 		*/
 		templates.hangouts.row += '<div class="clients">';
-			templates.hangouts.row +='<p>Fuck You Robert</p>';
+			/*
+				* Text Logic
+			*/
+			templates.hangouts.row += '<p>';
+				/*{{if extra}}<br />Title: <font style="font-weight:bold;">${title}</strong>{{/if}}*/
+				templates.hangouts.row += '<strong>${clients[0].name}</strong> is hanging out with ';
+				templates.hangouts.row += '{{if clients.length == 1}} no one {{else}}${clients.length - 1} people{{/if}}';
+			templates.hangouts.row += '</p>';
 			templates.hangouts.row +='<br class="clear" />';
 		
 			templates.hangouts.row += '{{each(i,v) clients}}';
