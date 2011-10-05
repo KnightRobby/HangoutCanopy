@@ -13,3 +13,70 @@
 	-webkit-box-shadow: -2px 0 15px 1px rgba(0,0,0,0.65);
 	-webkit-box-shadow: -6px 20px 15px 0px rgba(0,0,0,0.65)
 }
+
+.slideout_panel .panel_header
+{
+	background:url('/images/sidebar_bg.png');
+	height:35px;
+	padding-top:4px;
+	padding-left:4px;
+}
+.slideout_panel .panel_header .join
+{
+	margin-right:5px;
+	float:right;	
+}
+.slideout_panel .panel_header .refresh
+{
+	
+	text-indent:-99999px;
+	background:url('/images/icons/refresh.png');
+	width:20px;
+	height:11px;
+	margin-top:9px;
+	display:inline-block;
+}
+
+.slideout_panel .panel_header .close
+{
+	margin-left:20px;
+	text-indent:-99999px;
+	background:url('/images/close.png');
+	width:10px;
+	height:11px;
+	margin-top:5px;
+	display:inline-block;
+	margin-right:9px;
+}
+.slideout_panel .panel_header .post
+{
+	text-indent:-99999px;
+	background:url('/images/icons/post.png');
+	width:11px;
+	height:11px;
+	margin-top:5px;
+	display:inline-block;
+	margin-right:9px;
+}
+
+.slideout_panel .panel_users ul
+{
+	height:300px;
+	overflow:auto;	
+}
+.slideout_panel .panel_users ul li
+{
+	height:40px;
+	border-bottom:1px solid #ccc;
+	padding-left:20px;
+	padding-top:10px;
+	
+}
+.slideout_panel .panel_users ul li a
+{
+	
+}
+.slideout_panel .panel_users ul li a img
+{
+	
+}

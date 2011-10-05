@@ -61,5 +61,19 @@ templates.hangouts.row += '</article>';
 	* Single Hangout Preview
 */
 templates.hangouts.single = '<div class="slideout_panel">';
-	templates.hangouts.single +='<div class="panel_header"></div>';
+	templates.hangouts.single +='<div class="panel_header">';
+		templates.hangouts.single += '<a href="#" class="close">Close</a>';
+		templates.hangouts.single += '<a href="#" class="post">Post</a>';
+		templates.hangouts.single += '<a href="#" class="refresh">Refresh</a>';
+		templates.hangouts.single += '<a href="#" class="join button">Join</a>';
+	templates.hangouts.single +='</div>';
+	templates.hangouts.single += '<div class="panel_users">';
+		templates.hangouts.single += '<ul>';
+			templates.hangouts.single += '{{each(i,v) clients}}';
+				templates.hangouts.single += '<li>';
+					templates.hangouts.single += '<a href="https://plus.google.com/${v.id}"><img src="${v.photo}?sz=32" width="32" height="32" /></a>';
+					templates.hangouts.single += '<span>${v.name}</span>';
+				templates.hangouts.single += '</li>';
+			templates.hangouts.single += '{{/each}}';
+		templates.hangouts.single += '</ul>';
 templates.hangouts.single += '</div>';
