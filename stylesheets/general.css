@@ -1,17 +1,25 @@
-body{
+/*
+	* Set design for general elements
+*/
+body {
 	font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
 	width:600px;
 	height:580px;
-	overflow-y:hidden;
+	overflow:hidden;
 }
 
-a,a:visited,a:active{
+/*
+	* a:link	unvisited links
+	* a:visited	visited links
+	* a:hover 	user hovers
+	* a:active	active links
+*/
+a,a:link:visited:hover:active {
 	text-decoration:none;
 	color:#999;
 }
 
-strong
-{
+strong, bold {
 	font-weight: bold;
 }
 
@@ -19,30 +27,56 @@ h1, h2, h3, h4, h5, h6 {
 	color: #4AB1D3;
 }
 
-.clear{clear:both;}
 /*
-	* Rounded Edges for Images
+	* Small misc classes
 */
+.clear {
+	clear:both;
+}
+
 .rounded_image a > img
 {
 	-webkit-border-radius: 5px;
 }
 
 /*
-	* Scrollbar (Stylish) <div class="stylish-scrollbar">...</div>
+	* Stylish Scrollbar, Used in Google Docs
 */
-::-webkit-scrollbar{background:transparent;overflow:visible;width:15px;}
-::-webkit-scrollbar-thumb{background-color:rgba(0,0,0,0.2);border:solid #fff;}
-::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,0.4);}
-::-webkit-scrollbar-thumb:horizontal{border-width:4px 6px;min-width:40px;}
-::-webkit-scrollbar-thumb:vertical{border-width:6px 4px;min-height:40px;}
-body::-webkit-scrollbar-track-piece{background-color:#fff;}
-::-webkit-scrollbar-corner{background:transparent;}
-.stylish-scrollbar-dark::-webkit-scrollbar-thumb{background-color:rgba(255,255,255,0.6);}
-.stylish-scrollbar-dark::-webkit-scrollbar-thumb:hover{background-color:rgba(255,255,255,0.8);}
+::-webkit-scrollbar {
+	background:transparent;
+	overflow:visible;
+	width:15px;
+}
+::-webkit-scrollbar-thumb {
+	background-color:rgba(0,0,0,0.2);
+	border:solid #fff;
+}
+::-webkit-scrollbar-thumb:hover {
+	background:rgba(0,0,0,0.4);
+}
+::-webkit-scrollbar-thumb:horizontal {
+	border-width:4px 6px;
+	min-width:40px;
+}
+::-webkit-scrollbar-thumb:vertical {
+	border-width:6px 4px;
+	min-height:40px;
+}
+body::-webkit-scrollbar-track-piece {
+	background-color:#fff;
+}
+::-webkit-scrollbar-corner {
+	background:transparent;
+}
+.stylish-scrollbar-dark::-webkit-scrollbar-thumb {
+	background-color:rgba(255,255,255,0.6);
+}
+.stylish-scrollbar-dark::-webkit-scrollbar-thumb:hover {
+	background-color:rgba(255,255,255,0.8);
+}
 
 /*
-	* Main Container
+	* Layout
 */
 .container
 {
