@@ -451,7 +451,7 @@ body::-webkit-scrollbar-track-piece{background-color:#fff;}
 .logo
 {	margin-top:10px;
 	margin-bottom:10px;
-	width:200px;
+
 	height:80px;
 	background:#fff;
 }
@@ -459,14 +459,14 @@ body::-webkit-scrollbar-track-piece{background-color:#fff;}
 .ads
 {
 	margin-bottom:10px;
-	width:200px;
+	
 	height:150px;
 
 }
 
 .settings
 {
-	width:200px;
+	
 	height:100px;
 	-webkit-border-image:url('/images/border_bottom_menu.png') 100 100 100 100 repeat;
 	border-top:2px solid;
