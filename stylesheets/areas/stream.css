@@ -70,24 +70,3 @@
 	background:url('/images/arrow.png');
 	z-index:99;
 }
-
-#single_hangout
-{ 
-	position:absolute;
-	left:620px;
-	width: 380px;
-	height:580px;
-	background:#fafafa;
-	-webkit-box-shadow: -2px 0 15px 1px rgba(0,0,0,0.65);
-	z-index: 99;
-	top:0;
-}
-
-.single_preview
-{
-	background: white;
-	height: 150px;
-	width: 380px;
-	background:#fafafa;
-	-webkit-box-shadow: 0px 0 15px 1px rgba(0,0,0,0.65);
-}

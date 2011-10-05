@@ -14,5 +14,10 @@ $(document).ready(function(){
 		// slide this content up
 		var content_show = $(this).parent().attr("id");
 		$('#tab_' + content_show).slideDown();
+
+		if($('.slideout_panel').size() != 0)
+		{
+			$('.slideout_panel').animate({left: '+=400'}, 400, function(){$('.slideout_panel').remove();});
+		}
 	});
 });

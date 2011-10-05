@@ -60,6 +60,6 @@ templates.hangouts.row += '</article>';
 /*
 	* Single Hangout Preview
 */
-templates.hangouts.single = '<div class="single_preview">';
-	templates.hangouts.single +='<a href="#" class="close">Close</a><a href="#" class="button">Join This Hangout</a>';
+templates.hangouts.single = '<div class="slideout_panel">';
+	templates.hangouts.single +='<div class="panel_header"></div>';
 templates.hangouts.single += '</div>';

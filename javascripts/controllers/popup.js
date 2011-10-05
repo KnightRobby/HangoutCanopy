@@ -96,7 +96,7 @@
 
 	PopupController.prototype.displayHangout = function(evt)
 	{
-		$('#single_hangout').remove();
+		$('.slideout_panel').remove();
 		var hangoutID = $(evt.srcElement).closest('.hangout').data('hangout_id');
 
 		/*
@@ -118,15 +118,14 @@
 		/*
 			* Create the DIV
 		*/
-		var area = $('<div />').attr('id','single_hangout').html(html).appendTo('body').animate({left: '-=400'},1000,function(){});
+		var area = html.attr('id','slideout_panel_hangout').appendTo('body').animate({left: '-=400'},1000,function(){});
 
 		/*
 			* Bind required clicks to the generated html.
 		*/
 
-		$('.close',area).click(function(){
-			area.animate({left: '+=400'}, 800, function(){
-				$('#single_hangout').remove();
+		$('.close',area).click(function(){area.animate({left: '+=400'}, 800, function(){
+				$('#slideout_panel_hangout').remove();
 			});
 			return false;
 		});

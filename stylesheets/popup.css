@@ -27,3 +27,8 @@
     * Team Members
 */
 @import url('/stylesheets/areas/team.css');
+
+/*
+    * Slideout Panel
+*/
+@import url('/stylesheets/areas/slideout_panel.css');
