@@ -197,7 +197,10 @@ section article.hangout .clients{
 }
 section article.hangout .clients p{
 	float:left;
-	
+	width: 250px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	height: 12px;
 }
 
 section article.hangout .clients img{ 
