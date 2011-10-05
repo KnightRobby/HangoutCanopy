@@ -3,7 +3,8 @@
 */
 
 var templates = {
-	hangouts : {}
+	hangouts : {
+	}
 };
 
 /*

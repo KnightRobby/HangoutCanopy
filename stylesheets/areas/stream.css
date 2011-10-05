@@ -1,0 +1,104 @@
+section
+{
+	float:right;
+	width: 420px;
+	height:inherit;
+	background:#fafafa;
+	overflow-x:hidden;
+	overflow-y: auto;
+	-webkit-box-shadow: -2px 0 15px 1px rgba(0,0,0,0.65);
+}
+
+/*
+	* Hangouts
+*/
+section article.hangout{
+	background:url(/images/list.png) repeat-x;
+	min-height:70px;
+	width:420px;
+	float:left;
+	position:relative;
+}
+
+section article.hangout .info
+{
+	font-size:11px;
+	margin-top:12px;
+	
+} 
+
+section article.hangout .info .top_nav{
+	right:5px;
+	position:absolute;
+	z-index:3;
+	margin-right:8px;
+}
+
+section article.hangout .top_nav span{
+	color:#999;
+	font-size:11.5px;
+}
+	
+section article.hangout .top_nav span.public
+{
+	font-weight:bold;
+}
+
+section article.hangout .main_image
+{
+	float: left;
+	margin-left:10px;
+	margin-top:10px;
+}
+
+section article.hangout .clients{
+	float:left;
+	padding-left:10px;
+}
+section article.hangout .clients p{
+	float:left;
+	width: 250px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	height: 12px;
+}
+
+section article.hangout .clients img{ 
+	margin-top:2px;
+	margin-right:5px;
+	-webkit-border-radius: 5px
+}
+
+section article.hangout .arrow{
+	position: absolute;
+	top: 20px;
+	right: 0px;
+	margin-top:10px;
+	margin-right:10px;
+	display:block;
+	width:10px;
+	height:13px;
+	background:url('/images/arrow.png');
+	z-index:99;
+}
+
+#single_hangout
+{ 
+	position:absolute;
+	left:620px;
+	width: 380px;
+	height:580px;
+	background:#fafafa;
+	-webkit-box-shadow: -2px 0 15px 1px rgba(0,0,0,0.65);
+	z-index: 99;
+	top:0;
+}
+
+.single_preview
+{
+	background: white;
+	height: 150px;
+	width: 380px;
+	background:#fafafa;
+	-webkit-box-shadow: 0px 0 15px 1px rgba(0,0,0,0.65);
+}
