@@ -108,7 +108,7 @@ aside #menu li:hover a
 }
 aside #menu li#stream span
 {
-      	background-position:-0px -24px;
+      	background-position:-168px -24px;
 	
 }
 
@@ -332,13 +332,16 @@ color: #4AB1D3;
 
 .team-member > .team-member-image img
 {
-    width:100px;
-    height:100px;
+    width:64px;
+    height:64px;
+    -webkit-border-radius: 5px
+
 }
 
 .team-member > .team-member-info
 {
-    margin-left: 120px;
+    margin-left: 80px;
+    margin-bottom:10px;
 }
 .team-member > .team-member-info h3, #special-thanks h3
 {
@@ -424,3 +427,62 @@ body::-webkit-scrollbar-track-piece{background-color:#fff;}
 }
 
 
+.team-member
+{
+	 margin-left:20px;
+	float:left;
+
+}
+
+.team-member-info h3
+{
+
+	padding-bottom:5px;
+
+}
+
+.team-member-info p
+{
+	 font-size:12px;
+	margin-bottom:5px;
+}
+
+
+.logo
+{	margin-top:10px;
+	margin-bottom:10px;
+	width:200px;
+	height:80px;
+	background:#fff;
+}
+
+.ads
+{
+	margin-bottom:10px;
+	width:200px;
+	height:150px;
+
+}
+
+.settings
+{
+	width:200px;
+	height:100px;
+	-webkit-border-image:url('/images/border_bottom_menu.png') 100 100 100 100 repeat;
+	border-top:2px solid;
+
+}
+
+.settings .setting
+{
+	width:24px;
+	height:24px;
+	background:url('/images/icons/icons.png');
+	display:block;
+	float:right;
+	margin-right:30px;
+	background-position:-144px 0px;
+	margin-top:10px;
+
+
+}
