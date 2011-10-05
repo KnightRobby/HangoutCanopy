@@ -364,6 +364,18 @@ color: #4AB1D3;
 {
 }
 
+/*
+	* Scrollbar (Stylish) <div class="stylish-scrollbar">...</div>
+*/
+::-webkit-scrollbar{background:transparent;overflow:visible;width:15px;}
+::-webkit-scrollbar-thumb{background-color:rgba(0,0,0,0.2);border:solid #fff;}
+::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,0.4);}
+::-webkit-scrollbar-thumb:horizontal{border-width:4px 6px;min-width:40px;}
+::-webkit-scrollbar-thumb:vertical{border-width:6px 4px;min-height:40px;}
+body::-webkit-scrollbar-track-piece{background-color:#fff;}
+::-webkit-scrollbar-corner{background:transparent;}
+.stylish-scrollbar-dark::-webkit-scrollbar-thumb{background-color:rgba(255,255,255,0.6);}
+.stylish-scrollbar-dark::-webkit-scrollbar-thumb:hover{background-color:rgba(255,255,255,0.8);}
 
 
 /*  single_hangouts */

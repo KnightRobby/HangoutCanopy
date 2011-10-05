@@ -44,7 +44,8 @@
 					post_url: 'https://plus.google.com/' + post[21]
 				}
 
-				data.clients.push(this.collectOwnerInfo(post));
+				data.clients.push(this.collectOwnerInfo(post))
+				
 				return data;
 			}
 		}

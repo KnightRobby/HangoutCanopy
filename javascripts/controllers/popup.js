@@ -24,6 +24,7 @@
 		});
 
 		$('#hangouts .arrow').live('click', this.displayHangout.bind(this));
+		$('#hangouts .refresh').live('click', this.updateHangout.bind(this));
 	}
 
 	PopupController.prototype.compileTemplates = function()
@@ -34,7 +35,7 @@
 
 	PopupController.prototype.initializeHangouts = function()
 	{
-		setTimeout(this.initializeHangouts.bind(this),5000);
+		setTimeout(this.initializeHangouts.bind(this),1000);
 		
 		/*
 			* Get hangout set from background Controller
@@ -84,6 +85,13 @@
 			*/
 			delete hangouts[i].htmlid;
 		}
+	}
+
+	PopupController.prototype.updateHangout = function()
+	{
+		/*
+			* Used for the resync hangout button.
+		*/
 	}
 
 	PopupController.prototype.displayHangout = function(evt)
