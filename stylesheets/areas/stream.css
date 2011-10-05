@@ -1,18 +1,7 @@
-section
-{
-	float:right;
-	width: 420px;
-	height:inherit;
-	background:#fafafa;
-	overflow-x:hidden;
-	overflow-y: auto;
-	-webkit-box-shadow: -2px 0 15px 1px rgba(0,0,0,0.65);
-}
-
 /*
 	* Hangouts
 */
-section article.hangout{
+#hangouts article.hangout{
 	background:url(/images/list.png) repeat-x;
 	min-height:70px;
 	width:420px;
@@ -20,42 +9,42 @@ section article.hangout{
 	position:relative;
 }
 
-section article.hangout .info
+#hangouts article.hangout .info
 {
 	font-size:11px;
 	margin-top:12px;
 	
 } 
 
-section article.hangout .info .top_nav{
+#hangouts article.hangout .info .top_nav{
 	right:5px;
 	position:absolute;
 	z-index:3;
 	margin-right:8px;
 }
 
-section article.hangout .top_nav span{
+#hangouts article.hangout .top_nav span{
 	color:#999;
 	font-size:11.5px;
 }
 	
-section article.hangout .top_nav span.public
+#hangouts article.hangout .top_nav span.public
 {
 	font-weight:bold;
 }
 
-section article.hangout .main_image
+#hangouts article.hangout .main_image
 {
 	float: left;
 	margin-left:10px;
 	margin-top:10px;
 }
 
-section article.hangout .clients{
+#hangouts article.hangout .clients{
 	float:left;
 	padding-left:10px;
 }
-section article.hangout .clients p{
+#hangouts article.hangout .clients p{
 	float:left;
 	width: 250px;
 	text-overflow: ellipsis;
@@ -63,13 +52,13 @@ section article.hangout .clients p{
 	height: 12px;
 }
 
-section article.hangout .clients img{ 
+#hangouts article.hangout .clients img{ 
 	margin-top:2px;
 	margin-right:5px;
 	-webkit-border-radius: 5px
 }
 
-section article.hangout .arrow{
+#hangouts article.hangout .arrow{
 	position: absolute;
 	top: 20px;
 	right: 0px;

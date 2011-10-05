@@ -1,13 +1,20 @@
-form#bugs_contact input[type="text"], input[type="url"], 
-input[type="email"], input[type="tel"], textarea {
+form#bugs_contact
+{
+	margin-left: 20px;
+}
+form#bugs_contact input[type="text"],
+form#bugs_contact input[type="url"],
+form#bugs_contact input[type="email"],
+form#bugs_contactinput[type="tel"],
+textarea {
 	margin: 3px 0 0 0;
 	padding: 6px; 
 	width: 260px; 
 	font-family: arial, sans-serif; 
 	font-size: 12px; 
 	border: 1px solid #ccc;
-    background: -webkit-gradient(linear, left top, left 15, from(#FFFFFF), color-stop(4%, #f4f4f4), to(#FFFFFF));
-    background: -moz-linear-gradient(top, #FFFFFF, #f4f4f4 1px, #FFFFFF 15px);
+	background: -webkit-gradient(linear, left top, left 15, from(#FFFFFF), color-stop(4%, #f4f4f4), to(#FFFFFF));
+	background: -moz-linear-gradient(top, #FFFFFF, #f4f4f4 1px, #FFFFFF 15px);
 }
 
 form#bugs_contact textarea {
