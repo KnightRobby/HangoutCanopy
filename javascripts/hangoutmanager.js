@@ -10,6 +10,7 @@
 		this.parser	= new window.HangoutParser();
 		this.storage	= new window.Storage();
 		this.logger	= new window.Logger();
+		this.watching	= new window.WatchingManager();
 
 		/*
 			* Storage Containers
@@ -157,6 +158,7 @@
 		},this);
 
 		this.hangouts.push(hangout);
+		this.watching.onHangout(hangout);
 	}
 
 	HangoutManager.prototype.removeInternalHangout = function(hangout)
@@ -191,6 +193,7 @@
 				{
 					getController().sendHangout(hangout);
 				}
+				this.watching.onHangout(hangout);
 			}
 		}else
 		{
@@ -201,6 +204,7 @@
 			{
 				getController().sendHangout(hangout);
 			}
+			this.watching.onHangout(hangout);
 		}
 
 		/*
