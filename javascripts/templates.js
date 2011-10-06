@@ -85,6 +85,7 @@ templates.twitter = '<div class="twitter_feed">';
 	templates.twitter += '<ul class="tweets">';
 		templates.twitter += '{{each(index, tweet) tweets}}';
 			templates.twitter += '<li id="tweet_${tweet.id}">';
+				templates.twitter +='<p>${tweet.text}</p>';
 			templates.twitter += '</li>';
 		templates.twitter += '{{/each}}';
 	templates.twitter += '<ul>';
