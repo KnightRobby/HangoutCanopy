@@ -21,6 +21,7 @@
 	"minimum_chrome_version": "12",
 	"permissions"		: [
 		"https://plus.google.com/*",
+		"https://api.twitter.com/*",
 		"tabs",
 		"notifications"
 	]

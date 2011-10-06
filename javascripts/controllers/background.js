@@ -11,6 +11,7 @@
 		this.connection	= new window.Connection();
 		this.storage	= new window.Storage();
 		this.manager	= new window.HangoutManager();
+		this.twitter	= new window.TwitterFeed();
 
 		/*
 			* Color ENUM

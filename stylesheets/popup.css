@@ -29,6 +29,11 @@
 @import url('/stylesheets/areas/team.css');
 
 /*
+    * Twitter
+*/
+@import url('/stylesheets/areas/twitter.css');
+
+/*
     * Slideout Panel
 */
 @import url('/stylesheets/areas/slideout_panel.css');

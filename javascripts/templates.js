@@ -3,8 +3,8 @@
 */
 
 var templates = {
-	hangouts : {
-	}
+	twitter		: '',
+	hangouts	: {},
 };
 
 /*
@@ -63,17 +63,29 @@ templates.hangouts.row += '</article>';
 templates.hangouts.single = '<div class="slideout_panel">';
 	templates.hangouts.single +='<div class="panel_header">';
 		templates.hangouts.single += '<a href="#" class="close">Close</a>';
-		templates.hangouts.single += '<a href="#" class="post">Post</a>';
+		templates.hangouts.single += '<a href="${post_url}" class="post">Post</a>';
 		templates.hangouts.single += '<a href="#" class="refresh">Refresh</a>';
-		templates.hangouts.single += '<a href="#" class="join button">Join</a>';
+		templates.hangouts.single += '<a href="${url}" class="join button">Join</a>';
 	templates.hangouts.single +='</div>';
 	templates.hangouts.single += '<div class="panel_users">';
 		templates.hangouts.single += '<ul>';
 			templates.hangouts.single += '{{each(i,v) clients}}';
 				templates.hangouts.single += '<li>';
 					templates.hangouts.single += '<a href="https://plus.google.com/${v.id}"><img src="${v.photo}?sz=32" width="32" height="32" /></a>';
-					templates.hangouts.single += '<span>${v.name}</span>';
+					templates.hangouts.single += '<span><a href="https://plus.google.com/${v.id}" title="${v.name}">${v.name}</span>';
 				templates.hangouts.single += '</li>';
 			templates.hangouts.single += '{{/each}}';
 		templates.hangouts.single += '</ul>';
 templates.hangouts.single += '</div>';
+
+/*
+	* Twitter Feed
+*/
+templates.twitter = '<div class="twitter_feed">';
+	templates.twitter += '<ul class="tweets">';
+		templates.twitter += '{{each(index, tweet) tweets}}';
+			templates.twitter += '<li id="tweet_${tweet.id}">';
+			templates.twitter += '</li>';
+		templates.twitter += '{{/each}}';
+	templates.twitter += '<ul>';
+templates.twitter += '</div>';

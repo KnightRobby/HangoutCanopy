@@ -12,6 +12,7 @@
 	PopupController.prototype.init = function()
 	{
 		this.initializeHangouts();
+		this.initializeTweets();
 		this.initializeClickMonitoring();
 	}
 
@@ -31,6 +32,7 @@
 	{
 		$.template("hangouts.row", 	templates.hangouts.row);
 		$.template("hangouts.single",	templates.hangouts.single);
+		$.template("twitter",		templates.twitter);
 	}
 
 	PopupController.prototype.initializeHangouts = function()
@@ -85,6 +87,24 @@
 			*/
 			delete hangouts[i].htmlid;
 		}
+	}
+
+	PopupController.prototype.initializeTweets = function()
+	{
+		/*
+			* Get the latest tweets
+		*/
+		var tweets = this.background.twitter.getTweets();
+
+		/*
+			* Generate the template area
+		*/
+		var html = $.tmpl("twitter", {tweets: tweets});
+
+		/*
+			* Add it to the DOM
+		*/
+		$('#tab_twitter').html(html);
 	}
 
 	PopupController.prototype.updateHangout = function()
