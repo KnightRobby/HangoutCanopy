@@ -19,7 +19,7 @@
 		/*
 			* Get required configuration
 		*/
-		this.detectionTimeout	= this.storage.get('detection_timeout', 10000);
+		this.detectionTimeout	= this.storage.get('detection_timeout', 5000);
 		this.monitorTimeout	= this.storage.get('monitor_timeout', 10000);
 	}
 

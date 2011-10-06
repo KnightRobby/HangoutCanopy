@@ -12,6 +12,7 @@
 		this.storage	= new window.Storage();
 		this.manager	= new window.HangoutManager();
 		this.twitter	= new window.TwitterFeed();
+		this.watching	= new window.WatchingManager();
 
 		/*
 			* Color ENUM
@@ -146,6 +147,7 @@
 	{
 		this.logger.notice('Got Hangout from Server: ' + hangout.id);
 		this.manager.addExternalHangout(hangout);
+		this.watching.onHangout(hangout);
 	}
 
 	/*
