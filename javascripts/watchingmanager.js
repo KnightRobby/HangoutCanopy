@@ -4,8 +4,9 @@
 	*/
 	var WatchingManager = window.WatchingManager = function()
 	{
-		this.notifications = new window.Notifications();
-		this.clients = {};
+		this.notifications	= new window.Notifications();
+		this.storage	  	= new window.Storage();
+		this.clients 		= this.storage.get('watching', {});
 		this.hangoutMap = {};
 	}
 
@@ -28,6 +29,9 @@
 	WatchingManager.prototype.watchClient = function(id)
 	{
 		this.clients[id] = true;
+
+		//udpate Storage
+		this.storage.set('watching', this.clients);
 	}
 
 	WatchingManager.prototype.unwatchClient = function(id)
@@ -35,6 +39,9 @@
 		if((id in this.clients))
 		{
 			delete this.clients[id];
+
+			//udpate Storage
+			this.storage.set('watching', this.clients);
 		}
 	}
 })()
