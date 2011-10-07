@@ -81,10 +81,10 @@ templates.hangouts.single += '</div>';
 /*
 	* Twitter Feed
 */
-templates.twitter = '<div class="twitter_feed">';
-templates.twitter +='<div class="twitter_header">';
+templates.twitter ='<div class="twitter_header">';
 templates.twitter += '<a class="follow" href="http://twitter.com/hangoutcanopy"><img src="/images/twiter.png" /></a>';
 templates.twitter += '</div>';
+templates.twitter += '<div class="twitter_feed">';
 	templates.twitter += '<ul class="tweets">';
 		templates.twitter += '{{each(index, tweet) tweets}}';
 			templates.twitter += '<li id="tweet_${tweet.id}">';
