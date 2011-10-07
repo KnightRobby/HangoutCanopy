@@ -51,6 +51,7 @@ aside #menu li span
 	margin-right:10px;
 	background-repeat:no-repeat;
 }
+
 aside #menu li.selected span ,aside #menu li:hover span
 {
 	background-position-y:0px !important;
@@ -59,6 +60,7 @@ aside #menu li:hover a
 {
 	color:#fff;
 }
+
 aside #menu li#stream span
 {
       	background-position:-168px -24px;
@@ -79,13 +81,15 @@ aside #menu li#bugs span
 {
         background-position:-48px -24px;
 }
+
+aside #menu li#twitter span
+{
+        background-position:-96px -24px;
+}
+
 aside #menu li#team span
 {
         background-position:-72px -24px;
-}
-aside #menu li#news span
-{
-        background-position:-96px -24px;
 }
 
 #tab_bugs h2
@@ -117,20 +121,17 @@ aside #menu li#news span
 	font-size:26px;
 }
 
-.logo
-{	margin-top:10px;
-	margin-bottom:10px;
-
-	height:80px;
-	background:#fff;
+aside .logo
+{	margin-top:5px;
+	margin-bottom:5px;
+	height:30px;
+	margin-left: 74px;
 }
 
 .ads
 {
 	margin-bottom:10px;
-	
-	height:150px;
-
+	height: 215px;
 }
 
 .settings
@@ -149,7 +150,7 @@ aside #menu li#news span
 	background:url('/images/icons/icons.png');
 	display:block;
 	float:right;
-	margin-right:30px;
+	margin-right: 18px;
 	background-position:-144px 0px;
 	margin-top:10px;
 }

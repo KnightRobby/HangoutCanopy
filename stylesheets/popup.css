@@ -9,6 +9,11 @@
 @import url('/stylesheets/general.css');
 
 /*
+    * Import Sections
+*/
+@import url('/stylesheets/areas/sections.css');
+
+/*
 	* Import Sidebar
 */
 @import url('/stylesheets/areas/sidebar.css');

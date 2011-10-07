@@ -74,6 +74,14 @@
 
 	NotificationController.prototype.onLoad = function()
 	{
+		/*
+			* Close the window
+		*/
+		setTimeout(window.close, 10000);
+
+		/*
+			* Generate layout
+		*/
 		document.getElementById('content').innerText = this.client.name + "Is Hanging Out";
 	}
 })()

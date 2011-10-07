@@ -85,17 +85,6 @@ body::-webkit-scrollbar-track-piece {
 	height:inherit;
 }
 
-section
-{
-	float:right;
-	height:inherit;
-	width: 430px;
-	background:#fafafa;
-	overflow-x:hidden;
-	overflow-y: auto;
-	-webkit-box-shadow: -6px 20px 15px 0px rgba(0,0,0,0.65) /*-2px 0 15px 1px rgba(0,0,0,0.45);*/
-}
-
 .button
 {
 	
