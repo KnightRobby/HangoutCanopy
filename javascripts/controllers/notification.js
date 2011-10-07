@@ -48,15 +48,16 @@
 			* Validate the hangout exists and the client does as well
 		*/
 		var hangout = this.background.manager.getHangout(urlParams.hid);
-		console.log(hangout);
+
 		if(!hangout)
 		{
 			window.close();
 		}
 
 		var client = null;
-		hangouts.clients.forEach(function(index, value){
-			if(value.id == urlParams.clid){ client = value; }
+
+		hangout.clients.forEach(function(value, index){
+			if(value.id == urlParams.cid){ client = value; }
 		});
 
 		if(!client)
@@ -67,10 +68,12 @@
 		/*
 			* Set the data to the object
 		*/
+		this.client = client;
+		this.hangout = hangout;
 	}
 
 	NotificationController.prototype.onLoad = function()
 	{
-		document.write('Loaded: ' + this.client.name);
+		document.getElementById('content').innerText = this.client.name + "Is Hanging Out";
 	}
 })()
