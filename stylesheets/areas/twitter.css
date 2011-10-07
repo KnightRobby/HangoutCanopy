@@ -1,0 +1,62 @@
+
+.twitter_feed .twitter_header
+{
+	background:url('/images/sidebar_bg.png');
+	height:35px;
+	padding-top:4px;
+	padding-left:4px;
+	border-top:2px;
+	-webkit-border-image:url('/images/border_bottom_menu.png') 100 100 100 100 repeat;
+}
+.twitter_feed .twitter_header .follow
+{
+	margin-right:5px;
+	float:right;	
+}
+
+.tweets
+{
+	
+	
+}
+.tweets li
+{
+	padding-top:10px;
+	border-bottom:1px solid #ccc;
+	padding-bottom:10px;
+	padding-left:10px;
+	padding-right:10px;
+	position:relative;
+	
+	width:inherit;
+}
+
+.tweets li:hover
+{
+	background:#D4FFFF;	
+}
+
+.tweets li img
+{
+	float:left;
+
+margin-top:10px;
+	margin-right:5px;
+}
+.tweets li p
+{
+	margin-left:10px;
+	padding-top:10px;
+	font-size:14px;
+	float:left;
+	margin-top:10px;
+	width:310px;
+	line-height:16px;
+}
+.tweets li span
+{
+	font-size:11px;
+	color:#ccc;
+	position:absolute;
+	right:10px;
+}

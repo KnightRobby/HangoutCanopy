@@ -82,10 +82,16 @@ templates.hangouts.single += '</div>';
 	* Twitter Feed
 */
 templates.twitter = '<div class="twitter_feed">';
+templates.twitter +='<div class="twitter_header">';
+templates.twitter += '<a class="follow" href="http://twitter.com/hangoutcanopy"><img src="/images/twiter.png" /></a>';
+templates.twitter += '</div>';
 	templates.twitter += '<ul class="tweets">';
 		templates.twitter += '{{each(index, tweet) tweets}}';
 			templates.twitter += '<li id="tweet_${tweet.id}">';
+			    templates.twitter +='<span><a href="http://twitter.com/#!/Hangoutcanopy/status/${tweet.id_str}">${tweet.created_at}<a/>s</span>';
+				templates.twitter +='<img src="${tweet.user.profile_image_url}" />';
 				templates.twitter +='<p>${tweet.text}</p>';
+				templates.twitter +='<br class="clear" />';
 			templates.twitter += '</li>';
 		templates.twitter += '{{/each}}';
 	templates.twitter += '<ul>';

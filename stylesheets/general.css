@@ -3,7 +3,7 @@
 */
 body {
 	font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
-	width:600px;
+	width:610px;
 	height:580px;
 	overflow:hidden;
 }
@@ -89,7 +89,7 @@ section
 {
 	float:right;
 	height:inherit;
-	width: 420px;
+	width: 430px;
 	background:#fafafa;
 	overflow-x:hidden;
 	overflow-y: auto;
