@@ -1,7 +1,20 @@
 // When the document loads do everything inside here ...
 $(document).ready(function(){
+	var last_selected = 'none';
+
 	// When a link is clicked
 	$("#menu li a").click(function(){
+	
+		// slide this content up
+		var content_show = $(this).parent().attr("id");
+
+		if(content_show == last_selected)
+		{
+			return;
+		}
+
+		last_selected = content_show;
+
 		// switch all tabs off
 		$("#menu li").removeClass("selected");
 	
@@ -9,11 +22,9 @@ $(document).ready(function(){
 		$(this).parent().addClass("selected");
 	
 		// slide all content up
-		$(".tab_area").slideUp();
-	
-		// slide this content up
-		var content_show = $(this).parent().attr("id");
-		$('#tab_' + content_show).slideDown();
+		$(".tab_area").hide();
+
+		$('#tab_' + content_show).fadeIn();
 
 		if($('.slideout_panel').size() != 0)
 		{

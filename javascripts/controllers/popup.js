@@ -37,7 +37,7 @@
 
 	PopupController.prototype.initializeHangouts = function()
 	{
-		setTimeout(this.initializeHangouts.bind(this),1000);
+		setTimeout(this.initializeHangouts.bind(this),5000);
 		
 		/*
 			* Get hangout set from background Controller
@@ -55,6 +55,13 @@
 				* Create a valid ID for the html
 			*/
 			hangouts[i].htmlid = hangouts[i].id.replace(/[^a-zA-Z0-9]+/g,'');
+			
+			if(!hangouts[i].htmlid)
+			{
+				//We don't want weird chars
+				console.log(hangouts[i]);
+				return;
+			}
 
 			/*
 				* check to see if the old one exists
@@ -80,7 +87,7 @@
 				return;
 			}
 
-			hangoutDOM.prepend(html).slideDown();
+			hangoutDOM.prepend(html);
 
 			/*
 				* Cleanup, Stops the data added being referenced

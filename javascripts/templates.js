@@ -34,7 +34,7 @@ templates.hangouts.row = '<article id="${htmlid}" class="hangout" data-public="{
 			templates.hangouts.row += '<p>';
 				/*{{if extra}}<br />Title: <font style="font-weight:bold;">${title}</strong>{{/if}}*/
 				templates.hangouts.row += '{{if extra}}<strong>${title}</strong>{{else}}';
-					templates.hangouts.row += '<strong>${clients[0].name}</strong> is hanging out with ';
+						templates.hangouts.row += '<strong>${clients[0].name}</strong> is hanging out with ';
 					templates.hangouts.row += '{{if clients.length == 1}} no one {{else}}${clients.length - 1} people{{/if}}';
 				templates.hangouts.row += '{{/if}}';				
 			templates.hangouts.row += '</p>';
@@ -88,7 +88,7 @@ templates.twitter += '<div class="twitter_feed section_content">';
 	templates.twitter += '<ul class="tweets">';
 		templates.twitter += '{{each(index, tweet) tweets}}';
 			templates.twitter += '<li id="tweet_${tweet.id}">';
-			    templates.twitter +='<span><a href="http://twitter.com/#!/Hangoutcanopy/status/${tweet.id_str}">${tweet.created_at}<a/>s</span>';
+			    templates.twitter +='<span><a href="http://twitter.com/#!/Hangoutcanopy/status/${tweet.id_str}">${tweet.created_at}<a/></span>';
 				templates.twitter +='<img src="${tweet.user.profile_image_url}" />';
 				templates.twitter +='<p>${tweet.text}</p>';
 				templates.twitter +='<br class="clear" />';

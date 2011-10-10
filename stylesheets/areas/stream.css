@@ -1,6 +1,14 @@
 /*
 	* Hangouts
 */
+
+#hangouts
+{
+	overflow-x:hidden;
+	overflow-y: scroll;
+	height: inherit;
+}
+
 #hangouts article.hangout{
 	background:url(/images/list.png) repeat-x;
 	min-height:70px;
