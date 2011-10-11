@@ -134,10 +134,25 @@ aside .logo
 	height: 215px;
 }
 
+.new_hangout
+{
+	width:24px;
+	height:24px;
+	background:url('/images/icons/icons.png');
+	display:block;
+	float:left;
+	margin-right: 18px;
+	background-position:-0px 0px;
+	margin-top:10px;
+	
+	
+}
+
 .settings
 {
-	
+	margin-top: 100px;
 	height:100px;
+	margin-left:10px;
 	-webkit-border-image:url('/images/border_bottom_menu.png') 100 100 100 100 repeat;
 	border-top:2px solid;
 
