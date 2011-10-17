@@ -14,4 +14,50 @@ padding-left:10px;
 float: left;
 margin-top: 15px;
 margin-left: 10px;
+height: 30px;
+}
+
+
+#watch_list
+{
+	
+	
+	
+}
+
+#watch_list li
+{
+	
+	padding-left:20px;
+	padding-right:20px;
+	padding-top:10px;
+	padding-bottom:10px;
+	border-bottom:1px solid #ccc;
+	
+}
+#watch_list li:after , #watch_list li:before
+{
+clear:both;	
+}
+#watch_list li a.watch_thumbs
+{
+	float:left;	
+}
+
+#watch_list li .watch_name
+{
+	float:left;
+	margin-top:15px;
+	margin-left:10px;
+}
+
+#watch_list li a.watch_remove_btn
+{
+	float:right;
+	text-indent:-999999px;
+	display:block;
+	width:16px;
+	margin-top:10px;
+	height:16px;
+	background:url('/images/icons/trash.png');
 }

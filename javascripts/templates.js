@@ -96,3 +96,19 @@ templates.twitter += '<div class="twitter_feed section_content">';
 		templates.twitter += '{{/each}}';
 	templates.twitter += '<ul>';
 templates.twitter += '</div>';
+
+
+
+/*
+  * Watching Feed 
+  
+*/
+
+templates.watching += '{{each(index, tweet) tweets}}';
+			templates.watching  += '<li>';
+			    templates.watching  +='<span><a href="http://twitter.com/#!/Hangoutcanopy/status/${tweet.id_str}">${tweet.created_at}<a/></span>';
+				templates.watching  +='<img src="${tweet.user.profile_image_url}" />';
+				templates.watching  +='<p>${tweet.text}</p>';
+				templates.watching  +='<br class="clear" />';
+			templates.watching  += '</li>';
+templates.watching  += '{{/each}}';

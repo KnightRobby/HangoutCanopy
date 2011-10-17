@@ -31,87 +31,135 @@
 			<section class="tab_area stylish-scrollbar" id="tab_stream"><div id="hangouts"></div></section>
 			<section class="tab_area" id="tab_watching">
 				<div class="section_header">
-                	<input type="text" id="watch_url_input"  value="Paste User Profile Link Here"  onfocus="if (this.value == 'Paste User Profile Link Here') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Paste User Profile Link Here';}" />
-                    <a href="${url}" class="join button watch">Watch</a>
+                	<form id="watch_form"  >
+                		<input type="text" id="watch_url_input"  value="Paste User Profile Link Here"  onfocus="if (this.value == 'Paste User Profile Link Here') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Paste User Profile Link Here';}" />
+                    	<button class="join button watch">Watch</button>
+                    </form>
                 </div>
 				<div class="clear"></div>
 				<div class="section_content">
-   					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
-					<p>Scrollable COntent here</p>
+   					<ul id="watch_list">
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>
+                    <li>
+                    	<a href="" class="watch_thumbs"><img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=48" alt=""></a>
+                    	<a href="" class="watch_name">Mohammad Eshbeata</a>
+                    	<a href="" class="watch_remove_btn">remove</a>
+                    	<br class="clear">
+                    </li>	                 
+                    </ul>
 				</div>
 			</section>
 		
