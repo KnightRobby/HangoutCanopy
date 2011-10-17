@@ -1,5 +1,5 @@
 #watch_url_input{
-	
+float:left;	
 width: 290px;
 color:#bbb;
 height: 25px;
@@ -7,4 +7,11 @@ margin-left: 20px;
 margin-top: 15px;
 border:1px solid #ccc;	
 padding-left:10px;
+}
+
+.watch
+{
+float: left;
+margin-top: 15px;
+margin-left: 10px;
 }
