@@ -6,10 +6,10 @@
 	
 	var HangoutManager = window.HangoutManager = function()
 	{
-		this.ajax	= new window.Ajax();
-		this.parser	= new window.HangoutParser();
+		this.ajax		= new window.Ajax();
+		this.parser		= new window.HangoutParser();
 		this.storage	= new window.Storage();
-		this.logger	= new window.Logger();
+		this.logger		= new window.Logger();
 		this.watching	= new window.WatchingManager();
 
 		/*

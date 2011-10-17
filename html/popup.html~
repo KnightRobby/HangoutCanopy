@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/popup.css" media="screen" />
+		<script type="text/javascript" src="/javascripts/libraries/jquery.js"></script>
+		<script type="text/javascript" src="/javascripts/libraries/jquery.tmpl.js"></script>
+		<script type="text/javascript" src="/javascripts/popup_tabs.js"></script>
+		<script type="text/javascript" src="/javascripts/templates.js"></script>
+		<script type="text/javascript" src="/javascripts/i18n.js"></script>
+		<script type="text/javascript" src="/javascripts/controllers/popup.js"></script>
+		<script type="text/javascript">
+			window.__PC = new window.PopupController();
+			new Internationalization();
+			$(document).ready(window.__PC.init.bind(window.__PC));
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<aside>
+				<ul id="menu">
+					<li id="stream" class="selected"><span></span><a data-locale-val="Stream" href="#">Stream</a></li>
+					<li id="watching"><span></span><a data-locale-val="Watching" href="#">Watching</a></li>
+					<li id="twitter"><span></span><a data-locale-val="Twitter" href="#">Twitter</a></li>
+					<li id="team"><span></span><a data-locale-val="Team" href="#">Team</a></li>
+				</ul>
+				<div class="logo"> <a href="http://hangoutcanopy.com"><img src="/images/icons/logo_32.png" /></a> </div>
+				<div class="ads"></div>
+				<div class="settings">
+                	<a href="https://plus.google.com/hangouts/" class="new_hangout"></a>
+					<a href="" class="setting"></a>
+				</div>
+			</aside>
+			<section class="tab_area stylish-scrollbar" id="tab_stream"><div id="hangouts"></div></section>
+			<section class="tab_area" id="tab_watching">
+				<div class="section_header"></div>
+				<div class="clear"></div>
+				<div class="section_content">
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+					<p>Scrollable COntent here</p>
+				</div>
+			</section>
+		
+			<section class="tab_area" id="tab_team">
+				
+				<div class="section_header">
+					<h2>The Team</h2>
+				</div>
+				<div class="section_content">
+					<div class="team-member">
+						<div class="team-member-image">
+							<a href="https://plus.google.com/110106586947414476573/" title="Google+ Profile">
+								<img src="https://lh5.googleusercontent.com/-KUmMRGsvGOE/AAAAAAAAAAI/AAAAAAAAAfw/q85dF3kNJPA/photo.jpg?sz=64">
+							</a>
+						</div>
+						<div class="team-member-info">
+							<a href="https://plus.google.com/110106586947414476573/" title="Google+ Profile">
+								<h3>Robert Pitt</h3>
+							</a>
+							<p>Robert Pitt is the developer and visionary behind the extension. He wrote most of the code single-handedly, and also worked on the server back-end. Robert also helped with the design and user-friendliness of the end product.</p>
+							<p class="links">
+								<a href="https://plus.google.com/110106586947414476573/" title="Google+ Profile">Google Profile</a>
+								<span>&nbsp;&nbsp;</span>
+								<a href="http://adminspot.net" title="Adminspot (Webmaster Forum)">Adminspot (Webmaster Forum)</a>
+							</p>
+						</div>
+					</div>
+					<div class="team-member">
+						<div class="team-member-image">
+							<a href="https://plus.google.com/110106586947414476573/" title="Google+ Profile">
+								<img src="https://lh5.googleusercontent.com/-LipdKUR3SWE/AAAAAAAAAAI/AAAAAAAAAYU/WY3zs85GvhA/photo.jpg?sz=64">
+							</a>
+						</div>
+						<div class="team-member-info">
+							<a href="https://plus.google.com/105574566053602019710/" title="Google+ Profile">
+								<h3>Brian Aldridge</h3>
+							</a>
+							<p>Brian Aldridge is responsible for server maintenance and monitoring of traffic. He also contributes great ideas for upcoming features and UI improvements.</p>
+							<p class="links">
+								<a href="https://plus.google.com/105574566053602019710/" title="Google+ Profile">Google Profile</a>
+								<span>&nbsp; &nbsp;</span>
+								<a href="http://adminspot.net" title="Adminspot (Webmaster Forum)">Adminspot (Webmaster Forum)</a>
+							</p>
+						</div>
+					</div>
+					<div class="team-member">
+						<div class="team-member-image">
+							<a href="https://plus.google.com/110106586947414476573/" title="Google+ Profile">
+								<img src="https://lh6.googleusercontent.com/-EzHCxQDdK_o/AAAAAAAAAAI/AAAAAAAAAXU/IS9tvZ0tVz4/photo.jpg?sz=64">
+							</a>
+						</div>
+						<div class="team-member-info">
+							<a href="https://plus.google.com/103618862132298404107/about" title="Google+ Profile">
+								<h3>Mohammad Eshbeata</h3>
+							</a>
+							<p>Robert Pitt is the developer and visionary behind the extension. He wrote most of the code single-handedly, and also worked on the server back-end. Robert also helped with the design and user-friendliness of the end product.</p>
+							<p class="links">
+								<a href="https://plus.google.com/110106586947414476573/" title="Google+ Profile">Google Profile</a>
+								<span>&nbsp;&nbsp;</span>
+								<a href="http://adminspot.net" title="Adminspot (Webmaster Forum)">Adminspot (Webmaster Forum)</a>
+							</p>
+						</div>
+					</div>
+					<div class="team-member">
+						<div class="team-member-image">
+							<a href="https://plus.google.com/117843617175570491498/about" title="Google+ Profile">
+								<img src="https://lh5.googleusercontent.com/-oQWT6WZAY3s/AAAAAAAAAAI/AAAAAAAAO1g/0laHhAYLpKM/photo.jpg?sz=64">
+							</a>
+						</div>
+						<div class="team-member-info">
+							<a href="https://plus.google.com/117843617175570491498/about" title="Google+ Profile">
+								<h3>Maximilian Majewski</h3>
+							</a>
+							<p>Robert Pitt is the developer and visionary behind the extension. He wrote most of the code single-handedly, and also worked on the server back-end. Robert also helped with the design and user-friendliness of the end product.</p>
+							<p class="links">
+								<a href="https://plus.google.com/117843617175570491498/about" title="Google+ Profile">Google Profile</a>
+								<span>&nbsp;&nbsp;</span>
+								<a href="http://adminspot.net" title="Adminspot (Webmaster Forum)">Adminspot (Webmaster Forum)</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="tab_area" id="tab_twitter"></section>
+		</div>
+	</body>
+</html>

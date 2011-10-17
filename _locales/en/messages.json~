@@ -1,0 +1,30 @@
+{
+	"ExtensionName": {
+		"message" 	: "Hangout Canopy",
+		"description"	: "Extension Name"
+	},
+	"ExtensionDescription" : {
+		"message"	: "Find and share public hangouts in real time.",
+		"description"	: "Extension Description"
+	},
+	"PopupTitle" : {
+		"message"	: "Find and share public hangouts in real time.",
+		"description"	: "Text display when extension icon is hovered"
+	},
+	"Stream" :{
+		"message"	: "Stream",
+		"description"	: "Stream"
+	},
+	"Watching" :{
+		"message"	: "Watching",
+		"description"	: "Watching"
+	},
+	"Twitter" :{
+		"message"	: "Twitter",
+		"description"	: "Twitter"
+	},
+	"Team" :{
+		"message"	: "Team",
+		"description"	: "Team"
+	}
+}

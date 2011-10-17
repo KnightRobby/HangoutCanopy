@@ -12,6 +12,8 @@
 		this.storage	= new window.Storage();
 		this.manager	= new window.HangoutManager();
 		this.twitter	= new window.TwitterFeed();
+		this.settings	= new window.Settings();
+		this.profiles	= new window.Profiles();
 
 		/*
 			* Color ENUM
@@ -85,6 +87,15 @@
 	BackgroundController.prototype.onSettings = function(settings)
 	{
 		this.logger.notice('Got settings from server');
+		
+		/*
+		 * Set the settings
+		 * */
+		this.settings.init(settings);
+		
+		/*
+		 * Start the system
+		 * */
 		this.manager.start();
 	}
 

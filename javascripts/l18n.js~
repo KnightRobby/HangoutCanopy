@@ -1,0 +1,11 @@
+function Localize()
+{
+	$(document).ready(this.init.bind(this));
+}
+
+Localize.prototype.init = function()
+{
+	$('*[data-l18n]').each(function(){
+		$(this).val( chrome.i18n.getMessage( $(this).data('data-l18n') ) )
+	});
+}
