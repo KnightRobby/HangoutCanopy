@@ -42,3 +42,10 @@
     * Slideout Panel
 */
 @import url('/stylesheets/areas/slideout_panel.css');
+
+
+
+/*
+    * Watching Panel
+*/
+@import url('/stylesheets/areas/watching.css');
