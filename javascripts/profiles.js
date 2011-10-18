@@ -38,7 +38,7 @@
 		/*
 		 * Have access token so let's build the url and make the request
 		 * */
-		var url = 'https://www.googleapis.com/plus/v1/people/' + userid + '?fields=displayName%2Cid%2Cimage&pp=1&key=' + requestKey;
+		var url = 'https://www.googleapis.com/plus/v1/people/' + userid + '?fields=tagline%2CdisplayName%2Cid%2Cimage&pp=1&key=' + requestKey;
 		this.Ajax.get(url, (function(Request){
 			/*
 			 * Validate the request was successfull
