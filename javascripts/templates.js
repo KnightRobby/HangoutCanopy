@@ -100,8 +100,7 @@ templates.twitter += '</div>';
 
 
 /*
-  * Watching Feed 
-  
+  * Watching Feed   
 */
 templates.watching = '<li id="watching-${id}">';
 	templates.watching += '<a href="https://plus.google.com/${id}" class="watch_thumbs"><img src="${image.url}?sz=32" alt=""></a>';

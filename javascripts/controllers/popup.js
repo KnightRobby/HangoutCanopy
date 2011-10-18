@@ -117,11 +117,26 @@
 			this.background.profiles.get(id, function(e, data){
 				if(e) return;
 				
-				 var html = $.tmpl("watching", data);
+				var html = $.tmpl("watching", data);
 				 
-				 $('#watch_list').prepend(html);
+				$('#watch_list').prepend(html);
 				 
-				 html.slideDown();
+				//Bind the remove handler
+				$('.watch_remove_btn', html).click(function(){
+					/*
+					 * Get id of container
+					 * */
+					 
+					var id = $(this).parent().attr('id').split('-')[1];			
+					watching.unwatchClient(id);
+					
+					/*
+					 * Remove the container
+					 * */
+					$(this).parent().remove();
+				});
+				
+				html.slideDown();
 			});
 		}
 		
