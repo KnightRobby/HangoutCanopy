@@ -30,6 +30,11 @@
 	{
 		return this.clients;
 	}
+	
+	WatchingManager.prototype.isWatched = function(id)
+	{
+		return (id in this.clients);
+	}
 
 	WatchingManager.prototype.watchClient = function(id)
 	{

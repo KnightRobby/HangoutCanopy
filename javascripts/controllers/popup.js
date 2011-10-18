@@ -155,6 +155,15 @@
 			}
 			
 			/*
+			 * Check to see if it's already being watched
+			 * */
+			if(watching.isWatched(segments[3]))
+			{
+				//Show Error
+				return false;
+			}
+			
+			/*
 			 * Ok let's try and get the profile information
 			 * */
 			this.background.profiles.get(segments[3], function(err, data){
@@ -167,14 +176,14 @@
 				/*
 				 * Add the ID to the Watching System
 				 * */
-				 watching.watchClient(data.id);
+				watching.watchClient(data.id);
 				 
-				 //Slide it in
-				 var html = $.tmpl("watching", data);
+				//Slide it in
+				var html = $.tmpl("watching", data);				 
+				$('#watch_list').prepend(html);				 
+				html.slideDown();
 				 
-				 $('#watch_list').prepend(html);
-				 
-				 html.slideDown();
+				$('#watch_form').reset();
 			});
 			
 			return false;
