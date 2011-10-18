@@ -120,25 +120,26 @@
 				var html = $.tmpl("watching", data);
 				 
 				$('#watch_list').prepend(html);
-				 
-				//Bind the remove handler
-				$('.watch_remove_btn', html).click(function(){
-					/*
-					 * Get id of container
-					 * */
-					 
-					var id = $(this).parent().attr('id').split('-')[1];			
-					watching.unwatchClient(id);
-					
-					/*
-					 * Remove the container
-					 * */
-					$(this).parent().remove();
-				});
 				
 				html.slideDown();
 			});
 		}
+		
+		//Bind the remove handler
+		$('.watch_remove_btn').live('click', function(){
+			/*
+			 * Get id of container
+			 * */
+			var id = $(this).parent().attr('id').split('-')[1];			
+			watching.unwatchClient(id);
+			
+			/*
+			 * Remove the container
+			 * */
+			$(this).parent().remove();
+			
+			return false;
+		});
 		
 		/*
 		 * Bind click event to the DOM for new watches
@@ -151,6 +152,7 @@
 			if(url && url.indexOf('plus.google.com') == -1)
 			{
 				//Show Error
+				$('#watch_form').reset();
 				return false;
 			}
 			
@@ -170,6 +172,7 @@
 			if(!(segments[3] && !isNaN(parseFloat(segments[3])) && isFinite(segments[3])))
 			{
 				//Show Error
+				$('#watch_form').reset();
 				return false;
 			}
 			
@@ -179,6 +182,7 @@
 			if(watching.isWatched(segments[3]))
 			{
 				//Show Error
+				$('#watch_form').reset();
 				return false;
 			}
 			
@@ -189,6 +193,7 @@
 				if(err)
 				{
 					//Show error
+					$('#watch_form').reset();
 					return false;
 				}
 				
@@ -205,6 +210,7 @@
 				$('#watch_form').reset();
 			});
 			
+			$('#watch_form').reset();
 			return false;
 		}).bind(this));
 	}
