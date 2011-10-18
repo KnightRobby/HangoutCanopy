@@ -30,8 +30,8 @@ height: 30px;
 	
 	padding-left:20px;
 	padding-right:20px;
-	padding-top:10px;
-	padding-bottom:10px;
+	padding-top:5px;
+	padding-bottom:5px;
 	border-bottom:1px solid #ccc;
 	
 }
@@ -41,23 +41,49 @@ clear:both;
 }
 #watch_list li a.watch_thumbs
 {
-	float:left;	
+	float:left;
+		
+}
+#watch_list li a.watch_thumbs img 
+{
+-webkit-border-radius:5px;	
+	
 }
 
 #watch_list li .watch_name
 {
+	width:300px;
+	display:block;
 	float:left;
-	margin-top:15px;
+	margin-top:10px;
 	margin-left:10px;
 }
+
+#watch_list li p
+{
+	display:block;
+	width:300px;
+	float:left;
+	margin-top:5px;
+	margin-left:10px;
+	font-size:12px;
+}
+
+#watch_list  li:hover
+{
+	background:#D4FFFF;	
+}
+
 
 #watch_list li a.watch_remove_btn
 {
 	float:right;
-	text-indent:-999999px;
 	display:block;
-	width:16px;
-	margin-top:10px;
-	height:16px;
-	background:url('/images/icons/trash.png');
+	width:60px !important;
+	font-size:10px !important;
+	padding:0px !important;
+	margin-top:-17px;
+	height:20px !important;
+	line-height:20px !important;
 }
+

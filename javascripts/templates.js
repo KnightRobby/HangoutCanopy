@@ -104,9 +104,8 @@ templates.twitter += '</div>';
   
 */
 templates.watching = '<li id="watching-${id}">';
-	templates.watching += '<a href="https://plus.google.com/${id}" class="watch_thumbs"><img src="${image.url}?sz=48" alt=""></a>';
-	templates.watching += '<p>${tagline}</p>';
+	templates.watching += '<a href="https://plus.google.com/${id}" class="watch_thumbs"><img src="${image.url}?sz=32" alt=""></a>';
 	templates.watching += '<a href="https://plus.google.com/${id}" class="watch_name">${displayName}</a>';
-	templates.watching += '<a href="#" class="watch_remove_btn">remove</a>';
+	templates.watching += '<a href="#" class="watch_remove_btn join button">Remove</a>';
 	templates.watching += '<br class="clear">';
 templates.watching += '</li>';
