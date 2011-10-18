@@ -7,11 +7,6 @@
 		this.Ajax		= new window.Ajax();
 		this.Storage	= new window.Storage();
 		this.Cache 		= this.Storage.get('profiles', {});
-		
-		/*
-		 * Make sure we have Access Key from settings
-		 * */
-		 console.log(this.Cache);
 	}
 	
 	Profiles.prototype.get = function(userid, callback)
@@ -39,6 +34,7 @@
 		 * Have access token so let's build the url and make the request
 		 * */
 		var url = 'https://www.googleapis.com/plus/v1/people/' + userid + '?fields=tagline%2CdisplayName%2Cid%2Cimage&pp=1&key=' + requestKey;
+		
 		this.Ajax.get(url, (function(Request){
 			/*
 			 * Validate the request was successfull

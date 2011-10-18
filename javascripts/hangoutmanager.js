@@ -21,7 +21,7 @@
 			* Get required configuration
 		*/
 		this.detectionTimeout	= this.storage.get('detection_timeout', 5000);
-		this.monitorTimeout	= this.storage.get('monitor_timeout', 10000);
+		this.monitorTimeout		= this.storage.get('monitor_timeout', 10000);
 	}
 
 	HangoutManager.prototype.getHangouts = function()
@@ -59,6 +59,7 @@
 				*/
 				if(Request.status != 200)
 				{
+					this.removeInternalHangout(hangout);
 					return;
 				}
 
@@ -176,7 +177,6 @@
 		/*
 			* Update / Add last checked timestamp
 		*/
-		hangout.lastChecked	= this.getTimestamp();
 		hangout.internal	= true;
 
 		/*
@@ -193,9 +193,11 @@
 				{
 					getController().sendHangout(hangout);
 				}
+				
 				this.watching.onHangout(hangout);
 			}
-		}else
+		}
+		else
 		{
 			/*
 				* Emit it to the server
@@ -204,6 +206,7 @@
 			{
 				getController().sendHangout(hangout);
 			}
+			
 			this.watching.onHangout(hangout);
 		}
 
@@ -211,18 +214,15 @@
 			* update the internal stack
 		*/
 		var updated = false;
+		
 		this.hangouts.forEach(function(value, index, context){
 			if(value.id == hangout.id)
 			{
-				this.hangouts[index] = hangout;
-				updated = true;
+				this.hangouts.splice(index, 1);
 			}
 		},this);
-
-		if(!updated)
-		{
-			this.hangouts.push(hangout);
-		}
+		
+		this.hangouts.push(hangout);
 	}
 
 	HangoutManager.prototype.hangoutExists = function(id)
@@ -289,25 +289,47 @@
 
 	HangoutManager.prototype.getOldestHangout = function()
 	{
-		var oldest = false;
-
-		this.hangouts.forEach(function(value, index, context){
-			if(value.internal == true)
+		/*
+		 * Try smething new here, loop the array fron n>0 and get the first internal we come accross
+		 * */
+		 
+		 /*
+		  * Get the object Keys and reverse them
+		  * */
+		var keys = Object.keys(this.hangouts).reverse();
+		
+		/*
+		 * Loop the keys until we find a suitable hangout
+		 * */
+		for(var i = 0; i > keys.length; i++)
+		{
+			if(this.hangouts[ keys[i] ].internal)
 			{
-				if(oldest == false)
-				{
-					oldest = value;
-					return;
-				}
-
-				if(oldest.lastChecked > value.lastChecked)
-				{
-					oldest = value;
-				}
+				return this.hangouts[ keys[i] ];
 			}
-		},this);
+		}
+		
+		return false;
+		
+		//var oldest = false;
 
-		return oldest;
+		//this.hangouts.forEach(function(value, index, context){
+			//if(value.internal == true)
+			//{
+				//if(oldest == false)
+				//{
+					//oldest = value;
+					//return;
+				//}
+
+				//if(oldest.lastChecked > value.lastChecked)
+				//{
+					//oldest = value;
+				//}
+			//}
+		//},this);
+
+		//return oldest;
 	}
 
 	HangoutManager.prototype.getTimestamp = function()
