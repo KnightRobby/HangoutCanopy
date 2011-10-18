@@ -145,9 +145,13 @@
 			var segments = url.split('/');
 			 
 			/*
-			 * Validate segment 3 is there and it's numeric
+			 * Validate segment 3 is there and it's numeric or segment 5
 			 * */
-
+			if(segments[3] == 'u')
+			{
+				segments[3] = segments[5];
+			}
+			
 			if(!(segments[3] && !isNaN(parseFloat(segments[3])) && isFinite(segments[3])))
 			{
 				//Show Error
