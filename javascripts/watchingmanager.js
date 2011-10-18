@@ -25,6 +25,11 @@
 
 		}).bind(this));
 	}
+	
+	WatchingManager.prototype.getWatched = function()
+	{
+		return this.clients;
+	}
 
 	WatchingManager.prototype.watchClient = function(id)
 	{

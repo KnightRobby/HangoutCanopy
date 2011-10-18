@@ -103,12 +103,9 @@ templates.twitter += '</div>';
   * Watching Feed 
   
 */
-
-templates.watching += '{{each(index, tweet) tweets}}';
-			templates.watching  += '<li>';
-			    templates.watching  +='<span><a href="http://twitter.com/#!/Hangoutcanopy/status/${tweet.id_str}">${tweet.created_at}<a/></span>';
-				templates.watching  +='<img src="${tweet.user.profile_image_url}" />';
-				templates.watching  +='<p>${tweet.text}</p>';
-				templates.watching  +='<br class="clear" />';
-			templates.watching  += '</li>';
-templates.watching  += '{{/each}}';
+templates.watching = '<li id="watching-${id}">';
+	templates.watching += '<a href="https://plus.google.com/${id}" class="watch_thumbs"><img src="${image.url}?sz=48" alt=""></a>';
+	templates.watching += '<a href="https://plus.google.com/${id}" class="watch_name">${displayName}</a>';
+	templates.watching += '<a href="#" class="watch_remove_btn">remove</a>';
+	templates.watching += '<br class="clear">';
+templates.watching += '</li>';
