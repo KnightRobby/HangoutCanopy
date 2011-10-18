@@ -152,7 +152,6 @@
 			if(url && url.indexOf('plus.google.com') == -1)
 			{
 				//Show Error
-				$('#watch_form').reset();
 				return false;
 			}
 			
@@ -172,7 +171,6 @@
 			if(!(segments[3] && !isNaN(parseFloat(segments[3])) && isFinite(segments[3])))
 			{
 				//Show Error
-				$('#watch_form').reset();
 				return false;
 			}
 			
@@ -182,7 +180,6 @@
 			if(watching.isWatched(segments[3]))
 			{
 				//Show Error
-				$('#watch_form').reset();
 				return false;
 			}
 			
@@ -210,7 +207,6 @@
 				$('#watch_form').reset();
 			});
 			
-			$('#watch_form').reset();
 			return false;
 		}).bind(this));
 	}

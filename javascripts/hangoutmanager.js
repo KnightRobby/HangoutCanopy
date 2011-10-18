@@ -50,7 +50,7 @@
 	HangoutManager.prototype.monitor = function()
 	{
 		var hangout = this.getOldestHangout();
-
+		
 		if(hangout != false)
 		{
 			this.ajax.get(hangout.post_url, (function(Request){
@@ -84,6 +84,7 @@
 				}
 			}).bind(this));
 		}
+		
 		setTimeout(this.monitor.bind(this), this.detectionTimeout);
 	}
 
@@ -301,7 +302,7 @@
 		/*
 		 * Loop the keys until we find a suitable hangout
 		 * */
-		for(var i = 0; i > keys.length; i++)
+		for(var i = 0; i < keys.length; i++)
 		{
 			if(this.hangouts[ keys[i] ].internal)
 			{
