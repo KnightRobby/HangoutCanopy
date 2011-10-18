@@ -53,6 +53,7 @@
 		
 		if(hangout != false)
 		{
+			console.log('Monitoring Hangout: ' + hangout.id);
 			this.ajax.get(hangout.post_url, (function(Request){
 				/*
 					* Check for 200 OK
