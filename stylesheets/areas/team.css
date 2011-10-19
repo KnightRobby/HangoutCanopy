@@ -6,7 +6,7 @@
 
 .team-member:hover
 {
-    background:#D4FFFF;	
+background:hsl(0, 0%, 95%);	
 }	
 
 .team-member-info h3{

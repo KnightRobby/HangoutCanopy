@@ -88,6 +88,25 @@ body::-webkit-scrollbar-track-piece {
 	height:inherit;
 }
 
+.button:active
+{
+	
+	
+    box-shadow:0 0 0 darkred,0 0 20px rgba(0,0,0,0.5) inset;
+    -moz-box-shadow:0 0 0 darkred,0 0 20px rgba(0,0,0,0.5) inset;
+    -webkit-box-shadow:0 0 0 darkred,0 0 20px rgba(0,0,0,0.5) inset;
+
+}
+a
+{
+cursor:pointer !important;	
+ 	
+}
+.button:hover{
+	
+	background:#09F;  
+	
+}
 .button
 {
 	
@@ -99,7 +118,7 @@ background-image: -o-linear-gradient(top,#4d90fe,#4787ed);
 background-image: linear-gradient(top,#4d90fe,#4787ed);
 border: 1px solid #3079ED;
 color: white;
-
+cursor:pointer !important;
 -webkit-border-radius: 2px;
 -moz-border-radius: 2px;
 border-radius: 2px;
