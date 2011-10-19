@@ -82,5 +82,62 @@
 		/*
 			* Generate layout
 		*/
+		document.getElementById('main_image').src = this.client.photo + '?sz=48';
+		document.getElementById('main_image_link').href = 'https://plus.google.com/' + this.client.id;
+		document.getElementById('client_name').innerHTML = this.client.name;
+		
+		var list = document.getElementById('notification_list');
+		
+		for(var i = 0; i < this.hangout.clients.length; i++)
+		{
+			if(this.hangout.clients[i].id != this.client.id)
+			{
+				var li = document.createElement("li");
+				var a = document.createElement("a");
+				var img = document.createElement("img");
+				
+				/*
+				 * Build image and link
+				 * */
+				img.src = this.hangout.clients[i].photo + '?sz=24';
+				a.href = 'https://plus.google.com/' + this.hangout.clients[i].id
+				
+				/*
+				 * Append img > a > li > dom
+				 * */
+				 a.appendChild( img );
+				 li.appendChild( a );
+				 list.appendChild( li );
+			}
+		}
+		
+		/*
+		 * Bind the join button
+		 * */
+		document.getElementById('join_button').href = this.hangout.url;
+		
+		/*
+		 * bind all href's for onclick
+		 * */
+		var anchors = document.getElementsByTagName("a");
+		for (var i=0; i<anchors.length; i++)
+		{
+			/*
+			 * Do they start with http
+			 * */
+			var href = anchors[i].getAttribute('href');
+			
+			if(href.substr(0,4) == 'http')
+			{
+				anchors[i].onclick = function()
+				{
+					chrome.tabs.create({url : this.getAttribute('href')});
+					if(this.id == "join_button")
+					{
+						window.close();
+					}
+				}
+			}
+		}
 	}
 })()
