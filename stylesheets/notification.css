@@ -1,3 +1,73 @@
 /*
 	* Notification Stylesheet
 */
+
+
+div , p , a , img , ul , li
+{
+	padding:0;
+	margin:0;	
+	
+}
+
+
+#content{}
+
+#content .user_thumb
+{
+	float:left;
+}
+#content p
+{
+	float:left;
+	margin-left:5px;
+	font-size:12px;
+	margin-top:5px;
+}
+
+#content ul#notification_list
+{
+	float:left;
+	list-style:none;
+	margin-top:5px;
+	margin-left:5px;
+}
+#content ul#notification_list li
+{
+	float:left;
+	margin-right:0px;
+	
+}
+
+#content .join
+{
+background-color: #4D90FE;
+background-image: -webkit-linear-gradient(top,#4d90fe,#4787ed);
+background-image: -moz-linear-gradient(top,#4d90fe,#4787ed);
+background-image: -ms-linear-gradient(top,#4d90fe,#4787ed);
+background-image: -o-linear-gradient(top,#4d90fe,#4787ed);
+background-image: linear-gradient(top,#4d90fe,#4787ed);
+border: 1px solid #3079ED;
+color: white;
+cursor:pointer !important;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+cursor: default;
+font-size: 11px;
+font-weight: bold;
+text-align: center;
+height: 27px;
+line-height: 27px;
+min-width: 54px;
+outline: 0;
+padding: 0 8px;
+margin-right:13px;
+
+ text-decoration:none;
+float:right;
+position: relative;
+display: -moz-inline-box;
+display: inline-block;	
+	
+}
