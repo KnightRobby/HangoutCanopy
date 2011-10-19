@@ -158,6 +158,13 @@ aside .logo
 
 }
 
+.settings p
+{
+  font-size:12px;
+  color:#fff;
+  padding-top:15px;
+  margin-left:-5px;	
+}
 .settings .setting
 {
 	width:24px;

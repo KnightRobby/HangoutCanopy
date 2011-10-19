@@ -23,6 +23,8 @@ div , p , a , img , ul , li
 	margin-left:5px;
 	font-size:12px;
 	margin-top:5px;
+	display:block;
+	width:200px;
 }
 
 #content ul#notification_list
@@ -31,6 +33,7 @@ div , p , a , img , ul , li
 	list-style:none;
 	margin-top:5px;
 	margin-left:5px;
+	width:216px;
 }
 #content ul#notification_list li
 {
