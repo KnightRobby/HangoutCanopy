@@ -1,8 +1,17 @@
 .team-member
 {
     padding:3px;
+	border-bottom:1px solid #ccc;
 }
 
+.team-member:hover
+{
+    background:#D4FFFF;	
+}	
+
+.team-member-info h3{
+	color:#333;	
+}
 .team-member > .team-member-image
 {
     float:left;
@@ -17,7 +26,8 @@
 
 .team-member
 {
-	 margin-left:20px;
+	 padding-left:20px;
+	 padding-top:9px;
 	float:left;
 
 }
@@ -58,7 +68,7 @@
 
 .team-member > .team-member-info p.links a
 {
-    color: #4AB1D3;
+    color: #ccc;
 }
 
 #special-thanks p

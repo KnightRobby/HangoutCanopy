@@ -40,11 +40,11 @@
 
 .slideout_panel .panel_header .close
 {
-	margin-left:20px;
+	margin-left:16px;
 	text-indent:-99999px;
 	background:url('/images/close.png');
-	width:10px;
-	height:11px;
+	width:16px;
+	height:16px;
 	margin-top:5px;
 	display:inline-block;
 	margin-right:9px;
@@ -53,8 +53,8 @@
 {
 	text-indent:-99999px;
 	background:url('/images/icons/post.png');
-	width:11px;
-	height:11px;
+	width:16px;
+	height:16px;
 	margin-top:5px;
 	display:inline-block;
 	margin-right:9px;
@@ -71,17 +71,45 @@
 }
 .slideout_panel .panel_users ul li
 {
-	height:40px;
+	
 	border-bottom:1px solid #ccc;
 	padding-left:20px;
-	padding-top:10px;
+	padding-top:5px;
+	padding-bottom:5px;
 	
 }
 .slideout_panel .panel_users ul li a
 {
-	
+	float:left;
 }
 .slideout_panel .panel_users ul li a img
 {
 	
+}
+
+.slideout_panel .panel_users ul li:hover
+{
+	background:#D4FFFF;	
+}
+
+.slideout_panel .panel_users ul li span
+{
+	float:left;
+	margin-left:10px;
+	margin-top:7px;
+	width:200px;
+	overflow:hidden;
+}
+
+.slideout_panel .panel_users ul li a.watch_remove_btn
+{
+	float:right;
+	display:block;
+	width:60px !important;
+	font-size:10px !important;
+	padding:0px !important;
+	margin-top:5px;
+	height:20px !important;
+	line-height:20px !important;
+	margin-right:10px;
 }

@@ -17,6 +17,11 @@
 	position:relative;
 }
 
+#hangouts article.hangout:hover{
+		background:#D4FFFF;	
+}
+
+
 #hangouts article.hangout .info
 {
 	font-size:11px;
