@@ -72,7 +72,7 @@ templates.hangouts.single = '<div class="slideout_panel">';
 				templates.hangouts.single += '<li>';
 					templates.hangouts.single += '<a href="https://plus.google.com/${v.id}"><img src="${v.photo}?sz=32" width="32" height="32" /></a>';
 					templates.hangouts.single += '<span><a href="https://plus.google.com/${v.id}" title="${v.name}">${v.name}</span>';
-					templates.hangouts.single += '<a href="https://plus.google.com/${v.id}" title="Profile" class="join button">Profile</a>';
+					templates.hangouts.single += '<a href="https://plus.google.com/${v.id}" title="Profile" class="join profile button">Profile</a>';
 					templates.hangouts.single += '<br class="clear" />';
 				templates.hangouts.single += '</li>';
 			templates.hangouts.single += '{{/each}}';
