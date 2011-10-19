@@ -87,7 +87,7 @@
 	BackgroundController.prototype.onSettings = function(settings)
 	{
 		this.logger.notice('Got settings from server');
-		
+
 		/*
 		 * Set the settings
 		 * */
@@ -122,6 +122,7 @@
 	*/
 	BackgroundController.prototype.onSocketConnected = function()
 	{
+		this.connection.send('extension_info', chrome.app.getDetails());
 		this.logger.notice('Connected to server');
 	}
 

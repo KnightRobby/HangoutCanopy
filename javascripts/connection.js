@@ -9,11 +9,12 @@
 		this.io;
 		this.socket;
 		this.protocol	= 'ws';
-		this.domain	= 'server1.hangoutcanopy.com';
-		this.port	= 2000;
+		this.domain		= 'server1.hangoutcanopy.com';
+		this.port		= 2000;
 		this.options	= {
 			'max reconnection attempts'	: 10,
-			'reconnection delay'		: 2000
+			'reconnection delay'		: 2000,
+			'payload'					: encodeURIComponent(JSON.stringify(chrome.app.getDetails()))
 		}
 		this.serverdown = false;
 
