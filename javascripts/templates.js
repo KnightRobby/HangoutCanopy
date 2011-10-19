@@ -46,13 +46,10 @@ templates.hangouts.row = '<article id="${htmlid}" class="hangout" data-public="{
 				templates.hangouts.row +='{{/if}}';
 			templates.hangouts.row += '{{/each}}';
 			templates.hangouts.row += '<a href="#" class="arrow"></a>';
-
-
 		templates.hangouts.row += '</div>';
 		templates.hangouts.row += '<div class="top_nav">';
 				templates.hangouts.row += '<span class="public"><a href="${post_url}">{{if public}}Public{{else}}Limited{{/if}}</a></span>';
 		templates.hangouts.row += '</div>';
-	
 	templates.hangouts.row += '</div>';
 templates.hangouts.row += '</article>';
 
@@ -83,15 +80,15 @@ templates.hangouts.single += '</div>';
 	* Twitter Feed
 */
 templates.twitter ='<div class="section_header twitter_header">';
-templates.twitter += '<a class="follow" href="http://twitter.com/hangoutcanopy"><img src="/images/twiter.png" /></a>';
+templates.twitter += '<a class="follow" href="http://www.twitter.com/HangoutCanopy"><img src="http://twitter-badges.s3.amazonaws.com/follow_us-a.png" alt="Follow HangoutCanopy on Twitter"/></a>';
 templates.twitter += '</div>';
 templates.twitter += '<div class="twitter_feed section_content">';
 	templates.twitter += '<ul class="tweets">';
 		templates.twitter += '{{each(index, tweet) tweets}}';
 			templates.twitter += '<li id="tweet_${tweet.id}">';
-			    templates.twitter +='<span><a href="http://twitter.com/#!/Hangoutcanopy/status/${tweet.id_str}">${tweet.created_at}<a/></span>';
 				templates.twitter +='<img src="${tweet.user.profile_image_url}" />';
 				templates.twitter +='<p>${tweet.text}</p>';
+				templates.twitter +='<span><a href="http://twitter.com/#!/Hangoutcanopy/status/${tweet.id_str}">View Tweet<a/></span>';
 				templates.twitter +='<br class="clear" />';
 			templates.twitter += '</li>';
 		templates.twitter += '{{/each}}';

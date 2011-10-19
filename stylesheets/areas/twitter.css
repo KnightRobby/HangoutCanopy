@@ -4,8 +4,9 @@
 }
 .twitter_header .follow
 {
-	margin-right:5px;
-	float:right;	
+	margin-right:15px;
+	margin-top:15px;
+	float:right;
 }
 
 .twitter_feed
@@ -15,6 +16,7 @@
 .tweets
 {	
 }
+
 .tweets li
 {
 	padding-top:10px;
@@ -22,37 +24,35 @@
 	padding-bottom:10px;
 	padding-left:10px;
 	padding-right:10px;
-	position:relative;
-	
+	position:relative;	
 	width:inherit;
 }
 
 .tweets li:hover
 {
-background:hsl(0, 0%, 95%);	
+	background:hsl(0, 0%, 95%);	
 }
 
 .tweets li img
 {
 	float:left;
-
-margin-top:10px;
-	margin-right:5px;
 }
 .tweets li p
 {
 	margin-left:10px;
-	padding-top:10px;
 	font-size:14px;
-	float:left;
-	margin-top:10px;
-	width:310px;
+	float:right;
+	width:330px;
 	line-height:16px;
 }
 .tweets li span
 {
 	font-size:11px;
-	color:#ccc;
-	position:absolute;
-	right:10px;
+	margin-left: 62px;
+	float:right;
+}
+
+.tweets li span a
+{
+	color: hsl(220, 60%, 50%);
 }

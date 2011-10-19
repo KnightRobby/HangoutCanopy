@@ -77,7 +77,7 @@
 		/*
 			* Close the window
 		*/
-		setTimeout(window.close, 10000);
+		setTimeout(window.close, 25000);
 
 		/*
 			* Generate layout
@@ -85,6 +85,7 @@
 		document.getElementById('main_image').src = this.client.photo + '?sz=48';
 		document.getElementById('main_image_link').href = 'https://plus.google.com/' + this.client.id;
 		document.getElementById('client_name').innerHTML = this.client.name;
+		document.getElementById('client_count').innerHTML = (this.hangout.clients.length - 1);
 		
 		var list = document.getElementById('notification_list');
 		

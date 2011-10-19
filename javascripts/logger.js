@@ -5,6 +5,7 @@
 	*/
 	var Logger = window.Logger = function()
 	{
+		this.max = 50;
 		this.logs = [];
 	}
 
@@ -31,12 +32,15 @@
 			message		: message,
 			context		: context ? context : 'N/A'
 		};
-
-		this.logs.push(_log);
+		
+		if(this.logs.unshift(_log) > this.max)
+		{
+			this.logs.pop();
+		}
 
 		if(__Debug == true)
 		{
-			console.log(_log.type + ': ' + _log.message);
+			console.log(_log.message, _log);
 		}
 	}
 })()
