@@ -82,6 +82,5 @@
 		/*
 			* Generate layout
 		*/
-		document.getElementById('content').innerText = this.client.name + "Is Hanging Out";
 	}
 })()
