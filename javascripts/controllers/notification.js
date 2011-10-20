@@ -77,16 +77,15 @@
 		/*
 			* Close the window
 		*/
-		setTimeout(window.close, 25000);
+		setTimeout(window.close, 30000);
 
 		/*
 			* Generate layout
 		*/
 		document.getElementById('main_image').src = this.client.photo + '?sz=48';
-		document.getElementById('main_image_link').href = 'https://plus.google.com/' + this.client.id;
-		document.getElementById('client_name').innerHTML = this.client.name;
-		document.getElementById('client_count').innerHTML = (this.hangout.clients.length - 1);
-		
+		document.getElementById('primary_image_link').href = 'https://plus.google.com/' + this.client.id;
+		document.getElementById('primary_name').innerHTML = this.client.name;
+		document.getElementById('primary_count').innerHTML = (this.hangout.clients.length - 1);
 		var list = document.getElementById('notification_list');
 		
 		for(var i = 0; i < this.hangout.clients.length; i++)
@@ -100,8 +99,9 @@
 				/*
 				 * Build image and link
 				 * */
-				img.src = this.hangout.clients[i].photo + '?sz=24';
+				img.src = this.hangout.clients[i].photo + '?sz=32';
 				a.href = 'https://plus.google.com/' + this.hangout.clients[i].id
+				a.title = this.hangout.clients[i].name;
 				
 				/*
 				 * Append img > a > li > dom
@@ -113,9 +113,24 @@
 		}
 		
 		/*
+		 * Add teh join button
+		 * */
+		var li = document.createElement('li');
+		li.id = 'join';
+		li.innerHTML = 'Join';
+		li.setAttribute('data-link', this.hangout.url);
+		li.onclick = function()
+		{
+			chrome.tabs.create({url : this.getAttribute('data-link')});
+			window.close();
+		}
+		
+		list.appendChild( li );
+		
+		/*
 		 * Bind the join button
 		 * */
-		document.getElementById('join_button').href = this.hangout.url;
+		document.getElementById('join').href = this.hangout.url;	
 		
 		/*
 		 * bind all href's for onclick
@@ -133,10 +148,6 @@
 				anchors[i].onclick = function()
 				{
 					chrome.tabs.create({url : this.getAttribute('href')});
-					if(this.id == "join_button")
-					{
-						window.close();
-					}
 				}
 			}
 		}

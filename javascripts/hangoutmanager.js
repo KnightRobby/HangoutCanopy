@@ -182,6 +182,11 @@
         hangout.internal = false;
         
         /*
+         * Let the Watching Manager know about the hangout
+         */
+        this.watching.onHangout(hangout);
+        
+        /*
          * Check to see if the hangout already exists
          */
         if(true == (this.hangoutExists(hangout.id)))
@@ -347,7 +352,7 @@
      * Check to see ifthere is a difference in the cleints of a hangout
      * Returns Booleon
      */
-    HangoutManager.prototype.hangoutHasChange = function(hangout)
+    HangoutManager.prototype.hangoutHasChanged = function(hangout)
     {
         var pointer = this.getHangoutPointer(hangout.id);
         
