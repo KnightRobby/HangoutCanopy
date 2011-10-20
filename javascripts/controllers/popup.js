@@ -20,9 +20,16 @@
 	PopupController.prototype.initializeClickMonitoring = function()
 	{
 		$("a[href^='http://'],a[href^='https://']").live('click', function(){
-			chrome.tabs.create({
-				url : $(this).attr('href')
-			});
+			/*
+			 * Track the event
+			 * */
+			window._gaq.push(['_trackEvent', 'button-' + $(this).attr('href'), 'popup_clicked']);
+			
+			/*
+			 * Open a new window
+			 * */
+			chrome.tabs.create({url : $(this).attr('href')});
+			
 		});
 
 		$('#hangouts .arrow').live('click', this.displayHangout.bind(this));
@@ -39,7 +46,7 @@
 
 	PopupController.prototype.initializeHangouts = function()
 	{
-		setTimeout(this.initializeHangouts.bind(this),5000);
+		setTimeout(this.initializeHangouts.bind(this),2000);
 		
 		/*
 			* Get hangout set from background Controller
@@ -51,6 +58,9 @@
 		*/
 		var hangoutDOM = $('#hangouts');
 
+		/*
+		 * Loop the hangouts and inject to the DOM
+		 * */
 		for(var i = 0; i < hangouts.length; i++)
 		{
 			/*
@@ -130,13 +140,18 @@
 			/*
 			 * Get id of container
 			 * */
-			var id = $(this).parent().attr('id').split('-')[1];			
+			var id = $(this).parent().attr('id').split('-')[1];
 			watching.unwatchClient(id);
 			
 			/*
 			 * Remove the container
 			 * */
 			$(this).parent().remove();
+			
+			/*
+			 * Track unwatched
+			 * */
+			window._gaq.push(['_trackEvent',id, 'unwatched']);
 			
 			return false;
 		});
@@ -190,7 +205,6 @@
 				if(err)
 				{
 					//Show error
-					$('#watch_form').reset();
 					return false;
 				}
 				
@@ -201,10 +215,10 @@
 				 
 				//Slide it in
 				var html = $.tmpl("watching", data);				 
-				$('#watch_list').prepend(html);				 
+				$('#watch_list').prepend(html);
 				html.slideDown();
-				 
-				$('#watch_form').reset();
+				
+				window._gaq.push(['_trackEvent',data.id, 'watched']);
 			});
 			
 			return false;
