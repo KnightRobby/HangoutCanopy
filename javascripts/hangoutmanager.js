@@ -69,7 +69,7 @@
                      * Were unable to monitor if it does not exists
                      */
                     this.logger.warn("Google plus replied with error", Request);
-                    this.removeInternalHangout(hangout);
+                    this.removeInternalHangout(hangout.id);
                     return;
                 }
                 
