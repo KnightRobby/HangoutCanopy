@@ -49,3 +49,10 @@
     * Watching Panel
 */
 @import url('/stylesheets/areas/watching.css');
+
+
+
+/*
+    * Donate Panel
+*/
+@import url('/stylesheets/areas/donate.css');
