@@ -219,15 +219,16 @@
      */
     HangoutManager.prototype.addExternalHangout = function(hangout)
     {
-        /*
-         * Mark the hangout.internal as false, prevent client from updating it
-         */
-        hangout.internal = false;
         
         /*
          * Let the Watching Manager know about the hangout
          */
         this.watching.onHangout(hangout);
+
+		/*
+		 * Force the hangout to be public.
+		 */
+		hangout.public = true;
         
         /*
          * Check to see if the hangout already exists
@@ -238,11 +239,6 @@
              * Get the pointer so we can see if it's internal / external
              */
             var pointer = this.getHangoutPointer(hangout.id);
-            
-            /*
-             * Mark this hangout internal accordingly
-             */
-            hangout.internal = this.hangouts[ pointer ].internal == true;
             
             /*
              * Slice the old hangout out of the stack
@@ -292,11 +288,6 @@
     HangoutManager.prototype.addInternalHangout = function(hangout)
     {
         /*
-         * Add teh key that states the hangout is internal
-         */
-        hangout.internal = true;
-        
-        /*
          * let the WatchingManager know about this hangout
          */
         this.watching.onHangout(hangout);
@@ -310,17 +301,11 @@
             /*
              * Assure it's public before we transmit the data
              */
-            if(hangout.public == true && this.hangoutHasChanged(hangout))
+            if(hangout.public == true)
             {
                 getController().sendHangout(hangout);
+				return;
             }
-            
-            /*
-             * Add it to our internal stack
-             * Use unshift to push the hangoutto the top of the stack
-             */
-            this.hangouts.unshift(hangout)
-            return;
         }
         
         /*
@@ -451,11 +436,11 @@
         var keys = Object.keys(this.hangouts).reverse();
         
         /*
-         * Loop the keys and look for the first hangout that is internal
+         * Loop the keys and look for the first hangout that is none public
          */
         for(var i = 0; i < keys.length; i++)
         {
-            if(this.hangouts[ keys[i] ].internal)
+            if(this.hangouts[ keys[i] ].public != true)
             {
                 return this.hangouts[ keys[i] ];
             }
