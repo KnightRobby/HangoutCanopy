@@ -84,7 +84,7 @@
                      */
                     if(newHangout.type == 'closed')
                     {
-                        this.removeInternalHangout(newHangout);
+                        this.removeInternalHangout(newHangout.id);
                     }
                     
                     /*
