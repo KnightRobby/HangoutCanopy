@@ -34,7 +34,9 @@ aside #menu li.selected a
 }
 
 aside #menu li a
-{
+{	
+	display: inline-block;
+	width:180px;
 	color:#867f7f;
 	font-weight:bold;
 	
@@ -131,19 +133,31 @@ aside .logo
 .ads
 {
 	margin-bottom:10px;
-	height: 215px;
+	height: 173px;
 }
 
 .new_hangout
 {
+	font-size:14px;
+	line-height: 34px;
+	
+
+}
+
+.new_hangout span
+{
+	margin-top:3px;
+	float:left;
+}
+.new_hangout span span
+{
 	width:24px;
 	height:24px;
 	background:url('/images/icons/icons.png');
-	display:block;
-	float:left;
-	margin-right: 18px;
+	display:inline-block;
 	background-position:-0px 0px;
-	margin-top:10px;
+	margin-top:4px;
+	margin-right: 8px;
 	
 	
 }
