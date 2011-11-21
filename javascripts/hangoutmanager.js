@@ -118,7 +118,7 @@
                 return;
             }
 
-	    this.logger.log("Successfull request to gogole stream");
+	    	this.logger.notice("Successfull request to google stream");
             
             /*
              * Parse the hangouts into an iteratable list
@@ -154,6 +154,47 @@
         //Loop this call every X seconds
         setTimeout(this.detection.bind(this), this.detectionTimeout);
     }
+
+    HangoutManager.prototype.getHangoutInformation = function(hangout, callback)
+	{
+		console.log(hangout);
+		this.ajax.get(hangout.post_url, (function(Request){
+            /*
+             * validate we get a 200 OK from Google.
+             */
+            if(Request.status != 200)
+            {
+				callback({status: 'closed', hangout : hangout});
+                return;
+            }
+
+            /*
+             * Parse the hangout page to get the meta data.
+             */
+            var newHangout;
+            if((newHangout = this.parser.parseSingleHangout(Request.responseText)))
+            {
+                /*
+                 * if the hangout is closed, remove it from the stack
+                 */
+                if(newHangout.type == 'closed')
+                {
+                    callback({status: 'closed', hangout : hangout});
+					return;
+                }
+                
+                /*
+                 * if the hangout is open, send it to the addInternalHangout method
+                 */
+                if(newHangout.type == 'open')
+                {
+                    callback({status: 'open', hangout : newHangout});
+					return;
+                }
+            }
+
+		}).bind(this));
+	}
 
     /*
      * Removes an External Hangout from the stack, should only be triggered

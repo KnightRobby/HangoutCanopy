@@ -2,7 +2,7 @@
 	/*
 		* Hangout Canopy V2
 		* http://hangoutcanopy.com
-		*  Developers : Robert Pit
+		*  Developers : Robert Pit, Mohammed Eshbeata
 	*/
 
 	BackgroundController = window.BackgroundController = function()
@@ -44,6 +44,7 @@
 		this.connection.bindEventListener('reconnect_failed'	, this.onSocketReconnectFailed.bind(this));
 
 		this.connection.bindEventListener('announce'		, this.onHangoutLive.bind(this));
+		this.connection.bindEventListener('update'		, this.onHangoutDoUpdate.bind(this));
 		this.connection.bindEventListener('closed'		, this.onHangoutClosed.bind(this));
 
 		/*
@@ -100,6 +101,13 @@
 	{
 		this.logger.notice('Informing server of Hangout Closed: ' + hangout.id);
 		this.connection.send('closed', hangout.id);
+	}
+
+	BackgroundController.prototype.onHangoutDoUpdate = function(hangout)
+	{
+		this.manager.getHangoutInformation(hangout, (function(data){
+			this.connection.send('update', data);
+		}).bind(this));
 	}
 
 	/*
