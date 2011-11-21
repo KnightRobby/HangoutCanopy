@@ -117,8 +117,6 @@
                 this.logger.warn("Unable to request plus.google.com, got: ", Request);
                 return;
             }
-
-	    this.logger.log("Successfull request to gogole stream");
             
             /*
              * Parse the hangouts into an iteratable list

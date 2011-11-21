@@ -1,6 +1,6 @@
 {
 	"name"		: "Hangout Canopy",
-	"version"	: "1.0.7",
+	"version"	: "1.1.0",
 	"description"	: "Find and share public hangouts in real time.",
 	"icons"	: {
 		"16" : "images/icons/logo_16.png",

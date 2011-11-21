@@ -42,9 +42,8 @@
 		this.connection.bindEventListener('disconnect'		, this.onSocketDisconnect.bind(this));
 		this.connection.bindEventListener('reconnect'		, this.onSocketReconnect.bind(this));
 		this.connection.bindEventListener('reconnect_failed'	, this.onSocketReconnectFailed.bind(this));
-
-		this.connection.bindEventListener('announce'		, this.onHangoutLive.bind(this));
-		this.connection.bindEventListener('closed'		, this.onHangoutClosed.bind(this));
+		this.connection.bindEventListener('hangout_live'	, this.onHangoutLive.bind(this));
+		this.connection.bindEventListener('hangout_closed'	, this.onHangoutClosed.bind(this));
 
 		/*
 			* Set loop for the badge
