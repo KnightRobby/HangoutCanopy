@@ -23,7 +23,7 @@
 		/*
 		 * Grab the authorization key for google
 		 * */
-		var requestKey = 'AIzaSyD9OVT14rdxn1OD2OITu_ygzQ_plai7JUk';
+		var requestKey = __BG.settings.get('googlePublicAuthorizationKey');
 		 
 		if(!requestKey)
 		{
