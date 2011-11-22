@@ -16,121 +16,166 @@
         /*
          * Setup local variables
          */
-        this.hangouts = new Array();
+        this.internal = new Array();
+		this.external = new Array();
         this.active = false;
         
         /*
          * Settings for the object
          */
         this.detectionTimeout    = this.storage.get('detection_timeout', 30000);
-        this.monitorTimeout      = this.storage.get('monitor_timeout', 10000);
+        this.monitorTimeout      = this.storage.get('monitor_timeout', 15000);
     }
 
-    /*
-     * Returns the hangouts Array object
-     */
+	/*
+	 * HangoutManager Redisign
+	 * Methods Required for paretn calls:
+	 * - getHangouts:	called by popup controller
+	 * - start:			called by background
+	 * - getHangouts
+	 * - getHangouts
+	 * - getHangouts
+	 */
+
+	/*
+	 * @getHangouts
+	 * Returns Array <Hangout>
+	*/
     HangoutManager.prototype.getHangouts = function()
     {
-        return this.hangouts;
+        return this.internal.concat( this.external );
     }
-    
-    /*
-     * Start the hangout detection and monitoring
-     */
-    HangoutManager.prototype.start = function()
+
+	/*
+	 * @start
+	 * Returns null
+	 * Starts the monitoring and detecting of hangouts
+	*/
+	HangoutManager.prototype.start = function()
+	{
+		
+		this.logger.notice("Activating Detection and Monitoring loops");
+
+		setInterval(this.monitor.bind(this), this.monitorTimeout);
+		setInterval(this.detection.bind(this), this.detectionTimeout);
+	}
+
+	/*
+	 * @getLocalUpdateCandidate
+	 * Returns Array <Hangout>
+	*/
+    HangoutManager.prototype.getLocalUpdateCandidate = function()
     {
-        if(this.active) return; //Prevent double call
-            
-        this.logger.notice("Activating Detection and Monitoring loops");
-        
-        this.monitor();
-        this.detection();
+		/*
+		 * Reverse the KEYS so we do not effect the array in memory
+		*/
+		var keys = Object.keys(this.internal).reverse();
+
+		for(var i = 0; i < keys.length; i++)
+		{
+			var key = keys[ i ];
+
+			return this.internal[ key ];
+		}
+
+		return false;
     }
-        
-    /*
-     * Monitors the interal hangouts, so public / not public
-     */
+
+	/*
+	 * @monitor
+	 * Returns Null
+	 * Used as a loop to monitor the local hangouts in the stack that are not public
+	*/
     HangoutManager.prototype.monitor = function()
     {
-        var hangout;
-        
-        if(false !== ( hangout = this.getOldestHangout() ))
-        {
-            this.logger.notice('Discovered Hangout for update: ' + hangout.id);
-            
-            this.ajax.get(hangout.post_url, (function(Request){
-                
+		/*
+		 * Get a local hangout canditate for updating
+		*/
+		var hangout = this.getLocalUpdateCandidate();
+
+		/*
+		 * Make sure we have a hangout to work with
+		*/
+		if(false === hangout)
+		{
+			return;
+		}
+
+		/*
+		 * Fetch the post
+		*/
+		this.ajax.get(hangout.post_url, (function(Request){
+
+			this.logger.notice("Response for: (" + hangout.id + ") was (" + Request.status + ")");
+
+			/*
+			 * if the response code was != 200, assume it's closed
+			*/
+			if(Request.status != 200)
+			{
+				this.removeInternalHangout(hangout.id);
+				return;
+			}
+
+			/*
+			 * Parse the hangout into an object
+			*/
+            var newHangout;
+            if((newHangout = this.parser.parseSingleHangout(Request.responseText)))
+			{
                 /*
-                 * First check to do is to make srue it's a 200 response
+                 * if the hangout is closed, remove it from the stack
                  */
-                if(Request.status != 200)
+                if(newHangout.type == 'closed')
                 {
-                    /*
-                     * Were unable to monitor if it does not exists
-                     */
-                    this.logger.warn("Google plus replied with error", Request);
-                    this.removeInternalHangout(hangout.id);
-                    return;
+                    this.removeInternalHangout(newHangout.id);
                 }
                 
                 /*
-                 * Parse the hangout page to get the meta data.
+                 * if the hangout is open, send it to the addInternalHangout method
                  */
-                var newHangout;
-                if((newHangout = this.parser.parseSingleHangout(Request.responseText)))
+                if(newHangout.type == 'open')
                 {
-                    /*
-                     * if the hangout is closed, remove it from the stack
-                     */
-                    if(newHangout.type == 'closed')
-                    {
-                        this.removeInternalHangout(newHangout);
-                    }
-                    
-                    /*
-                     * if the hangout is open, send it to the addInternalHangout method
-                     */
-                    if(newHangout.type == 'open')
-                    {
-                        this.addInternalHangout(newHangout);
-                    }
-                };
-                
-            }).bind(this))
-        }
-        
-        //loop this call every X seconds
-        setTimeout(this.monitor.bind(this), this.monitorTimeout);
+                    this.addInternalHangout(newHangout);
+                }
+			}
+
+		}).bind(this) );
     }
 
-    /*
-     * Detects hangouts from the main stream
-     */
+	/*
+	 * @detection
+	 * Returns Null
+	 * Used as a loop to monitor the stream for hangouts
+	*/
     HangoutManager.prototype.detection = function()
     {
-        this.ajax.get('https://plus.google.com/', (function(Request){
-            /*
-             * validate we get a 200 OK from Google.
-             */
-            if(Request.status != 200)
-            {
-                this.logger.warn("Unable to request plus.google.com, got: ", Request);
-                return;
-            }
+		this.ajax.get('https://plus.google.com/', (function(Request){
 
-	    	this.logger.notice("Successfull request to google stream");
-            
+			/*
+			 * If the request != 200, ignore the request
+			*/
+			if(Request.status != 200)
+			{
+				return;
+			}
+
             /*
-             * Parse the hangouts into an iteratable list
-             */
+             * Parse the stream for hangouts, and return an arary
+            */
             var hangouts;
             if((hangouts = this.parser.parseHangouts(Request.responseText)))
-            {
-                /*
-                 * Loop the hangouts Array and check them individually 
-                 */
-                for(var i = 0; i < hangouts.length; i++)
-                {
+			{
+				/*
+				 * makre sure we have some hangouts to work with
+				*/
+				if(hangouts.length == 0)
+				{
+					return;
+				}
+
+				for(var i = 0; i < hangouts.length; i++)
+				{
                     /*
                      * if the hangout is open, send it to the addInternalHangout method
                      */
@@ -146,15 +191,17 @@
                     {
                         this.removeInternalHangout(hangouts[i]);
                     }
-                }
-            };
-            
-        }).bind(this));
-        
-        //Loop this call every X seconds
-        setTimeout(this.detection.bind(this), this.detectionTimeout);
+				}
+			}
+
+		}).bind(this) );
     }
 
+	/*
+	 * @getHangoutInformation
+	 * Returns Null
+	 * Fetches single hangout information and calls the 2nd param callback
+	*/
     HangoutManager.prototype.getHangoutInformation = function(hangout, callback)
 	{
 		console.log(hangout);
@@ -196,27 +243,31 @@
 		}).bind(this));
 	}
 
-    /*
-     * Removes an External Hangout from the stack, should only be triggered
-     * By the socket.io event
-     */
+	/*
+	 * External Methods, Used to add data for external hangouts
+	*/
+
+	/*
+	 * @removeExternalHangout
+	 * Returns null
+	 * Removes a hangout from the stack as long as it's public and 
+	*/
     HangoutManager.prototype.removeExternalHangout = function(id)
     {
-        var pointer = this.getHangoutPointer(id);
-        
-        /*
-         * If the hangout exists then splcie it away
-         */
-        if(pointer != -1)
-        {
-            this.hangouts.splice(pointer, 1);
-        }
+		for(var pointer = 0; pointer < this.external.length; pointer++)
+		{
+			if(this.external[pointer].id == id)
+			{
+				this.external.splice(pointer, 1);
+			}
+		}
     }
 
-    /*
-     * Adds/Updates an External Hangout from the stack, should only be triggered
-     * By the socket.io event
-     */
+	/*
+	 * @addExternalHangout
+	 * Returns null
+	 * Adds a hangout to the external stack
+	*/
     HangoutManager.prototype.addExternalHangout = function(hangout)
     {
         
@@ -231,32 +282,31 @@
 		hangout.public = true;
         
         /*
-         * Check to see if the hangout already exists
+         * Check to see if the hangout already exists, if so remove it
          */
-        if(true == (this.hangoutExists(hangout.id)))
-        {
-            /*
-             * Get the pointer so we can see if it's internal / external
-             */
-            var pointer = this.getHangoutPointer(hangout.id);
-            
-            /*
-             * Slice the old hangout out of the stack
-             */
-            this.hangouts.splice(pointer, 1);
-        }
+		for(var pointer = 0; pointer < this.external.legnth; i++)
+		{
+			if(this.external[pointer].id == hangout.id)
+			{
+				this.external.splice(pointer, 1);
+			}
+		}
         
         /*
          * Add the hangout to the top of the stack
          */
-        this.hangouts.unshift(hangout);
+        this.external.unshift(hangout);
     }
 
-    /*
-     * Removes an Internal Hangout from the stack.
-     *
-     * @Param id (hangout id)
-     */
+	/*
+	 * Internal Methods, Used to add data for internal hangouts
+	*/
+
+	/*
+	 * @removeInternalHangout
+	 * returns null
+	 * Removes a hangout from the internal stack that matches the ID
+	*/
     HangoutManager.prototype.removeInternalHangout = function(id)
     {
         if(!id)
@@ -267,188 +317,93 @@
         /*
          * Loop the hangouts to find what index contains the id
          */
-        for(var i = 0; i < this.hangouts.length; i++)
+        for(var pointer = 0; pointer < this.internal.length; pointer++)
         {
-            if(this.hangouts[i].id == id)
+            if(this.internal[pointer].id == id)
             {
-                /*
-                 * use splice to remove cleanly
-                 */
-                this.hangouts.splice(i, 1);
+                this.internal.splice(pointer, 1);
                 return;
             }
         }
     }
-        
-    /*
-     * Removes an Internal Hangout from the stack.
-     * 
-     * @Param hangout (HangoutObject)
-     */
+
+	/*
+	 * @addInternalHangout
+	 * returns null
+	 * If the hangout is a limited hangout, it will get added to the internal stack, otherwise sent of to the server to handle
+	*/
     HangoutManager.prototype.addInternalHangout = function(hangout)
     {
-        /*
-         * let the WatchingManager know about this hangout
-         */
+		/*
+		 * First we need to remove it from the internal stack
+		*/
+		for(var pointer = 0; pointer < this.internal.length; pointer++)
+		{
+			if(this.internal[pointer].id == hangout.id)
+			{
+				this.internal.splice(pointer, 1);
+			}
+		}
+
+		/*
+		 * See if it's a public hangout, if so we send it of to the server and do no more
+		*/
+		if(hangout.public == true)
+		{
+			getController().sendHangout(hangout);
+			return;
+		}
+
+		/*
+		 * The hangout must not be public, therefor we let the Watching Manager know about the hangout
+		*/
         this.watching.onHangout(hangout);
-        
-        /*
-         * Check to see if the hangout already exists
-         * If so, Ping it out to the server, and insert into our stack
-         */
-        if(this.hangoutExists(hangout.id) == false)
-        {
-            /*
-             * Assure it's public before we transmit the data
-             */
-            if(hangout.public == true)
-            {
-                getController().sendHangout(hangout);
-				return;
-            }
-        }
-        
-        /*
-         * Get the pointer for the hangout within the stack
-         */
-        var pointer = this.getHangoutPointer(hangout.id);
-        
-        /*
-         * Remove the Hangout from the stack
-         */
-        this.hangouts.splice(pointer, 1);
-        
-        /*
-         * Insert the hangout into the top of the stack
-         */
-        this.hangouts.unshift(hangout);
-    }
-        
-    /*
-     * Returns the index of the hangout in the hangout stack
-     *
-     * @Param id (hangout id)
-     */
-    HangoutManager.prototype.getHangoutPointer = function(id)
-    {
-        for(var i = 0; i < this.hangouts.length; i++)
-        {
-            if(this.hangouts[i].id == id)
-            {
-                return i;
-            }
-        }
-        
-        return -1;
+
+		/*
+		 * Add the hangout to the internal stack
+		*/
+		this.internal.unshift(hangout);
     }
 
-    /*
-     * Check to see if a hangout exists
-     *
-     * @Param id (hangout id)
-     */
-    HangoutManager.prototype.hangoutExists = function(id)
-    {
-        for(var i = 0; i < this.hangouts.length; i++)
-        {
-            if(this.hangouts[i].id == id)
-            {
-                return true;
-            }
-        }
-        
-        return false;
-    }
-
-    /*
-     * Returns an HangoutObject from the stack
-     *
-     * @Param id (hangout id)
-     */
+	/*
+	 * @getHangout
+	 * returns object / false
+	 * Checks both internal and external for a hangout and returns it if it exists
+	*/
     HangoutManager.prototype.getHangout = function(id)
     {
-        if(this.hangoutExists(id))
-        {
-            var pointer = this.getHangoutPointer(id);
-            return this.hangouts[pointer];
-        }
-        
-        return null;
+		/*
+		 * Check the external hangouts
+		*/
+		for(var pointer_e = 0; pointer_e < this.external.length; pointer_e++)
+		{
+			if(this.external[pointer_e].id == id)
+			{
+				return this.external[pointer_e];
+			}
+		}
+
+		/*
+		 * Check the internal hangouts
+		*/
+		for(var pointer_i = 0; pointer_i < this.internal.length; pointer_i++)
+		{
+			if(this.internal[pointer_i].id == id)
+			{
+				return this.internal[pointer_i];
+			}
+		}
+
+		return false;
     }
 
-    /*
-     * Check to see ifthere is a difference in the cleints of a hangout
-     * Returns Booleon
-     */
-    HangoutManager.prototype.hangoutHasChanged = function(hangout)
-    {
-        var pointer = this.getHangoutPointer(hangout.id);
-        
-        if(this.hangouts[pointer])
-        {
-            /*
-             * Validate that the clients lengths are the same, saves processing power
-             */
-            if(this.hangouts[pointer].clients.length != hangout.client.length)
-            {
-                return true;
-            }
-            
-            /*
-             * Create an object map to store client id's from the new hangout
-             */
-            var objectMap = {};
-            
-            /*
-             * loop the hangout clients to get the id's in the ObjectMap
-             */
-            for(var i = 0; i < hangout.clients.length; i++)
-            {
-                objectMap[ hangout.clients[i].id ] = true;
-            }
-            
-            /*
-             * Now we map the old hangout, and see if the old clients exists or not
-             */
-            for(var x = 0; x < this.hangouts[pointer].clients.length; x++)
-            {
-                if(false == (this.hangouts[pointer].clients[x].id in objectMap))
-                {
-                    return true;
-                };
-            }
-        }
-                
-        return true;// true by default
-    }
-        
-    /*
-     * Returns the hangout that has not been check for a while
-     * This restructures the the hangout stack in order to keep track of the hangouts
-     * Returns Mixed
-     */
-    HangoutManager.prototype.getOldestHangout = function()
-    {
-        /*
-         * Get the indexes of the hangouts and reverse them
-         * We reverse them to look for hangouts from the end to the top of the stack
-         */
-        var keys = Object.keys(this.hangouts).reverse();
-        
-        /*
-         * Loop the keys and look for the first hangout that is none public
-         */
-        for(var i = 0; i < keys.length; i++)
-        {
-            if(this.hangouts[ keys[i] ].public != true)
-            {
-                return this.hangouts[ keys[i] ];
-            }
-        }
-        
-        /*
-         * Return False by default
-         */
-        return false;
-    }
+	/*
+	 * @getTotalhangouts
+	 * returns int
+	 * Returns the total of hangouts combining internal + external
+	*/
+	HangoutManager.prototype.getTotalhangouts = function()
+	{
+		return this.internal.length + this.external.length;
+	}
 })();

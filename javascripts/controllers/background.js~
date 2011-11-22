@@ -105,7 +105,6 @@
 
 	BackgroundController.prototype.onHangoutDoUpdate = function(hangout)
 	{
-		console.log(hangout);
 		this.manager.getHangoutInformation(hangout, (function(data){
 			this.connection.send('update', data);
 		}).bind(this));
