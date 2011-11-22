@@ -197,6 +197,11 @@
 		}).bind(this) );
     }
 
+	HangoutManager.prototype.hangoutExists = function(id)
+	{
+		return this.getHangout(id) !== false;
+	}
+
 	/*
 	 * @getHangoutInformation
 	 * Returns Null
@@ -284,7 +289,7 @@
         /*
          * Check to see if the hangout already exists, if so remove it
          */
-		for(var pointer = 0; pointer < this.external.legnth; i++)
+		for(var pointer = 0; pointer < this.external.length; i++)
 		{
 			if(this.external[pointer].id == hangout.id)
 			{

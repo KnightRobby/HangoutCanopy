@@ -198,6 +198,16 @@
     }
 
 	/*
+	 * @hangoutExists
+	 * Returns Bool
+	 * Checks if a hangout exists
+	*/
+	HangoutManager.prototype.hangoutExists = function(id)
+	{
+		return this.getHangout(id) !== false;
+	}
+
+	/*
 	 * @getHangoutInformation
 	 * Returns Null
 	 * Fetches single hangout information and calls the 2nd param callback
