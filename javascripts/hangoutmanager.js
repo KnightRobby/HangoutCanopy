@@ -294,7 +294,7 @@
         /*
          * Check to see if the hangout already exists, if so remove it
          */
-		for(var pointer = 0; pointer < this.external.length; i++)
+		for(var pointer = 0; pointer < this.external.length; pointer++)
 		{
 			if(this.external[pointer].id == hangout.id)
 			{
