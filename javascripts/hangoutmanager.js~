@@ -306,6 +306,17 @@
          * Add the hangout to the top of the stack
          */
         this.external.unshift(hangout);
+
+		/*
+		 * it it exists insdie the internal, remove it
+		*/
+		for(var pointer_i = 0; pointer_i < this.internal.length; i++)
+		{
+			if(this.internal[pointer_i].id == hangout.id)
+			{
+				this.internal.splice(pointer_i, 1);
+			}
+		}
     }
 
 	/*
@@ -354,7 +365,6 @@
 				this.internal.splice(pointer, 1);
 			}
 		}
-
 		/*
 		 * See if it's a public hangout, if so we send it of to the server and do no more
 		*/

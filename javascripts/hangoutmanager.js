@@ -310,7 +310,7 @@
 		/*
 		 * it it exists insdie the internal, remove it
 		*/
-		for(var pointer_i = 0; pointer_i < this.internal.length; i++)
+		for(var pointer_i = 0; pointer_i < this.internal.length; pointer_i++)
 		{
 			if(this.internal[pointer_i].id == hangout.id)
 			{
