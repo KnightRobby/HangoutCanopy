@@ -208,7 +208,9 @@
 				{
 					//Show error
 					return false;
+					
 				}
+				data.image.url = data.image.url.replace("?sz=50","");
 				
 				/*
 				 * Add the ID to the Watching System

@@ -94,6 +94,11 @@ aside #menu li#team span
         background-position:-72px -24px;
 }
 
+aside #menu li#donate span
+{
+        background-position:-192px -24px;
+}
+
 #tab_bugs h2
 {
 	padding-left: 20px;
