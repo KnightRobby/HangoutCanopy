@@ -126,7 +126,9 @@
 		{
 			this.background.profiles.get(id, function(e, data){
 				if(e) return;
-				
+
+				data.image.url = data.image.url.replace('?sz=50', '');
+
 				var html = $.tmpl("watching", data);
 				 
 				$('#watch_list').prepend(html);
@@ -206,7 +208,9 @@
 				{
 					//Show error
 					return false;
+					
 				}
+				data.image.url = data.image.url.replace("?sz=50","");
 				
 				/*
 				 * Add the ID to the Watching System

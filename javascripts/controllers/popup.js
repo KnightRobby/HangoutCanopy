@@ -72,7 +72,7 @@
 			{
 				//We don't want weird chars
 				console.log(hangouts[i]);
-				return;
+				continue;
 			}
 
 			/*
@@ -96,7 +96,7 @@
 			if(exists)
 			{
 				$('#' + hangouts[i].htmlid, hangoutDOM).replaceWith(html);
-				return;
+				continue;
 			}
 
 			hangoutDOM.prepend(html);
