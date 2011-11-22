@@ -39,6 +39,7 @@ aside #menu li a
 	width:180px;
 	color:#867f7f;
 	font-weight:bold;
+	cursor: pointer;
 	
 	
 }
@@ -47,6 +48,7 @@ aside #menu li span
 {	
 	vertical-align:middle;
 	display:inline-block;
+	margin-top:-4px;
 	width:24px;
 	height:24px;
 	background:url('/images/icons/icons.png');
@@ -138,7 +140,7 @@ aside .logo
 .ads
 {
 	margin-bottom:10px;
-	height: 173px;
+	height: 188px;
 }
 
 .new_hangout
