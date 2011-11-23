@@ -24,7 +24,7 @@
 			/*
 			 * Track the event
 			 * */
-			window._gaq.push(['_trackEvent',  $(this).attr('href'), 'external_click']);
+			window._gaq.push(['_trackEvent',  "click", 'external_click', $(this).attr('href')]);
 			
 			/*
 			 * Open a new window
@@ -154,7 +154,7 @@
 			/*
 			 * Track unwatched
 			 * */
-			window._gaq.push(['_trackEvent',id, 'unwatched']);
+			window._gaq.push(['_trackEvent',  "watching", 'unwatch', id]);
 			
 			return false;
 		});
@@ -223,7 +223,7 @@
 				$('#watch_list').prepend(html);
 				html.slideDown();
 				
-				window._gaq.push(['_trackEvent',data.id, 'watched']);
+				window._gaq.push(['_trackEvent',  "watching", 'watch', data.id]);
 			});
 			
 			return false;
@@ -243,13 +243,17 @@
 			var hangouts = this.background.manager.getHangouts();
 			if( hangouts.length > 0) 
 			{
-			var random_number = Math.floor(Math.random() * hangouts.length );
+				var random_number = Math.floor(Math.random() * hangouts.length );
 			
-			/*
-			 *  Add the link of the random hangout
-			 * */
-			chrome.tabs.create({url :  hangouts[random_number].url  });
-			
+				/*
+				 *  Add the link of the random hangout
+				 * */
+				chrome.tabs.create({url :  hangouts[random_number].url  });
+
+				/*
+				 * Track the hangout
+				*/
+				window._gaq.push(['_trackEvent',  "hangouts", 'lucky']);
 			}
 			
 			return false;
@@ -313,9 +317,11 @@
 			* Bind required clicks to the generated html.
 		*/
 
-		$('.close',area).click(function(){area.animate({left: '+=400'}, 800, function(){
+		$('.close',area).click(function(){
+			area.animate({left: '+=400'}, 800, function(){
 				$('#slideout_panel_hangout').remove();
 			});
+
 			return false;
 		});
 	}

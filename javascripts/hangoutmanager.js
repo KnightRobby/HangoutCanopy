@@ -365,14 +365,36 @@
 				this.internal.splice(pointer, 1);
 			}
 		}
+
 		/*
 		 * See if it's a public hangout, if so we send it of to the server and do no more
 		*/
 		if(hangout.public == true)
 		{
+			/*
+			 * See if it already exists in the external stack, if so, do not stress the server
+			*/
+			for(var pointer_e = 0; pointer_e < this.external.length; pointer_e++)
+			{
+				if(this.external[pointer_e].id == hangout.id)
+				{
+					return;
+				}
+			}
+
+			/*
+			 * Let the server know about the hangout
+			*/
 			getController().sendHangout(hangout);
+
+			/*
+			 * track the public hangout
+			*/
+			_gaq.push(['_trackEvent',  "hangouts", 'public', hangout.id]);
 			return;
 		}
+
+		_gaq.push(['_trackEvent',  "hangouts", 'limited', hangout.id]);
 
 		/*
 		 * The hangout must not be public, therefor we let the Watching Manager know about the hangout
