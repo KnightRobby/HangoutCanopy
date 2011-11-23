@@ -122,6 +122,7 @@
 		 * */
 		this.manager.start();
 		this.logger.notice('Connected to server');
+		_gaq.push(['_trackEvent', "network", 'connected']);
 	}
 
 	/*
@@ -131,6 +132,7 @@
 	{
 		this.logger.notice('Disconnected from Server');
 		chrome.browserAction.setBadgeText({text : 'D'});
+		_gaq.push(['_trackEvent', "network", 'disconnected']);
 	}
 
 	/*
@@ -139,6 +141,7 @@
 	BackgroundController.prototype.onSocketReconnect = function()
 	{
 		this.logger.notice('Reconnected to Server');
+		_gaq.push(['_trackEvent', "network", 'reconnect']);
 	}
 
 	/*
@@ -147,6 +150,7 @@
 	BackgroundController.prototype.onSocketReconnectFailed = function()
 	{
 		this.logger.notice('Reconnect Attempt Failed');
+		_gaq.push(['_trackEvent', "network", 'reconnected_failed']);
 	}
 
 	/*

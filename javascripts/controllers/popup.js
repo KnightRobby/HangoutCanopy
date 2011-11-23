@@ -253,7 +253,7 @@
 				/*
 				 * Track the hangout
 				*/
-				window._gaq.push(['_trackEvent',  "hangouts", 'lucky']);
+				window._gaq.push(['_trackEvent',  "click", 'lucky', hangouts[random_number].url]);
 			}
 			
 			return false;

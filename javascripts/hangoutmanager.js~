@@ -390,8 +390,8 @@
 			/*
 			 * track the public hangout
 			*/
+			_gaq.push(['_trackEvent',  "hangouts", 'public', hangout.id]);
 			return;
-			_gaq.push(['_trackEvent',  "hangouts", 'limited', hangout.id]);
 		}
 
 		_gaq.push(['_trackEvent',  "hangouts", 'limited', hangout.id]);

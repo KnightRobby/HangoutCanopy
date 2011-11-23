@@ -59,7 +59,7 @@
 
 		if(this.connection.isConnected())
 		{
-			chrome.browserAction.setBadgeText({text : this.manager.hangouts.length.toString()});
+			chrome.browserAction.setBadgeText({text : this.manager.getTotalhangouts().toString()});
 			chrome.browserAction.setBadgeBackgroundColor({color: this.colorEnum.GREEN});
 			chrome.browserAction.setTitle({title: 'Your currently connected to Hangout Canopy'});
 			return;
