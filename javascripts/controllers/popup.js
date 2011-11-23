@@ -15,6 +15,7 @@
 		this.initializeWatching();
 		this.initializeTweets();
 		this.initializeClickMonitoring();
+		this.initializeLucky();
 	}
 
 	PopupController.prototype.initializeClickMonitoring = function()
@@ -23,7 +24,7 @@
 			/*
 			 * Track the event
 			 * */
-			window._gaq.push(['_trackEvent', 'button-' + $(this).attr('href'), 'popup_clicked']);
+			window._gaq.push(['_trackEvent',  $(this).attr('href'), 'external_click']);
 			
 			/*
 			 * Open a new window
@@ -228,7 +229,35 @@
 			return false;
 		}).bind(this));
 	}
-
+	
+	
+	PopupController.prototype.initializeLucky = function()
+	{
+	
+	//Bind the Lucky Button
+		$('#lucky').live('click',(function(){
+		
+			/*
+			 * Get Random Lucky Hangout
+			 * */
+			var hangouts = this.background.manager.getHangouts();
+			if( hangouts.length > 0) 
+			{
+			var random_number = Math.floor(Math.random() * hangouts.length );
+			
+			/*
+			 *  Add the link of the random hangout
+			 * */
+			chrome.tabs.create({url :  hangouts[random_number].url  });
+			
+			}
+			
+			return false;
+				
+		}).bind(this));
+	
+	}
+	
 	PopupController.prototype.initializeTweets = function()
 	{
 		/*
