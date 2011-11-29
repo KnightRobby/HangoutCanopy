@@ -9,4 +9,5 @@
  - Changed server structure to reduce bandwidth and icnrease stability
 
 - Public server chages
+ - Server now sorts alphabetically, if the creator of the hangout is in the hangout they will be show first
  - Increased initial connection load from 5 to 10, this is the inital hangouts for the client
