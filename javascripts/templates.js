@@ -42,7 +42,9 @@ templates.hangouts.row = '<article id="${htmlid}" class="hangout" data-public="{
 		
 			templates.hangouts.row += '{{each(i,v) clients}}';
 				templates.hangouts.row +='{{if i!=0 }}';
+				templates.hangouts.row +='{{if i<10 }}';
 				templates.hangouts.row += '<a title="${v.name}" href="https://plus.google.com/${v.id}"><img width="32" height="32" src="${v.photo}?sz=32" /></a>';
+				templates.hangouts.row +='{{/if}}';
 				templates.hangouts.row +='{{/if}}';
 			templates.hangouts.row += '{{/each}}';
 			templates.hangouts.row += '<a href="#" class="arrow"></a>';
