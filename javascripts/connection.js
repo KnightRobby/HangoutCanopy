@@ -10,7 +10,7 @@
 		this.socket;
 		this.protocol	= 'ws';
 		this.domain		= 'server1.hangoutcanopy.com';
-		this.port		= 2004;
+		this.port		= 2006;
 		this.options	= {
 			'max reconnection attempts'	: 10,
 			'reconnection delay'		: 2000

@@ -1,4 +1,6 @@
-// When the document loads do everything inside here ...
+/*
+ * Tab Manager
+*/
 $(document).ready(function(){
 	var last_selected = 'none';
 
@@ -32,3 +34,5 @@ $(document).ready(function(){
 		}
 	});
 });
+
+

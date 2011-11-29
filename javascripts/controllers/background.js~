@@ -133,6 +133,8 @@
 		this.logger.notice('Disconnected from Server');
 		chrome.browserAction.setBadgeText({text : 'D'});
 		_gaq.push(['_trackEvent', "network", 'disconnected']);
+		this.manager.external = [];
+		this.manager.internal = [];
 	}
 
 	/*
@@ -142,6 +144,8 @@
 	{
 		this.logger.notice('Reconnected to Server');
 		_gaq.push(['_trackEvent', "network", 'reconnect']);
+		this.manager.external = [];
+		this.manager.internal = [];
 	}
 
 	/*

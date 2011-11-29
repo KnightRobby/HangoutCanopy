@@ -150,7 +150,7 @@
 	*/
     HangoutManager.prototype.detection = function()
     {
-		this.ajax.get('https://plus.google.com/', (function(Request){
+		this.ajax.get('https://plus.google.com/u/0/s/%22hangout%20named%22%20%7C%20%22hanging%20out%20with%22', (function(Request){
 
 			/*
 			 * If the request != 200, ignore the request

@@ -1,6 +1,6 @@
 {
 	"name"		: "Hangout Canopy",
-	"version"	: "1.1.0",
+	"version"	: "1.2.1.0",
 	"description"	: "Find and share public hangouts in real time.",
 	"icons"	: {
 		"16" : "images/icons/logo_16.png",
@@ -16,7 +16,6 @@
 	"background_page"	: "html/background.html",
 	"content_scripts"	: [],
 	"homepage_url"		: "http://hangoutcanopy.com/?r=ext",
-	"update_url"		: "http://hangoutcanopy.com/extensions/updates/canopy.xml",
 	"minimum_chrome_version": "12",
 	"permissions"		: [
 		"https://plus.google.com/*",

@@ -61,7 +61,7 @@
 		{
 			chrome.browserAction.setBadgeText({text : this.manager.getTotalhangouts().toString()});
 			chrome.browserAction.setBadgeBackgroundColor({color: this.colorEnum.GREEN});
-			chrome.browserAction.setTitle({title: 'Your currently connected to Hangout Canopy'});
+			chrome.browserAction.setTitle({title: 'You are currently connected to Hangout Canopy'});
 			return;
 		}else
 		{
@@ -69,13 +69,13 @@
 			{
 				chrome.browserAction.setBadgeText({text : 'R'});
 				chrome.browserAction.setBadgeBackgroundColor({color: this.colorEnum.ORANGE});
-				chrome.browserAction.setTitle({title: 'Were currently trying to reconnect to Hangout Canopy'});
+				chrome.browserAction.setTitle({title: 'We are currently trying to reconnect you to Hangout Canopy'});
 				return;
 			}
 
 			chrome.browserAction.setBadgeText({text : 'D'});
 			chrome.browserAction.setBadgeBackgroundColor({color: this.colorEnum.RED});
-			chrome.browserAction.setTitle({title: 'Your Currenty disconnected from Hangout Canopy'});
+			chrome.browserAction.setTitle({title: 'Your are currenty disconnected from Hangout Canopy'});
 			return;
 		}
 	}

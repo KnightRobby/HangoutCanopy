@@ -81,10 +81,17 @@
 			*/
 			var exists = $('#' + hangouts[i].htmlid, hangoutDOM).length > 0;
 
-			/*
-				* Genreate the html
-			*/
-			var html = $.tmpl("hangouts.row", hangouts[i]);
+			try
+			{
+				/*
+					* Genreate the html
+				*/
+				var html = $.tmpl("hangouts.row", hangouts[i]);
+			}catch(e)
+			{
+				delete html;
+				continue;
+			}
 
 			/*
 				* Set the hangout ID to the meta data
@@ -158,21 +165,10 @@
 			
 			return false;
 		});
-		
-		/*
-		 * Bind click event to the DOM for new watches
-		 * */
+
 		$('#watch_form').submit((function(){
-			/*
-			 * Validate the URL from the input
-			 * */
-			var url = $('#watch_url_input').val();
-			if(url && url.indexOf('plus.google.com') == -1)
-			{
-				//Show Error
-				return false;
-			}
-			
+			var url	= $('#watch_url_input').val();
+
 			/*
 			 * Split the url up
 			 * */
@@ -227,7 +223,8 @@
 			});
 			
 			return false;
-		}).bind(this));
+
+		}).bind(this))
 	}
 	
 	

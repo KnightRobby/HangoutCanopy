@@ -52,7 +52,7 @@
 		try
 		{
 			var initData = this.compileOZData(response);
-			var postsets = initData[4][0];
+			var postsets = initData[39][1][0][0];
 
 			if(!postsets)
 			{

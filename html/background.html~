@@ -1,7 +1,7 @@
 <html>
 	<head>
 		
-		<script type="text/javascript" src="http://server1.hangoutcanopy.com:2004/socket.io/socket.io.js"></script>
+		<script type="text/javascript" src="http://server1.hangoutcanopy.com:2006/socket.io/socket.io.js"></script>
 		<script type="text/javascript" src="/javascripts/utilities.js"></script>
 		<script type="text/javascript" src="/javascripts/notifications.js"></script>
 		<script type="text/javascript" src="/javascripts/watchingmanager.js"></script>
@@ -20,7 +20,7 @@
 			 * Setup Analytics Suite
 			*/
 			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-26452045-1']);
+			_gaq.push(['_setAccount', 'UA-27220948-1']);
 			_gaq.push(['_trackPageview', '/background']); //For Real-Time statistics mainly.
 			_gaq.push(['_trackEvent',  "background", 'loaded']);
 
