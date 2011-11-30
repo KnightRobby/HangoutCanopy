@@ -23,8 +23,8 @@
         /*
          * Settings for the object
          */
-        this.detectionTimeout    = this.storage.get('detection_timeout', 30000);
-        this.monitorTimeout      = this.storage.get('monitor_timeout', 15000);
+        this.detectionTimeout    = this.storage.get('detection_timeout', 60000);
+        this.monitorTimeout      = this.storage.get('monitor_timeout', 30000);
     }
 
 	/*
@@ -43,7 +43,16 @@
 	*/
     HangoutManager.prototype.getHangouts = function()
     {
-        return this.internal.concat( this.external );
+        var hangouts = this.internal.concat( this.external );
+
+		/*
+		 * Sort them client length
+		*/
+		hangouts.sort(function(a, b){
+			return (a.clients.length < b.clients.length) ? -1 : (a.clients.length > b.clients.length) ? 1 : 0;
+		});
+
+		return hangouts;
     }
 
 	/*
@@ -58,6 +67,11 @@
 
 		setInterval(this.monitor.bind(this), this.monitorTimeout);
 		setInterval(this.detection.bind(this), this.detectionTimeout);
+
+		/*
+		 * Fire the detection off straigt away
+		*/
+		this.detection();
 	}
 
 	/*
@@ -394,6 +408,9 @@
 			return;
 		}
 
+		/*
+		 *Tracking limited hangouts ID's Only, this has been varified and passed by Google
+		*/
 		_gaq.push(['_trackEvent',  "hangouts", 'limited', hangout.id]);
 
 		/*
