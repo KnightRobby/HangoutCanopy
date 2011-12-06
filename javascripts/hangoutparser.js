@@ -46,13 +46,12 @@
 		}
 	}
 
-	HangoutParser.prototype.parseHangouts = function(response)
+	HangoutParser.prototype.parseHangouts = function(response, isSearch)
 	{
-
 		try
 		{
 			var initData = this.compileOZData(response);
-			var postsets = initData[39][1][0][0];
+			var postsets = isSearch ? initData[39][1][0][0] : initData[4][0];
 
 			if(!postsets)
 			{

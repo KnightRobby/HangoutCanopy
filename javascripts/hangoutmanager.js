@@ -23,8 +23,9 @@
         /*
          * Settings for the object
          */
-        this.detectionTimeout    = this.storage.get('detection_timeout', 60000);
-        this.monitorTimeout      = this.storage.get('monitor_timeout', 30000);
+        this.detectionTimeout    		= this.storage.get('detection_timeout', 60000 * 2);
+		this.detectionStreamTimeout    	= this.storage.get('detection_timeout-stream', 60000 * 10); //10 Min
+        this.monitorTimeout      		= this.storage.get('monitor_timeout', 30000);
     }
 
 	/*
@@ -67,11 +68,12 @@
 
 		setInterval(this.monitor.bind(this), this.monitorTimeout);
 		setInterval(this.detection.bind(this), this.detectionTimeout);
+		setInterval(this.detectionStream.bind(this), this.detectionStreamTimeout);
 
 		/*
 		 * Fire the detection off straigt away
 		*/
-		this.detection();
+		this.detectionStream();
 	}
 
 	/*
@@ -164,7 +166,7 @@
 	*/
     HangoutManager.prototype.detection = function()
     {
-		this.ajax.get('https://plus.google.com/u/0/s/%22hangout%20named%22%20%7C%20%22hanging%20out%20with%22', (function(Request){
+		this.ajax.get('https://plus.google.com/', (function(Request){
 
 			/*
 			 * If the request != 200, ignore the request
@@ -179,6 +181,60 @@
             */
             var hangouts;
             if((hangouts = this.parser.parseHangouts(Request.responseText)))
+			{
+				/*
+				 * makre sure we have some hangouts to work with
+				*/
+				if(hangouts.length == 0)
+				{
+					return;
+				}
+
+				for(var i = 0; i < hangouts.length; i++)
+				{
+                    /*
+                     * if the hangout is open, send it to the addInternalHangout method
+                     */
+                    if(hangouts[i].type == 'open')
+                    {
+                        this.addInternalHangout(hangouts[i]);
+                    }
+                    
+                    /*
+                     * if the hangout is closed, remove it from the stack
+                     */
+                    if(hangouts[i].type == 'closed')
+                    {
+                        this.removeInternalHangout(hangouts[i]);
+                    }
+				}
+			}
+
+		}).bind(this) );
+    }
+
+	/*
+	 * @detection
+	 * Returns Null
+	 * Used as a loop to monitor the stream for hangouts
+	*/
+    HangoutManager.prototype.detectionStream = function()
+    {
+		this.ajax.get('https://plus.google.com/s/%22hangout%20named%22%20%7C%20%22hanging%20out%20with%22', (function(Request){
+
+			/*
+			 * If the request != 200, ignore the request
+			*/
+			if(Request.status != 200)
+			{
+				return;
+			}
+
+            /*
+             * Parse the stream for hangouts, and return an arary
+            */
+            var hangouts;
+            if((hangouts = this.parser.parseHangouts(Request.responseText, true)))
 			{
 				/*
 				 * makre sure we have some hangouts to work with

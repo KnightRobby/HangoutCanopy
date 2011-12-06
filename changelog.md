@@ -1,4 +1,8 @@
 ###Changelog for canopy
+- 1.2.1.3
+ - Added extra search area (search page) to search every 10 minutes
+- 1.2.1.2
+ - N/A 
 - 1.2.1.1
  - Fixed issie with too many users shown in hangouts, i.e > 10 thanks to Mohammed Eshbeata
  - Changed intervals for detection and monitoring to 60s and 30s, also started teh detection of when extension is loaded.
