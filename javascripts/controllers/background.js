@@ -44,6 +44,7 @@
 		this.connection.bindEventListener('reconnect_failed'	, this.onSocketReconnectFailed.bind(this));
 
 		this.connection.bindEventListener('announce'		, this.onHangoutLive.bind(this));
+		this.connection.bindEventListener('announce_stream'	, this.onStreamLive.bind(this));
 		this.connection.bindEventListener('update'		, this.onHangoutDoUpdate.bind(this));
 		this.connection.bindEventListener('closed'		, this.onHangoutClosed.bind(this));
 
@@ -92,6 +93,12 @@
 	{
 		this.logger.notice('Sending new hangout to server: ' + hangout.id);
 		this.connection.send('discovery', hangout);
+	}
+
+	BackgroundController.prototype.sendStream = function(stream)
+	{
+		this.logger.notice('Sending stream to the server: ' + stream.stream_title);
+		this.connection.send("discovery_stream", stream);
 	}
 
 	/*
@@ -164,6 +171,13 @@
 	{
 		this.logger.notice('Got Hangout from Server: ' + hangout.id);
 		this.manager.addExternalHangout(hangout);
+	}
+
+	/*
+		* On New Stream Event
+	*/
+	BackgroundController.prototype.onStreamLive = function(stream)
+	{
 	}
 
 	/*

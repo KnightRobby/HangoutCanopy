@@ -42,15 +42,15 @@ templates.hangouts.row = '<article id="${htmlid}" class="hangout" data-public="{
 		
 			templates.hangouts.row += '{{each(i,v) clients}}';
 				templates.hangouts.row +='{{if i!=0 }}';
-				templates.hangouts.row +='{{if i<10 }}';
+					templates.hangouts.row +='{{if i<10 }}';
 				templates.hangouts.row += '<a title="${v.name}" href="https://plus.google.com/${v.id}"><img width="32" height="32" src="${v.photo}?sz=32" /></a>';
-				templates.hangouts.row +='{{/if}}';
+					templates.hangouts.row +='{{/if}}';
 				templates.hangouts.row +='{{/if}}';
 			templates.hangouts.row += '{{/each}}';
 			templates.hangouts.row += '<a href="#" class="arrow"></a>';
 		templates.hangouts.row += '</div>';
 		templates.hangouts.row += '<div class="top_nav">';
-				templates.hangouts.row += '<span class="public"><a href="${post_url}">{{if public}}Public{{else}}Limited{{/if}}</a></span>';
+				templates.hangouts.row += '<span class="public"><a href="${post_url}">{{if public}}Public{{else}}Limited{{/if}}{{if is_stream}} - <strong style="color:red;">Live</strong>{{/if}}</a></span>';
 		templates.hangouts.row += '</div>';
 	templates.hangouts.row += '</div>';
 templates.hangouts.row += '</article>';

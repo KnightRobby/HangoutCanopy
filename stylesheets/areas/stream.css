@@ -46,6 +46,15 @@ background:hsl(0, 0%, 95%);
 	font-weight:bold;
 }
 
+.on_live{
+    height: 2px;
+    width: 2px;
+    display: block;
+    background-color:red;
+    border: 1px solid red;
+    border-radius: 3px;
+}
+
 #hangouts article.hangout .main_image
 {
 	float: left;

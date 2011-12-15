@@ -16,9 +16,10 @@
         /*
          * Setup local variables
          */
-        this.internal = new Array();
-		this.external = new Array();
-        this.active = false;
+        this.internal	= new Array();
+		this.external	= new Array();
+		this.streams 	= new Array();
+        this.active		= false;
         
         /*
          * Settings for the object
@@ -50,6 +51,15 @@
 		 * Sort them client length
 		*/
 		hangouts.sort(function(a, b){
+	
+			/*
+			 * Place Live hangouts at the top
+			*/
+			if(a.is_stream || b.is_stream)
+			{
+				return (!a.is_stream && b.is_stream) ? -1 : (a.is_stream && !b.is_stream) ? 1 : 0;
+			}
+
 			return (a.clients.length < b.clients.length) ? -1 : (a.clients.length > b.clients.length) ? 1 : 0;
 		});
 
@@ -154,6 +164,14 @@
                 {
                     this.addInternalHangout(newHangout);
                 }
+
+                /*
+                 * if the hanguot is a stream, ...
+                 */
+                if(newHangout.type == 'stream')
+                {
+					console.log("Monitor for stream");
+                }
 			}
 
 		}).bind(this) );
@@ -192,11 +210,17 @@
 
 				for(var i = 0; i < hangouts.length; i++)
 				{
+					console.log("Got Hangout of type: " + hangouts[i].type);
                     /*
                      * if the hangout is open, send it to the addInternalHangout method
                      */
                     if(hangouts[i].type == 'open')
                     {
+						if(hangouts[i].is_stream)
+						{
+							console.log("Hangout is being streamed");
+						}
+
                         this.addInternalHangout(hangouts[i]);
                     }
                     
@@ -207,6 +231,16 @@
                     {
                         this.removeInternalHangout(hangouts[i]);
                     }
+
+					/*
+					 * handle streams a little stream
+					*/	
+
+					if(hangouts[i].type == 'stream')
+					{
+						console.log("Detected Stream: " + hangouts[i].id);
+						getController().sendStream(hangout);
+					}
 				}
 			}
 
@@ -246,21 +280,31 @@
 
 				for(var i = 0; i < hangouts.length; i++)
 				{
-                    /*
-                     * if the hangout is open, send it to the addInternalHangout method
-                     */
-                    if(hangouts[i].type == 'open')
-                    {
-                        this.addInternalHangout(hangouts[i]);
-                    }
-                    
-                    /*
-                     * if the hangout is closed, remove it from the stack
-                     */
-                    if(hangouts[i].type == 'closed')
-                    {
-                        this.removeInternalHangout(hangouts[i]);
-                    }
+	                /*
+	                 * if the hangout is open, send it to the addInternalHangout method
+	                 */
+	                if(hangouts[i].type == 'open')
+	                {
+	                    this.addInternalHangout(hangouts[i]);
+						continue;
+	                }
+	                
+	                /*
+	                 * if the hangout is closed, remove it from the stack
+	                 */
+	                if(hangouts[i].type == 'closed')
+	                {
+	                    this.removeInternalHangout(hangouts[i]);
+						continue;
+	                }
+
+					/*
+					 * handle streams a little stream
+					*/
+					if(hangouts[i].type == 'stream')
+					{
+						getController().sendStream(hangouts[i]);
+					}
 				}
 			}
 
@@ -307,7 +351,6 @@
                 if(newHangout.type == 'closed')
                 {
                     callback({status: 'closed', hangout : hangout});
-					return;
                 }
                 
                 /*
@@ -316,7 +359,6 @@
                 if(newHangout.type == 'open')
                 {
                     callback({status: 'open', hangout : newHangout});
-					return;
                 }
             }
 
@@ -428,11 +470,12 @@
 		/*
 		 * First we need to remove it from the internal stack
 		*/
+		var oldHangout = false;
 		for(var pointer = 0; pointer < this.internal.length; pointer++)
 		{
 			if(this.internal[pointer].id == hangout.id)
 			{
-				this.internal.splice(pointer, 1);
+				oldHangout = this.internal.splice(pointer, 1);
 			}
 		}
 
