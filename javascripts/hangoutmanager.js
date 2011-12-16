@@ -239,7 +239,7 @@
 					if(hangouts[i].type == 'stream')
 					{
 						console.log("Detected Stream: " + hangouts[i].id);
-						getController().sendStream(hangout);
+						getController().sendStream(hangouts[i]);
 					}
 				}
 			}
@@ -359,6 +359,44 @@
                 if(newHangout.type == 'open')
                 {
                     callback({status: 'open', hangout : newHangout});
+                }
+            }
+
+		}).bind(this));
+	}
+
+    HangoutManager.prototype.getStreamInformation = function(stream, callback)
+	{
+		this.ajax.get(stream.post_url, (function(Request){
+            /*
+             * validate we get a 200 OK from Google.
+             */
+            if(Request.status != 200)
+            {
+				callback({status: 'closed', hangout : hangout});
+                return;
+            }
+
+            /*
+             * Parse the hangout page to get the meta data.
+             */
+            var newStream;
+            if((newStream = this.parser.parseSingleHangout(Request.responseText)))
+            {
+                /*
+                 * if the hangout is closed, remove it from the stack
+                 */
+                if(newStream.type == 'closed')
+                {
+                    callback({status: 'closed', stream : newStream});
+                }
+                
+                /*
+                 * if the hangout is open, send it to the addInternalHangout method
+                 */
+                if(newStream.type == 'stream')
+                {
+                    callback({status: 'open', stream : newStream});
                 }
             }
 
@@ -564,4 +602,38 @@
 	{
 		return this.internal.length + this.external.length;
 	}
+
+	/*
+	 * Stream Specificss
+	*/
+	HangoutManager.prototype.getTotalStreams = function()
+	{
+		return this.streams.length;
+	}
+
+	HangoutManager.prototype.getStreams = function()
+	{
+		return this.streams;
+	}
+
+	HangoutManager.prototype.addStream = function(stream)
+	{
+		var isUpdate = this.removeStream(stream.id);
+		
+		this.streams.unshift(stream);
+	}
+
+	HangoutManager.prototype.removeStream = function(id)
+	{
+		for(var i = 0; i < this.streams.length; i++)
+		{
+			if(this.streams[i].id == id)
+			{
+				this.streams.splice(i, 1);
+				return true;
+			}
+		}
+
+		return false;
+	}	
 })();

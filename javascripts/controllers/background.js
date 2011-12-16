@@ -46,6 +46,7 @@
 		this.connection.bindEventListener('announce'		, this.onHangoutLive.bind(this));
 		this.connection.bindEventListener('announce_stream'	, this.onStreamLive.bind(this));
 		this.connection.bindEventListener('update'		, this.onHangoutDoUpdate.bind(this));
+		this.connection.bindEventListener('update_stream', this.onStreamDoUpdate.bind(this));
 		this.connection.bindEventListener('closed'		, this.onHangoutClosed.bind(this));
 
 		/*
@@ -117,6 +118,15 @@
 		}).bind(this));
 	}
 
+	BackgroundController.prototype.onStreamDoUpdate = function(stream)
+	{
+		this.logger.notice("Updateing stream for SERVER:", stream);
+
+		this.manager.getStreamInformation(stream, (function(data){
+			this.connection.send('update_stream', data);
+		}).bind(this));
+	}
+
 	/*
 		* On Connect Event
 	*/
@@ -178,6 +188,8 @@
 	*/
 	BackgroundController.prototype.onStreamLive = function(stream)
 	{
+		this.logger.notice("Got stream from server:" + stream.id);
+		this.manager.addStream(stream);
 	}
 
 	/*

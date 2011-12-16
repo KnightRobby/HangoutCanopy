@@ -12,6 +12,7 @@
 	PopupController.prototype.init = function()
 	{
 		this.initializeHangouts();
+		this.initializeStreams();
 		this.initializeWatching();
 		this.initializeTweets();
 		this.initializeClickMonitoring();
@@ -41,8 +42,69 @@
 	{
 		$.template("hangouts.row"		, templates.hangouts.row);
 		$.template("hangouts.single"	, templates.hangouts.single);
+
+		$.template("streams.row"		, templates.streams.row);
+
 		$.template("twitter"			, templates.twitter);
 		$.template('watching'			, templates.watching);
+	}
+
+	PopupController.prototype.initializeStreams = function()
+	{
+		setTimeout(this.initializeHangouts.bind(this),5000);
+
+		/*
+			* Get streams set from background Controller
+		*/
+		var streams = this.background.manager.getStreams();
+
+		/*
+			* Get DOM Area for streams
+		*/
+		var streamDOM = $('#streams');
+
+		/*
+		 * Loop the streams and inject to the DOM
+		 * */
+		for(var i = 0; i < streams.length; i++)
+		{
+			streams[i].htmlid = streams[i].id.replace(/[^a-zA-Z0-9]+/g,''); //Should be base64
+
+			var exists = $('#' + streams[i].htmlid, streamDOM).length > 0;
+
+			try
+			{
+				/*
+					* Genreate the html
+				*/
+				var html = $.tmpl("streams.row", streams[i]);
+			}
+			catch(e)
+			{
+				continue;
+			}
+
+			/*
+				* Set the hangout ID to the meta data
+			*/
+			html.data('stream_id', streams[i].id);
+
+			/*
+				* if it exists, Replace it
+			*/
+			if(exists)
+			{
+				$('#' + streams[i].htmlid, streamDOM).replaceWith(html);
+				continue;
+			}
+
+			streamDOM.prepend(html);
+
+			/*
+				* Cleanup, Stops the data added being referenced
+			*/
+			delete streams[i].htmlid;
+		}
 	}
 
 	PopupController.prototype.initializeHangouts = function()

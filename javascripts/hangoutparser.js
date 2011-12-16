@@ -36,6 +36,22 @@
 					post_url: 'https://plus.google.com/' + post[21]
 				}
 
+				/*
+				 * hangouts that are public and have hangout type id == 2 are public stream posts
+				 * If there is no id and it's public, thats how we determain that it's a stream hangout
+				*/
+				if(data.public && post[82][2][1][0][6] == 2 && data.id == "")
+				{
+					/*
+						* Get extra information regarding the stream object
+					*/
+					data.type = "stream";
+					data.id = Base64.encode(post[82][2][1][0][13][2]);
+					data.flv_url = post[82][2][1][0][13][2];
+					data.stream_url = 'https://video.google.com/get_player?ps=google-live&flvurl=' + encodeURIComponent(post[82][2][1][0][13][2]) + '&autoplay=1&autohide=1&border=0&wmode=opaque';
+					data.stream_title = post[82][2][1][0][13][1];
+				}
+
 				data.clients.push(this.collectOwnerInfo(post))
 				
 				return data;
@@ -95,11 +111,10 @@
 					*/
 					if(data.public && post[82][2][1][0][6] == 2 && data.id == "")
 					{
-						data.type = "stream";
-
 						/*
-							* Get the stream URL
+							* Get extra information regarding the stream object
 						*/
+						data.type = "stream";
 						data.id = Base64.encode(post[82][2][1][0][13][2]);
 						data.flv_url = post[82][2][1][0][13][2];
 						data.stream_url = 'https://video.google.com/get_player?ps=google-live&flvurl=' + encodeURIComponent(post[82][2][1][0][13][2]) + '&autoplay=1&autohide=1&border=0&wmode=opaque';

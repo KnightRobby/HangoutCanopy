@@ -5,6 +5,7 @@
 var templates = {
 	twitter		: '',
 	hangouts	: {},
+	streams 	: {}
 };
 
 /*
@@ -50,9 +51,10 @@ templates.hangouts.row = '<article id="${htmlid}" class="hangout" data-public="{
 			templates.hangouts.row += '<a href="#" class="arrow"></a>';
 		templates.hangouts.row += '</div>';
 		templates.hangouts.row += '<div class="top_nav">';
-				templates.hangouts.row += '<span class="public"><a href="${post_url}">{{if public}}Public{{else}}Limited{{/if}}{{if is_stream}} - <strong style="color:red;">Live</strong>{{/if}}</a></span>';
+				templates.hangouts.row += '<span class="public"><a href="${post_url}">{{if public}}Public{{else}}Limited{{/if}}{{if is_stream}} <strong style="color:#DF4B38;">&#8226; ON AIR</strong>{{/if}}</a></span>';
 		templates.hangouts.row += '</div>';
 	templates.hangouts.row += '</div>';
+
 templates.hangouts.row += '</article>';
 
 
@@ -77,6 +79,50 @@ templates.hangouts.single = '<div class="slideout_panel">';
 			templates.hangouts.single += '{{/each}}';
 		templates.hangouts.single += '</ul>';
 templates.hangouts.single += '</div>';
+
+/*
+ * Stream Row
+*/
+templates.streams.row = '<article id="${id}" class="stream">';
+	/*
+		* Main image
+	*/
+	templates.streams.row += '<div class="main_image rounded_image">';
+		templates.streams.row += '<a title="${clients[0].name}" href="https://plus.google.com/${clients[0].id}"><img alt="" width="48" height="48" src="${clients[0].photo}?sz=48" /></a>';
+	templates.streams.row += '</div>';
+
+	/*
+		* Right content area
+	*/
+	templates.streams.row += '<div class="info">';
+	
+		/*
+			* Client Images
+		*/
+		templates.streams.row += '<div class="clients">';
+			/*
+				* Text Logic
+			*/
+			templates.streams.row += '<p>';
+				templates.streams.row += '{{if title}}<strong>${title}</strong>{{else}}<strong>${clients[0].name}</strong> is on air with{{if clients.length == 1}} no one {{else}} ${clients.length - 1} people{{/if}}{{/if}}';
+			templates.streams.row += '</p>';
+			templates.streams.row +='<br class="clear" />';
+		
+			templates.streams.row += '{{each(i,v) clients}}';
+				templates.streams.row +='{{if i!=0 }}';
+					templates.streams.row +='{{if i<10 }}';
+				templates.streams.row += '<a title="${v.name}" href="https://plus.google.com/${v.id}"><img width="32" height="32" src="${v.photo}?sz=32" /></a>';
+					templates.streams.row +='{{/if}}';
+				templates.streams.row +='{{/if}}';
+			templates.streams.row += '{{/each}}';
+			templates.streams.row += '<a href="#" class="arrow"></a>';
+		templates.streams.row += '</div>';
+		//templates.streams.row += '<div class="top_nav">';
+				//templates.streams.row += '<span class="public"><a href="${post_url}">{{if public}}Public{{else}}Limited{{/if}}{{if is_stream}} <strong style="color:#DF4B38;">&#8226; ON AIR</strong>{{/if}}</a></span>';
+		//templates.streams.row += '</div>';
+	templates.streams.row += '</div>';
+
+templates.streams.row += '</article>';
 
 /*
 	* Twitter Feed

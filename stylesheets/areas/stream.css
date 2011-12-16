@@ -26,7 +26,6 @@ background:hsl(0, 0%, 95%);
 {
 	font-size:11px;
 	margin-top:12px;
-	
 } 
 
 #hangouts article.hangout .info .top_nav{
@@ -45,14 +44,11 @@ background:hsl(0, 0%, 95%);
 {
 	font-weight:bold;
 }
-
-.on_live{
-    height: 2px;
-    width: 2px;
-    display: block;
-    background-color:red;
-    border: 1px solid red;
-    border-radius: 3px;
+#hangouts article.hangout .top_nav .on_live{
+	color: #DF4B38;
+	font-weight: bold;
+	font-size: 13px;
+	padding: 0 5px;
 }
 
 #hangouts article.hangout .main_image
