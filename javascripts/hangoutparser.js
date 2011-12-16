@@ -46,10 +46,14 @@
 						* Get extra information regarding the stream object
 					*/
 					data.type = "stream";
-					data.id = Base64.encode(post[82][2][1][0][13][2]);
+					data.id = this.getParsedQueryParams(post[82][2][1][0][13][2]).id;
 					data.flv_url = post[82][2][1][0][13][2];
 					data.stream_url = 'https://video.google.com/get_player?ps=google-live&flvurl=' + encodeURIComponent(post[82][2][1][0][13][2]) + '&autoplay=1&autohide=1&border=0&wmode=opaque';
 					data.stream_title = post[82][2][1][0][13][1];
+
+					/*
+					 * Get the hangoutID from parsing the URL
+					*/
 				}
 
 				data.clients.push(this.collectOwnerInfo(post))
@@ -61,6 +65,20 @@
 		{
 			return false;
 		}
+	}
+
+	HangoutParser.prototype.getParsedQueryParams = function(url)
+	{
+		var params = {};
+		try
+		{
+			url.split("?")[1].split("&").forEach(function(value){
+				var x = value.split("=");
+				params[x[0]] = x[1];
+			});
+		}catch(e){}
+
+		return params;
 	}
 
 	HangoutParser.prototype.parseHangouts = function(response, isSearch)
