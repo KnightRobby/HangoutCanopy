@@ -133,7 +133,7 @@
 							* Get extra information regarding the stream object
 						*/
 						data.type = "stream";
-						data.id = Base64.encode(post[82][2][1][0][13][2]);
+						data.id = this.getParsedQueryParams(post[82][2][1][0][13][2]).id;
 						data.flv_url = post[82][2][1][0][13][2];
 						data.stream_url = 'https://video.google.com/get_player?ps=google-live&flvurl=' + encodeURIComponent(post[82][2][1][0][13][2]) + '&autoplay=1&autohide=1&border=0&wmode=opaque';
 						data.stream_title = post[82][2][1][0][13][1];
@@ -160,7 +160,7 @@
 		var AF_initDataQueue = [];
 
 		/*
-			* Take outall the script tags
+			* Take out all the script tags
 		*/
 		while (match = re.exec(response))
 		{
