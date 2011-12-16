@@ -107,7 +107,6 @@ templates.streams.row = '<article id="${id}" class="stream">';
 				templates.streams.row += '{{if title}}<strong>${title}</strong>{{else}}<strong>${clients[0].name}</strong> is on air with{{if clients.length == 1}} no one {{else}} ${clients.length - 1} people{{/if}}{{/if}}';
 			templates.streams.row += '</p>';
 			templates.streams.row +='<br class="clear" />';
-		
 			templates.streams.row += '{{each(i,v) clients}}';
 				templates.streams.row +='{{if i!=0 }}';
 					templates.streams.row +='{{if i<10 }}';

@@ -388,7 +388,7 @@
                  */
                 if(newStream.type == 'closed')
                 {
-                    callback({status: 'closed', stream : newStream});
+                    callback({status: 'closed', id : newStream.id});
                 }
                 
                 /*

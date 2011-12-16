@@ -96,12 +96,6 @@
 		this.connection.send('discovery', hangout);
 	}
 
-	BackgroundController.prototype.sendStream = function(stream)
-	{
-		this.logger.notice('Sending stream to the server: ' + stream.stream_title);
-		this.connection.send("discovery_stream", stream);
-	}
-
 	/*
 		* inform server hangout has closed
 	*/

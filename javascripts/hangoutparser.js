@@ -22,7 +22,14 @@
 
 			if(this.isHangoutClosed(post))
 			{
-				return {type:'closed',id: post[82][2][1][0][0]};
+				var obj = {type:'closed',id: post[82][2][1][0][0]};
+				
+				if(data.public && post[82][2][1][0][6] == 2 && data.id == "")
+				{
+					obj.id = this.getParsedQueryParams(post[82][2][1][0][13][2]).id;
+				}
+
+				return obj;
 			}
 			else
 			{
