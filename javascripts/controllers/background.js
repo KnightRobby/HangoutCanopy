@@ -48,6 +48,7 @@
 		this.connection.bindEventListener('update'		, this.onHangoutDoUpdate.bind(this));
 		this.connection.bindEventListener('update_stream', this.onStreamDoUpdate.bind(this));
 		this.connection.bindEventListener('closed'		, this.onHangoutClosed.bind(this));
+		this.connection.bindEventListener('closed_stream', this.onStreamClosed.bind(this));
 
 		/*
 			* Set loop for the badge
@@ -61,6 +62,8 @@
 
 		if(this.connection.isConnected())
 		{
+			// x/y Next Release
+			var text = this.manager.getTotalhangouts().toString() + (this.manager.getTotalStreams() > 0 ? ("/" + this.manager.getTotalStreams()) : "");
 			chrome.browserAction.setBadgeText({text : this.manager.getTotalhangouts().toString()});
 			chrome.browserAction.setBadgeBackgroundColor({color: this.colorEnum.GREEN});
 			chrome.browserAction.setTitle({title: 'You are currently connected to Hangout Canopy'});
@@ -94,6 +97,15 @@
 	{
 		this.logger.notice('Sending new hangout to server: ' + hangout.id);
 		this.connection.send('discovery', hangout);
+	}
+
+	/*
+		* Send stream to the server
+	*/
+	BackgroundController.prototype.sendStream = function(stream)
+	{
+		this.logger.notice('Sending new stream to server: ' + stream.id);
+		this.connection.send('discovery_stream', stream);
 	}
 
 	/*
@@ -156,7 +168,7 @@
 		this.logger.notice('Reconnected to Server');
 		_gaq.push(['_trackEvent', "network", 'reconnect']);
 		this.manager.external = [];
-		this.manager.internal = [];
+		this.manager.streams = [];
 	}
 
 	/*
@@ -193,5 +205,10 @@
 	{
 		this.logger.notice('Got Hangout closed from Server: ' + id);
 		this.manager.removeExternalHangout(id);
+	}
+
+	BackgroundController.prototype.onStreamClosed = function(id)
+	{
+		this.manager.removeStream(id);
 	}
 })()

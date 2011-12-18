@@ -164,14 +164,6 @@
                 {
                     this.addInternalHangout(newHangout);
                 }
-
-                /*
-                 * if the hanguot is a stream, ...
-                 */
-                if(newHangout.type == 'stream')
-                {
-					console.log("Monitor for stream");
-                }
 			}
 
 		}).bind(this) );
@@ -373,7 +365,7 @@
              */
             if(Request.status != 200)
             {
-				callback({status: 'closed', hangout : hangout});
+				callback({status: 'closed', id : stream.id});
                 return;
             }
 
@@ -618,8 +610,7 @@
 
 	HangoutManager.prototype.addStream = function(stream)
 	{
-		var isUpdate = this.removeStream(stream.id);
-		
+		var isUpdate = this.removeStream(stream.id);		
 		this.streams.unshift(stream);
 	}
 

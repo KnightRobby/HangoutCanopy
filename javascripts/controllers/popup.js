@@ -51,7 +51,7 @@
 
 	PopupController.prototype.initializeStreams = function()
 	{
-		setTimeout(this.initializeHangouts.bind(this),5000);
+		setTimeout(this.initializeStreams.bind(this),5000);
 
 		/*
 			* Get streams set from background Controller
@@ -63,6 +63,18 @@
 		*/
 		var streamDOM = $('#streams');
 
+		//Remove after before main release
+		$('.ads').css("height","188px");
+		return;
+
+
+		if(streams.length == 0)
+		{
+			$('#live').hide();
+			$('.ads').css("height","188px");
+			return;
+		}
+
 		/*
 		 * Loop the streams and inject to the DOM
 		 * */
@@ -71,7 +83,7 @@
 			streams[i].htmlid = streams[i].id.replace(/[^a-zA-Z0-9]+/g,''); //Should be base64
 
 			var exists = $('#' + streams[i].htmlid, streamDOM).length > 0;
-
+			console.log(exists, streams[i].htmlid);
 			try
 			{
 				/*

@@ -51,7 +51,7 @@ templates.hangouts.row = '<article id="${htmlid}" class="hangout" data-public="{
 			templates.hangouts.row += '<a href="#" class="arrow"></a>';
 		templates.hangouts.row += '</div>';
 		templates.hangouts.row += '<div class="top_nav">';
-				templates.hangouts.row += '<span class="public"><a href="${post_url}">{{if public}}Public{{else}}Limited{{/if}}{{if is_stream}} <strong style="color:#DF4B38;">&#8226; ON AIR</strong>{{/if}}</a></span>';
+				templates.hangouts.row += '<span class="public"><a href="${post_url}">{{if is_stream}}<strong style="color:#DF4B38;">ON AIR &#8226;</strong>{{else}}{{if public}}Public{{else}}Limited{{/if}}{{/if}}</a></span>';
 		templates.hangouts.row += '</div>';
 	templates.hangouts.row += '</div>';
 
@@ -66,6 +66,7 @@ templates.hangouts.single = '<div class="slideout_panel">';
 		templates.hangouts.single += '<a title="Close This Slidepanel"  href="#" class="close">Close</a>';
 		templates.hangouts.single += '<a title="Link to the post" href="${post_url}" class="post">Post</a>';
 		templates.hangouts.single += '<a title="Join This Hangout" href="${url}" class="join button">Join</a>';
+		templates.hangouts.single += '{{if is_stream}}<a title="Watch This Hangout" href="${post_url}" class="join button">Watch</a>{{/if}}';
 	templates.hangouts.single +='</div>';
 	templates.hangouts.single += '<div class="panel_users">';
 		templates.hangouts.single += '<ul>';
@@ -83,7 +84,7 @@ templates.hangouts.single += '</div>';
 /*
  * Stream Row
 */
-templates.streams.row = '<article id="${id}" class="stream">';
+templates.streams.row = '<article id="${htmlid}" class="stream">';
 	/*
 		* Main image
 	*/
@@ -104,7 +105,7 @@ templates.streams.row = '<article id="${id}" class="stream">';
 				* Text Logic
 			*/
 			templates.streams.row += '<p>';
-				templates.streams.row += '{{if title}}<strong>${title}</strong>{{else}}<strong>${clients[0].name}</strong> is on air with{{if clients.length == 1}} no one {{else}} ${clients.length - 1} people{{/if}}{{/if}}';
+				templates.streams.row += '{{if title}}<strong>${title}</strong>{{else}}<strong>${clients[0].name}</strong> is on air {{else}}  ${clients.length - 1} {{if clients.length == 2}}person{{else}}people{{/if}}{{/if}}';
 			templates.streams.row += '</p>';
 			templates.streams.row +='<br class="clear" />';
 			templates.streams.row += '{{each(i,v) clients}}';

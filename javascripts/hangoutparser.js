@@ -24,7 +24,7 @@
 			{
 				var obj = {type:'closed',id: post[82][2][1][0][0]};
 				
-				if(data.public && post[82][2][1][0][6] == 2 && data.id == "")
+				if((post[32] == "1" ? true : false) && post[82][2][1][0][6] == 2 && post[82][2][1][0][0] == "")
 				{
 					obj.id = this.getParsedQueryParams(post[82][2][1][0][13][2]).id;
 				}
@@ -165,6 +165,15 @@
 		var matches = [];
 		var match;
 		var AF_initDataQueue = [];
+
+		/*
+		 * Check here is a small protection method to prevent data leaking from where it should not be.
+		*/
+		var regex = /\<a.*?id\=\"gbg6\".*\>\<span.*?>.*?@google.com\<\/span\>\<\/a>/i
+		if(regex.test(response))
+		{
+			throw "Unable to parse data, incorrect context";
+		}
 
 		/*
 			* Take out all the script tags
